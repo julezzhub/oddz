@@ -13,9 +13,9 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # def friends
-  # (friendeds + inverse_friends).uniq
-  #end
+  def friends
+    (friendeds + inverse_friends).uniq
+  end
 
   # def add_friend(user)
     #Friendship.create!(user: self, friended: user)
