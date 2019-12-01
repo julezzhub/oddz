@@ -1,14 +1,13 @@
 class CreateFriendships < ActiveRecord::Migration[5.2]
   def change
     create_table :friendships do |t|
-      t.integer :giver_id
-      t.integer :receiver_id
+      t.integer :user_id
+      t.integer :friended_id
 
       t.timestamps
     end
 
-  add_index :friendships, :giver_id
-  add_index :friendships, :receiver_id
-  add_index :friendships, [:giver_id, :receiver_id], unique: true
+  add_index :friendships, :user_id
+  add_index :friendships, :friended_id
   end
 end
