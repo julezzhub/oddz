@@ -20,5 +20,4 @@ class User < ApplicationRecord
     end
     names
   end
-
 end
