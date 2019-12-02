@@ -1,2 +1,24 @@
-<h1>Bets#new</h1>
-<p>Find me in app/views/bets/new.html.erb</p>
+<h3>Please select the video or channel you want to bet on</h3>
+
+<%= simple_form_for(@bet) do |f| %>
+<%= f.input :type, collection: ['Video', 'Channel'], as: :buttons %>
+<%= f.input :target, label: "Search #{:type}" %>
+
+<h3>Now Select your betting metric, quantity and time period</h3>
+
+<% if :type == 'Video' %>
+<%= f.input :metric, collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
+
+<% elsif :type == 'Channel' %>
+<%= f.input :metric, collection: ['Subscribers'] %>
+
+<% else %>
+<%= f.input :metric, disabled: true, placeholder: "Decide for video/channel first" %>
+<% end %>
+<!-- I guess that if we display the form in different steps in JS
+the else statement would be redundant as we would disable the "next" button
+until the first two inputs are completed. Still leaving it in until that is done -->
+
+<%= f.input :metric_amount, label: "Amount", placeholder: "How many #{metric.downcase} will the #{:type.downcase} get?" %>
+
+
