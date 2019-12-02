@@ -1,0 +1,46 @@
+form {
+  width: 91%;
+  margin: 0 auto;
+}
+
+input, select {
+  background: transparent !important;
+  color: white;
+}
+
+option {
+  background: $dark;
+  color: white !important;
+}
+
+.form-h3 {
+  width: 75%;
+  margin: 0 auto;
+}
+
+label {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #EEEEEE;
+  margin-bottom: 0px;
+  margin-left: 3px;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+#search_input_video, #search_input_channel, #recipe1forward {
+  animation: fadeIn 1s;
+}
+
