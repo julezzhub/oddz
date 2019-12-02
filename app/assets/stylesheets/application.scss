@@ -11,25 +11,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "devise/index";
 
 
-h1 {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 
+.poppins {
   font-family: Poppins;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 32px;
-  line-height: 125%;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.1em;
-
-  color: #FFFFFF;
 }
+
+.dark-bckgrnd{
+  background: $dark;
+} 

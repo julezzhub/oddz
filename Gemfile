@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'google-api-client', '~> 0.34'
+gem 'has_friendship'
+gem 'pundit'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
