@@ -7,18 +7,57 @@
 <h3>Now Select your betting metric, quantity and time period</h3>
 
 <% if :type == 'Video' %>
-<%= f.input :metric, collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
+<%= f.input :metric, label: "Select Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
 
 <% elsif :type == 'Channel' %>
-<%= f.input :metric, collection: ['Subscribers'] %>
+<%= f.input :metric, label: "Select Metric", collection: ['Subscribers'] %>
 
 <% else %>
-<%= f.input :metric, disabled: true, placeholder: "Decide for video/channel first" %>
+<%= f.input :metric, label: "Select Metric", disabled: true, placeholder: "Decide for video/channel first" %>
 <% end %>
 <!-- I guess that if we display the form in different steps in JS
 the else statement would be redundant as we would disable the "next" button
 until the first two inputs are completed. Still leaving it in until that is done -->
 
 <%= f.input :metric_amount, label: "Amount", placeholder: "How many #{metric.downcase} will the #{:type.downcase} get?" %>
+
+<div class="row">
+  <div class="col">
+    <%= f.input :days, label: "Days" %>
+  </div>
+  <div class="col">
+    <%= f.input :hours, label: "Hours" %>
+  </div>
+  <div class="col">
+    <%= f.input :minutes, label: "Minutes" %>
+  </div>
+  <%= hidden_field_tag :end_time, set_time(:days, :hours, :minutes) %>
+</div>
+
+<h3>Last but not least, choose an amount and a friend</h3>
+
+<%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1'} %>
+
+<%= f.input :friend, label: 'Choose your friend', input_html: { list="friends" } %>
+
+<datalist id="friends">
+  <% current_user.friends.each do |friend| %>
+  <option value="<% friend.username %>" />
+</datalist>
+
+<h3>Done. See your bet summary below and hit bet!</h3>
+
+<div style="display: grid, grid-template-columns: 1fr, 4fr">
+  <p>play button</p>
+  <h3><%= :target %></h3>
+  <p>metric icon</p>
+  <h3><%= :metric_count %> <%= :metric %> in <%= :days %> days, <%= :hours %> hours, <%= :minutes %> minutes</h3>
+  <p>wallet icon</p>
+  <h3><%= :stake %></h3>
+  <p>friend icon</p>
+  <h3><%= :friend %></h3>
+</div>
+
+<%= f.button :submit, value:"BET" %>
 
 
