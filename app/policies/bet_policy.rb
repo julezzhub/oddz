@@ -6,6 +6,10 @@ class BetPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    user
+  end
+
+  def create?
+    new?
   end
 end

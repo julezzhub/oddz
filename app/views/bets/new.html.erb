@@ -38,13 +38,7 @@ until the first two inputs are completed. Still leaving it in until that is done
 
 <%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1'} %>
 
-<%= f.input :friend, label: 'Choose your friend', input_html: { list: "friends" } %>
-
-<datalist id="friends">
-  <% current_user.friends.each do |friend| %>
-  <option value="<% friend.username %>" />
-  <% end %>
-</datalist>
+<%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
 
 <h3>Done. See your bet summary below and hit bet!</h3>
 
@@ -59,7 +53,7 @@ until the first two inputs are completed. Still leaving it in until that is done
   <h3><%= :friend %></h3>
 </div>
 
-<%= f.button :submit, value:"BET" %>
+<%= f.button :submit, value:"BET", style:"color: white;" %>
 <% end %>
 
 

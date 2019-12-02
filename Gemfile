@@ -19,6 +19,7 @@ gem 'google-api-client', '~> 0.34'
 gem 'has_friendship'
 gem 'pundit'
 gem 'money-rails'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

@@ -12,4 +12,12 @@ class User < ApplicationRecord
 
   monetize :balance_cents
 
+  def friend_names
+    names = []
+    friends.each do |friend|
+      names << User.find(friend.id).username
+    end
+    names
+  end
+
 end
