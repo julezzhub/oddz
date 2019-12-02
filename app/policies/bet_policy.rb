@@ -4,4 +4,12 @@ class BetPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def new?
+    user
+  end
+
+  def create?
+    new?
+  end
 end

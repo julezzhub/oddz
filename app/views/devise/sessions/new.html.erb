@@ -1,6 +1,5 @@
 <div class="container devise_sessions_new">
-
-  <p class ="logo">oddz</p>
+  
   <h1>Login</h1>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -19,7 +18,5 @@
     <%= f.button :submit, "Log in", class: "btn-stretch" %>
   </div>
   <% end %>
-  <div class="form-annotation">
     <%= render "devise/shared/links" %>
-  </div>
 </div>
