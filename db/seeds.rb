@@ -1,7 +1,8 @@
 require 'faker'
 
-# puts "Deleting all users"
-# User.destroy_all
+puts "Deleting all users"
+Bet.destroy_all
+User.destroy_all
 
 puts "Creating new users"
 
