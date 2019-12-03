@@ -40,7 +40,8 @@ label {
       to { opacity: 1; }
 }
 
-#search_input_video, #search_input_channel, #recipe1forward {
-  animation: fadeIn 1s;
+#search_input_video, #search_input_channel, #recipe1forward, #page2,
+#channel-metric, #video-metric, #metric-count, #time, #recipe2forward, #summary {
+  animation: fadeIn 0.3s;
 }
 

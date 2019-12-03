@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_103745) do
+ActiveRecord::Schema.define(version: 2019_12_03_141945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
-    t.boolean "premade"
+    t.boolean "premade", default: false
     t.string "target"
     t.string "metric"
     t.integer "metric_count"
