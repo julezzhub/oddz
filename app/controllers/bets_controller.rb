@@ -14,6 +14,24 @@ class BetsController < ApplicationController
     authorize @bet
   end
 
+  def accept
+    @bet = Bet.find(params[:id])
+    @bet.update(status: true)
+    authorize @bet
+
+    redirect_to pending_account_bets_path
+    flash[:notice] = "Bet accepted"
+  end
+
+  def reject
+    @bet = Bet.find(params[:id])
+    @bet.update(status: false)
+    authorize @bet
+
+    redirect_to pending_account_bets_path
+    flash[:notice] = "Bet rejected"
+  end
+
   private
 
   def bet_params

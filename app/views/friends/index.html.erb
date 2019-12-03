@@ -1,0 +1,25 @@
+<%= form_with url: request_friend_path, method: :post do %>
+  <%= text_field_tag :username %>
+  <%= submit_tag  "Create" %>
+<% end %>
+
+<h3>Sent Requests</h3>
+  <% current_user.pending_friends.each do |friend| %>
+  <ul>
+    <li><%= friend.username %></li>
+  </ul>
+  <% end %>
+
+  <h3>Received Requests</h3>
+  <% current_user.requested_friends.each do |friend| %>
+  <ul>
+   <li> <%= friend.username %> <%= link_to "Accept", accept_friend_friend_path(friend), method: :post %><%= link_to "Decline", decline_friend_friend_path(friend), method: :post %></li>
+  </ul>
+  <% end %>
+
+  <h3>Friends</h3>
+  <% current_user.friends.each do |friend| %>
+  <ul >
+    <li><%= friend.username %></li>
+    </ul>
+    <% end %>
