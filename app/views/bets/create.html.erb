@@ -1,2 +1,7 @@
-<h1>Bets#create</h1>
-<p>Congrats! Your bet invitation was sent!</p>
+<p class = "logo">oddz</p>
+<h1>Your bet invitation has been sent</h1>
+<%= image_tag "mail_sent" %>
+<p>We will let you know as soon as <%= params[:bet][:friend] %> has responded.</p>
+<%= link_to root_path do %>
+  <p>To my homepage</p>
+<% end %>
