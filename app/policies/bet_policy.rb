@@ -12,4 +12,16 @@ class BetPolicy < ApplicationPolicy
   def create?
     new?
   end
+
+  def pending?
+    true
+  end
+
+  def accept?
+    record.friend == user
+  end
+
+  def reject?
+    record.friend == user
+  end
 end
