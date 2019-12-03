@@ -1,7 +1,16 @@
-<h3>Please select the video or channel you want to bet on</h3>
+<h3 class="form-h3">Please select the video or channel you want to bet on</h3>
+
+  <div class="row">
+    <div class="col">
+      <p id="video_btn">Video</p>
+    </div>
+    <div class="col">
+      <p id="channel_btn">Channel</p>
+    </div>
+  </div>
 
 <div> <%= form_with(url: search_index_path, remote: true) do %>
-<%#= f.input :type, collection: ['Video', 'Channel'], as: :radio_buttons %>
+ <%= hidden_field_tag :type, '', id: 'type' %>
 <%= text_field_tag :target, '', id: "search" %>
 <%= submit_tag :submit, id: 'submit' %>
 <% end %>
@@ -16,4 +25,14 @@
   </ul>
 </div>
 
+
+<script>
+  document.getElementById('video_btn').addEventListener('click', function() {
+    document.getElementById('type').value = 'video'
+  });
+
+  document.getElementById('channel_btn').addEventListener('click', function() {
+    document.getElementById('type').value = 'channel'
+  });
+</script>
 

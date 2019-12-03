@@ -16,6 +16,18 @@ function listVideos() {
   <% end %>
 }
 
+function listChannels() {
+  const searchResults = document.getElementById('search_results');
+  searchResults.innerHTML = '';
+  <% @data["items"].each do |item| %>
+    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div><li>Title: <%= item["snippet"]["title"]%></li></div><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><% end%>')
+  <% end %>
+}
 
-listVideos();
+
+if (<%= params[:type] == "video" %>) {
+  listVideos();}
+else {
+listChannels();
+}
 // refreshSearch('<%#= j render "new"%>, @bet = Bet.new')
