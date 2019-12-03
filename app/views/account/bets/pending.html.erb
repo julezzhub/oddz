@@ -1,4 +1,24 @@
-<div class="status-change">
-  <%= button_to "Accept", accept_bet_path(bet), method: :post%>
-  <%= button_to "Reject", reject_bet_path(bet), method: :post%>
+
+<div class = "container account_invitations_pending">
+	<% if current_user.bets.where(status: nil).empty? %>
+		<h1><span><%= "No Bet Invitations" %></span></h1>
+	<% else %>
+		<h1><span><%= "Bet Invitations" %></span></h1>
+		<div class="bet-cards">
+			<% current_user.bets.where(status: nil).each do |bet| %>
+				<div class="bet-status">
+	      	<div class="bet-request">
+	        	<div class="request-upperwrap">
+	          	<%= cl_image_tag bet.friend.avatar, alt: bet.friend.username, width: 40, height: 40, crop: :fill, class:"avatar", style:"object-fit: cover"%>
+	          	<%= bet.friend.username %>
+         			<div class="status-change d-flex">
+              	<%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option text-center", style:"width: 100%; border-right: none"%>
+								<%= button_to "Reject", reject_bet_path(bet), method: :post,  class:"status-option text-center", style:"width: 100%; border-right: none"%>
+            	</div>
+	        	</div>
+	      	</div>
+	  		</div>	
+			<% end %>
+		</div>
+	<% end %>
 </div>

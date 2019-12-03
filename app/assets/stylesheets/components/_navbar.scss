@@ -1,12 +1,27 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar-oddz {
+  background: $dark;
+  border-bottom: 1px solid white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-oddz .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-oddz .navbar-brand img {
   width: 40px;
+}
+
+.navbar-brand {
+	margin-right: 0;
+}
+
+.nav-color {
+	color: white !important;
+	font-family: ABeeZee;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 20px;
+	align-items: center;
+	text-align: center;
 }
