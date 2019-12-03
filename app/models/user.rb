@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_friendship
-
-  # validates_presence_of :username, :avatar
+  has_many :bets
+  validates_presence_of :username, :avatar
   validates_uniqueness_of :username, message: "exists already"
   validates :username, format: { with: /(?=.{6,20})[a-zA-Z0-9._]/, message: "must be 6-20 characters long and can only contain letters, numbers, . and _" }
 
