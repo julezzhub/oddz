@@ -12,6 +12,7 @@
 @import "components/index";
 @import "pages/index";
 @import "devise/index";
+@import "account/pending";
 
 .poppins {
   font-family: Poppins;
@@ -24,6 +25,7 @@
 h1, h2, h3, p, label {
   color: white;
 }
+
 
 h3 {
   font-family: Poppins;

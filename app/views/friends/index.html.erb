@@ -1,25 +1,27 @@
-<%= form_with url: request_friend_path, method: :post do %>
-  <%= text_field_tag :username %>
+<%= form_with(url: request_friend_path, method: :post, remote: true) do %>
+  <%= text_field_tag :username%>
   <%= submit_tag  "Create" %>
 <% end %>
 
 <h3>Sent Requests</h3>
+  <ul id="pending-friends">
   <% current_user.pending_friends.each do |friend| %>
-  <ul>
     <li><%= friend.username %></li>
-  </ul>
   <% end %>
+  </ul>
 
   <h3>Received Requests</h3>
+  <ul id="friend-requests">
   <% current_user.requested_friends.each do |friend| %>
-  <ul>
-   <li> <%= friend.username %> <%= link_to "Accept", accept_friend_friend_path(friend), method: :post %><%= link_to "Decline", decline_friend_friend_path(friend), method: :post %></li>
-  </ul>
+    <li data-friend-id="<%= friend.id %>">
+      <%= friend.username %> <%= link_to "Accept", accept_friend_friend_path(friend), method: :post, remote: true, id: "accept"  %><%= link_to "Decline", decline_friend_friend_path(friend), method: :post, remote: true  %>
+    </li>
   <% end %>
+  </ul>
 
   <h3>Friends</h3>
+  <ul id="friends-list">
   <% current_user.friends.each do |friend| %>
-  <ul >
     <li><%= friend.username %></li>
-    </ul>
-    <% end %>
+  <% end %>
+  </ul>

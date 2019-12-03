@@ -18,10 +18,10 @@ class BetPolicy < ApplicationPolicy
   end
 
   def accept?
-    record.bet.user == user
+    record.friend == user
   end
 
   def reject?
-    record.bet.user == user
+    record.friend == user
   end
 end

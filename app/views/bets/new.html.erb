@@ -1,59 +1,217 @@
-<h3>Please select the video or channel you want to bet on</h3>
+<div id="page1">
+  <h3 class="form-h3">Please select the video or channel you want to bet on</h3>
 
-<%= simple_form_for(@bet) do |f| %>
-<%#= f.input :type, collection: ['Video', 'Channel'], as: :radio_buttons %>
-<%= f.input :target, label: "Search #{:type}" %>
-
-<h3>Now Select your betting metric, quantity and time period</h3>
-
-<% if :type == 'Video' %>
-<%= f.input :metric, label: "Select Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
-
-<% elsif :type == 'Channel' %>
-<%= f.input :metric, label: "Select Metric", collection: ['Subscribers'] %>
-
-<% else %>
-<%= f.input :metric, label: "Select Metric", disabled: true, placeholder: "Decide for video/channel first" %>
-<% end %>
-<!-- I guess that if we display the form in different steps in JS
-the else statement would be redundant as we would disable the "next" button
-until the first two inputs are completed. Still leaving it in until that is done -->
-
-<%= f.input :metric_count, label: "Amount", placeholder: "How many #{:metric.downcase} will the #{:type.downcase} get?" %>
-
-<!-- <div class="row">
-  <div class="col">
-    <%#= f.input :days, label: "Days", collection: 0..30 %>
+  <div class="row">
+    <div class="col">
+      <p id="video_btn">Video</p>
+    </div>
+    <div class="col">
+      <p id="channel_btn">Channel</p>
+    </div>
   </div>
-  <div class="col">
-    <%#= f.input :hours, label: "Hours", collection: 0..23 %>
+
+
+  <%= simple_form_for(@bet) do |f| %>
+  <div class="d-none" id="search_input_video">
+    <%= f.input :target, label: "Search Video" %>
   </div>
-  <div class="col">
-    <%#= f.input :minutes, label: "Minutes", collection: 0..59 %>
+
+  <div class="d-none" id="search_input_channel">
+    <%= f.input :target, label: "Search Channel" %>
   </div>
-  <%#= hidden_field_tag :end_time, set_time(:days, :hours, :minutes) %>
-</div> -->
-
-<h3>Last but not least, choose an amount and a friend</h3>
-
-<%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1'} %>
-
-<%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
-
-<h3>Done. See your bet summary below and hit bet!</h3>
-
-<div style="display: grid; grid-template-columns: 1fr 3fr">
-  <%= image_tag "video", style:"width: 80px; height: 80px;" %>
-  <h3><%= :target %></h3>
-  <%= image_tag("thumbs_up") %>
-  <h3><%= :metric_count %> <%= :metric %> in <%= :days %> days, <%= :hours %> hours, <%= :minutes %> minutes</h3>
-  <%= image_tag("wallet") %>
-  <h3><%= :stake %></h3>
-  <%= image_tag "friend", style:"width: 80px; height: 80px;" %>
-  <h3><%= :friend %></h3>
+  <%= image_tag "arrow_right", id:"recipe1forward", class:"d-none" %>
 </div>
 
-<%= f.button :submit, value:"BET", style:"color: white;" %>
+<div class="d-none" id="page2">
+  <div class="d-none" id="video-metric">
+    <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
+    <%= f.input :metric, label: "Select Video Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
+  </div>
+  <div class="d-none" id="channel-metric">
+    <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
+    <%= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers'] %>
+  </div>
+
+  <div class="d-none", id="metric-count">
+    <%= f.input :metric_count, label: "Amount", placeholder: "How many #{:metric.downcase} will the #{:type.downcase} get?" %>
+  </div>
+
+  <div class="d-none", id="time">
+    <div class="row">
+      <div class="col">
+        <p>Days</p>
+        <%= select_tag :days, options_for_select(0..30) %>
+      </div>
+      <div class="col">
+        <p>Hours</p>
+        <%= select_tag :hours, options_for_select(0..23) %>
+      </div>
+<!--       <div class="col">
+        <p>Minutes</p>
+        <%#= select_tag :minutes, options_for_select(0..59)%>
+      </div> -->
+      <%= hidden_field_tag :duration, 0, id:"duration" %>
+    </div>
+  </div>
+  <%= image_tag "arrow_left", id:"recipe2backward" %>
+  <%= image_tag "arrow_right", id:"recipe2forward", class:"d-none" %>
+</div>
+
+<div class="d-none" id=page3>
+  <h3 class="form-h3">Last but not least, choose an amount and a friend</h3>
+
+  <%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1'} %>
+  <div id="friend-selection">
+    <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
+<!--     <%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
+  </div>
+  <%= image_tag "arrow_left", id:"recipe3backward" %>
+  <%= image_tag "arrow_right", id:"recipe3forward", class:"d-none" %>
+</div>
+
+<div class="d-none" id="summary">
+  <h3 class="form-h3">Done. See your bet summary below and hit bet!</h3>
+
+  <div style="display: grid; grid-template-columns: 1fr 3fr">
+    <%= image_tag "video", style:"width: 80px; height: 80px;" %>
+    <h3 id="target-summary"></h3>
+    <%= image_tag("thumbs_up") %>
+    <h3 id="metric_count_time-summary"></h3>
+    <%= image_tag("wallet") %>
+    <h3 id="stake-summary"></h3>
+    <%= image_tag "friend", style:"width: 80px; height: 80px;" %>
+    <h3 id="friend-summary"></h3>
+  </div>
+  <%= image_tag "arrow_left", id:"summary-backward" %>
+  <%= f.button :submit, value:"BET", style:"color: white;" %>
+  <% end %>
+</div>
+
+<script>
+  const search_input_video = document.getElementById('search_input_video')
+  const search_input_channel = document.getElementById('search_input_channel')
+
+  document.getElementById('video_btn').addEventListener('click', function() {
+    search_input_video.classList.remove("d-none")
+    search_input_channel.classList.add("d-none")
+    document.getElementById('channel-metric').classList.add("d-none")
+    document.getElementById('bet_metric').value = ""
+    document.getElementById('bet_metric_count').value = ""
+    document.getElementById('bet_metric_count').placeholder = ""
+
+
+  })
+
+  document.getElementById('channel_btn').addEventListener('click', function() {
+    search_input_channel.classList.remove("d-none")
+    search_input_video.classList.add("d-none")
+    document.getElementById('video-metric').classList.add("d-none")
+    document.getElementById('bet_metric_count').value = ""
+    document.getElementById('bet_metric_count').placeholder = ""
+
+  })
+
+  const recipe1forward = document.getElementById('recipe1forward')
+
+  search_input_channel.addEventListener('change', function() {
+    recipe1forward.classList.remove("d-none")
+  })
+
+  search_input_video.addEventListener('change', function() {
+    recipe1forward.classList.remove("d-none")
+  })
+
+  recipe1forward.addEventListener('click', function() {
+    document.getElementById('page1').classList.add("d-none")
+    document.getElementById('page2').classList.remove("d-none")
+    if (search_input_video.classList.contains('d-none')) {
+      document.getElementById('channel-metric').classList.remove('d-none')
+    }
+    else {
+      document.getElementById('video-metric').classList.remove('d-none')
+    }
+  })
+
+  document.getElementById('channel-metric').addEventListener('change', function() {
+    document.getElementById('bet_metric_count').placeholder = "How many " +
+      document.getElementById('bet_metric').value.toLowerCase() + " will the target get?"
+    document.getElementById('metric-count').classList.remove('d-none')
+  })
+
+  document.getElementById('video-metric').addEventListener('change', function() {
+    document.getElementById('bet_metric_count').placeholder = "How many " +
+      document.getElementById('bet_metric').value.toLowerCase() + " will the target get?"
+    document.getElementById('metric-count').classList.remove('d-none')
+  })
+
+  document.getElementById('metric-count').addEventListener('change', function() {
+    document.getElementById('time').classList.remove('d-none')
+  })
+
+  const recipe2forward = document.getElementById('recipe2forward')
+  const recipe2backward = document.getElementById('recipe2backward')
+
+  document.getElementById('time').addEventListener('change', function() {
+    document.getElementById('duration').value =
+      document.getElementById('days').value * 86400
+      + document.getElementById('hours').value * 3600
+/*      + document.getElementById('minutes').value * 60
+*/
+    recipe2forward.classList.remove('d-none')
+  })
+
+  recipe2backward.addEventListener('click', function() {
+    document.getElementById('page2').classList.add("d-none")
+    document.getElementById('page1').classList.remove("d-none")
+  })
+
+  recipe2forward.addEventListener('click', function() {
+    document.getElementById('page2').classList.add("d-none")
+    document.getElementById('page3').classList.remove("d-none")
+  })
+
+  const recipe3forward = document.getElementById('recipe3forward')
+  const recipe3backward = document.getElementById('recipe3backward')
+
+  document.getElementById('friend-selection').addEventListener('change', function() {
+    recipe3forward.classList.remove('d-none')
+  })
+
+  recipe3backward.addEventListener('click', function() {
+    document.getElementById('page3').classList.add("d-none")
+    document.getElementById('page2').classList.remove("d-none")
+  })
+
+  recipe3forward.addEventListener('click', function() {
+    document.getElementById('page3').classList.add("d-none")
+    document.getElementById('summary').classList.remove("d-none")
+
+    //document.getElementById('target_summary').innerHTML =
+      //document.getElementById('bet_target').value
+
+    document.getElementById('metric_count_time-summary').innerHTML =
+      parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
+      + document.getElementById('bet_metric').value + " in "
+      + document.getElementById('days').value + " days and "
+      + document.getElementById('hours').value + " hours."
+/*      + document.getElementById('minutes').value + " minutes."
+*/
+    document.getElementById('stake-summary').innerHTML =
+      document.getElementById('bet_stake').value + "€"
+
+    document.getElementById('friend-summary').innerHTML =
+      document.getElementById('bet_friend').value
+  })
+
+  document.getElementById('summary-backward').addEventListener('click', function() {
+    document.getElementById('summary').classList.add("d-none")
+    document.getElementById('page3').classList.remove("d-none")
+
+  })
+
+
+</script>
+
+<%= content_for :after_js do %>
+  <%= javascript_pack_tag "new_bet_form" %>
 <% end %>
-
-

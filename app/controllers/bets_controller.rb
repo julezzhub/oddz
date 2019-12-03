@@ -5,16 +5,13 @@ class BetsController < ApplicationController
   end
 
   def create
-    raise
     @bet = Bet.new(bet_params)
+    @bet.user = current_user
+    @bet.friend = User.find_by(username: params[:bet][:friend])
+    @bet.start_time = Time.now
+    @bet.end_time = @bet.start_time + params[:duration].to_i
+    @bet.save!
     authorize @bet
-  end
-
-  def set_time(days, hours, minutes)
-    days_in_sec = 86_400 * days
-    hours_in_sec = 3600 * hours
-    minutes_in_sec = 60 * minutes
-    Time.now + days_in_sec + hours_in_sec + minutes_in_sec
   end
 
   def accept
@@ -38,6 +35,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:booking).permit(:target, :metric, :metric_count, :premade, :start_time, :end_time, :friend_id)
+    params.require(:bet).permit(:target, :metric, :metric_count, :stake, :premade, :end_time)
   end
 end

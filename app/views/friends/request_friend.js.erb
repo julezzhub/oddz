@@ -1,0 +1,5 @@
+function addSentRequest() {
+  const sentRequests = document.getElementById('pending-friends');
+  sentRequests.insertAdjacentHTML('afterbegin', '<li><%= params["username"] %></li>');
+}
+addSentRequest();
