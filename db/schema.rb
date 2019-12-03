@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_075727) do
+ActiveRecord::Schema.define(version: 2019_12_02_103745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_075727) do
     t.bigint "winner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "stake_cents", default: 0, null: false
     t.index ["friend_id"], name: "index_bets_on_friend_id"
     t.index ["user_id"], name: "index_bets_on_user_id"
     t.index ["winner_id"], name: "index_bets_on_winner_id"
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_075727) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "avatar"
+    t.integer "balance_cents", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
