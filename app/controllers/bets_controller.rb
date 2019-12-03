@@ -1,11 +1,11 @@
 class BetsController < ApplicationController
   def new
+    raise
     @bet = Bet.new
     authorize @bet
   end
 
   def create
-    raise
     @bet = Bet.new(bet_params)
     authorize @bet
   end
@@ -20,6 +20,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:booking).permit(:target, :metric, :metric_count, :premade, :start_time, :end_time, :friend_id)
+    params.require(:bet).permit(:target, :metric, :metric_count, :premade, :start_time, :end_time, :friend_id)
   end
 end

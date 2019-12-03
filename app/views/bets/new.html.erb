@@ -2,7 +2,7 @@
 
 <%= simple_form_for(@bet) do |f| %>
 <%#= f.input :type, collection: ['Video', 'Channel'], as: :radio_buttons %>
-<%= f.input :target, label: "Search #{:type}" %>
+<%= f.input :target, label: "Search #{:type}", id: "video_result" %>
 
 <h3>Now Select your betting metric, quantity and time period</h3>
 
