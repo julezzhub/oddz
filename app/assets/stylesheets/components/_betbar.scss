@@ -1,0 +1,38 @@
+.betbar {
+  position: absolute;
+  width: 375px;
+  height: 120px;
+  left: 0px;
+  top: 682px;
+  background: rgba(71, 69, 69, 0.3);
+  filter: blur(60px);
+  backdrop-filter: blur(20px);
+  display: flex;
+}
+
+#dashboard-icon {
+  img {
+    left: 81.17%;
+    right: 13.53%;
+    top: 46.67%;
+    bottom: 31.67%;
+  }
+}
+
+#home-icon {
+    img {
+    left: 13.26%;
+    right: 80.9%;
+    top: 46.67%;
+    bottom: 31.67%;
+  }
+}
+
+#bet-button {
+  img {
+    left: 39.2%;
+    right: 38.93%;
+    top: 20%;
+    bottom: 11.67%;
+  }
+}
