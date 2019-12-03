@@ -1,0 +1,21 @@
+// const videoList = document.getElementById("video_result").addEventListener('keypress', function (e) {
+//   const key = e.which || e.keyCode;
+//   if (key === 13)
+// })
+
+// function refreshSearch(innerHTML) {
+//   const newSearchForm = document.getElementById('new_review');
+//   newSearchForm.innerHTML = innerHTML;
+// }
+
+function listVideos() {
+  const searchResults = document.getElementById('search_results');
+  searchResults.innerHTML = '';
+  <% @data["items"].each do |item| %>
+    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div><li>Title: <%= item["snippet"]["title"]%></li></div><div><p>Published At: <%= item["snippet"]["publishedAt"]%></p></div><div><p>Channel: <%= item["snippet"]["channelTitle"]%></p></div><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><% end%>')
+  <% end %>
+}
+
+
+listVideos();
+// refreshSearch('<%#= j render "new"%>, @bet = Bet.new')

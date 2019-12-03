@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
   def new
+    raise
     @bet = Bet.new
     authorize @bet
   end

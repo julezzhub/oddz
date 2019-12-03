@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/landing', to: 'pages#landing'
   resources :bets, only: [:new, :create]
+  resources :search, only: [:new, :create]
+
 
 	resources :bets, only:[] do
 	      member do
@@ -23,7 +25,6 @@ Rails.application.routes.draw do
   # post '/bets/:id/accept', to: 'bets#accept', as: 'accept_bet'
   # post '/bets/:id/reject', to: 'bets#reject', as: 'reject_bet'
   # get 'account/bets/pending'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :friends, only: [:index] do
     member do

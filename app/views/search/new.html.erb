@@ -1,0 +1,19 @@
+<h3>Please select the video or channel you want to bet on</h3>
+
+<div> <%= form_with(url: search_index_path, remote: true) do %>
+<%#= f.input :type, collection: ['Video', 'Channel'], as: :radio_buttons %>
+<%= text_field_tag :target, '', id: "search" %>
+<%= submit_tag :submit, id: 'submit' %>
+<% end %>
+<ul id="suggestions">
+</ul>
+</div>
+
+<h3 id="videos">Results</h3>
+<div>
+  <ul id="search_results" style="color: white">
+
+  </ul>
+</div>
+
+
