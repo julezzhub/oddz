@@ -1,0 +1,9 @@
+function addFriendToFriends() {
+  const friends = document.getElementById('friends-list');
+  const listItem = `<li><%= @friended_user.username %></li>`;
+  friends.insertAdjacentHTML('afterbegin', '<li><%= @friended_user.username %></li>');
+}
+addFriendToFriends();
+
+document.querySelector('[data-friend-id="<%= @friended_user.id %>"]')
+  .remove();
