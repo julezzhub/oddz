@@ -14,6 +14,8 @@
 @import "devise/index";
 @import "account/pending";
 @import "search/index";
+@import "account/index";
+
 
 
 .poppins {
@@ -26,18 +28,5 @@
 
 h1, h2, h3, p, label {
   color: white;
-}
-
-
-h3 {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  display: flex;
-  align-items: center;
   text-align: center;
-  text-transform: uppercase;
-  color: #FFFFFF;
 }

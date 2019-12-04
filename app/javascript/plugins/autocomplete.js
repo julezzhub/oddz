@@ -27,9 +27,11 @@ const fetchSuggestions = (query) => {
 };
 
 const initAutocomplete = () => {
-  searchForm.addEventListener('keyup', (event) => {
-    fetchSuggestions(searchForm.value);
-  });
+  if (searchForm) {
+    searchForm.addEventListener('keyup', (event) => {
+      fetchSuggestions(searchForm.value);
+    });
+  }
 };
 
 // clickSuggestions.addEventListener('click', function(){

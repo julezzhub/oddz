@@ -22,8 +22,3 @@ class SearchController < ApplicationController
     skip_authorization
   end
 end
-
-# p get_videos("Travis Scott")['items'].map { |item| item['snippet']['title'] }
-# p get_videos("Travis Scott")['items'].map { |item| item['snippet']['publishedAt'] }
-# p get_videos("Travis Scott")['items'].map { |item| item['snippet']['channelTitle'] }
-# p get_videos("Travis Scott")['items'].map { |item| item['snippet']['thumbnails']['high']['url'] }

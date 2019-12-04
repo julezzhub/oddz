@@ -17,6 +17,7 @@ option {
   width: 75%;
   margin: 0 auto;
   margin-top: 20px;
+  font-weight: 600;
 }
 
 label {
@@ -27,7 +28,7 @@ label {
   line-height: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #EEEEEE;
+  color: white;
   margin-bottom: 0px;
   margin-left: 3px;
 }
@@ -41,8 +42,8 @@ label {
       to { opacity: 1; }
 }
 
-#search_input, #recipe1forward, #page2,
-#channel-metric, #video-metric, #metric-count, #time, #recipe2forward, #summary, {
+#search_input, #time, #recipe1forward, #page2, #channel-metric, #video-metric,
+#metric-count, #time, #recipe2forward, #summary {
   animation: fadeIn 0.3s;
 }
 

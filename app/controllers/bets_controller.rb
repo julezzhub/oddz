@@ -7,6 +7,7 @@ class BetsController < ApplicationController
   def create
     @bet = Bet.new(bet_params)
     @bet.user = current_user
+    @bet.target = params[:target]
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
     @bet.end_time = @bet.start_time + params[:duration].to_i
@@ -30,6 +31,12 @@ class BetsController < ApplicationController
 
     redirect_to pending_account_bets_path
     flash[:notice] = "Bet rejected"
+  end
+
+  def new_premade
+    @bet = Bet.new
+    authorize @bet
+    @premade_bet = Bet.find(params[:bet])
   end
 
   private
