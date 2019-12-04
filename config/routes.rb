@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
+  root to: 'pages#landing'
   get '/landing', to: 'pages#landing'
   resources :bets, only: [:new, :create]
   resources :search, only: [:new, :create]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 	      end
 	    end
 	  end
-	  
+
   # post '/bets/:id/accept', to: 'bets#accept', as: 'accept_bet'
   # post '/bets/:id/reject', to: 'bets#reject', as: 'reject_bet'
   # get 'account/bets/pending'

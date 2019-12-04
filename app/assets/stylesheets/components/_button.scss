@@ -8,7 +8,24 @@
   padding-bottom: 100%;
   border-radius: 50%;
   background: linear-gradient(146.62deg, #6C08FA -0.48%, rgba(255, 255, 255, 0) 220.52%), #7F28FA;
+
+  input {
+    display:block;
+    float:left;
+    width:100%;
+    padding-top:50%;
+    padding-bottom:50%;
+    line-height:1em;
+    margin-top:-0.5em;
+    text-align:center;
+    font-family: ABeeZee;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: white;
   }
+}
 
 .round-button span {
   display:block;
@@ -28,19 +45,70 @@
 }
 
 .btn-purple {
-    background: $purple1 !important;
-    color: #FFFFFF;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 16px;
-    border-radius: 6px;
-    height: 60px;
-    text-align: center;
-    line-height: 24px;
-    text-transform: uppercase;
-    width: 100%;
-    margin-top: 10px;
-  }
+  background: $purple1 !important;
+  color: #FFFFFF;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  height: 60px;
+  text-align: center;
+  line-height: 24px;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 10px;
+  letter-spacing: 0.1em;
+}
 
+.btn-transparent {
+  background: transparent;
+  color: #FFFFFF;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid white;
+  height: 52px;
+  text-align: center;
+  line-height: 24px;
+  text-transform: uppercase;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 14px;
+  letter-spacing: 0.1em;
+}
 
+.btn-half {
+  background: transparent;
+  color: #FFFFFF;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid white;
+  height: 52px;
+  text-align: center;
+  line-height: 24px;
+  text-transform: uppercase;
+  width: 90%;
+  margin: 20px auto;
+  padding: 14px;
+  letter-spacing: 0.1em;
+}
+
+.white {
+  background: white;
+  color: black;
+}
+
+.left {
+  padding-right: 0px;
+  padding-left: 26px;
+}
+
+.right {
+  padding-left: 0px;
+  padding-right: 26px;
+}
 

@@ -6,50 +6,67 @@
 </div>
 
 <div class="row">
-  <div class="col">
+  <div class="left col">
     <%= link_to new_user_session_path do %>
-    <h3>Log in </h3>
+    <h3 class="btn-half white">Log in </h3>
     <% end %>
   </div>
-  <div class="col">
+  <div class="right col">
     <%= link_to new_user_registration_path do %>
-    <h3>Sign up</h3>
+    <h3 class="btn-half">Sign up</h3>
     <% end %>
   </div>
 </div>
-<h3 id="learn-more">Learn More</h3>
+<h3 id="learn-more" class="btn-transparent">Learn More</h3>
 
-<h1>How does it work?</h1>
+<div class="description">
+  <h1>How does it work?</h1>
 
-<p>Oddz is a social betting platform</p>
+  <p>Oddz is a social betting platform.</p>
 
-<p>A <b>WHAT</b>?</p>
+  <p>A <b>WHAT</b>?</p>
 
-<p>For the first time, you can bet on your favourite internet celebs</p>
+  <p>For the first time, you can bet on your favourite internet celebs.</p>
 
-<p>How many likes and comments will Kanye's new music video get? How about
-Kims' new Insta post?</p>
+  <p>How many likes and comments will Kanye's new music video get? How about
+  Kims' new Insta post?</p>
 
-<p>Your guess is as good as ours - but maybe it's better than your friends'.</p>
+  <p>Your guess is as good as ours - but maybe it's better than your friends'.</p>
 
-<h2>Step-by-step</h2>
+  <h2>Step-by-step</h2>
 
-<%= image_tag "landing_connect_friends.svg" %>
-<p>CONNECT</p>
-<p>Find your friends online</p>
+  <div class="step-card">
+    <%= image_tag "landing_connect_friends.svg" %>
+    <p>CONNECT</p>
+    <p>Find your friends online</p>
+  </div>
 
-<%= image_tag "landing_choose_bet.svg" %>
-<p>SET THE SCENE</p>
-<p>Choose what you want to bet on.<br>Views, likes subscribers...<br>everything is possible</p>
+  <div class="step-card">
+    <%= image_tag "landing_choose_bet.svg" %>
+    <p>SET THE SCENE</p>
+    <p>Choose what you want to bet on.<br>Views, likes subscribers...<br>everything is possible</p>
+  </div>
 
-<%= image_tag "landing_savings.svg" %>
-<p>WAGER</p>
-<p>Put your bets in a pot</p>
+  <div class="step-card">
+    <%= image_tag "landing_savings.svg" %>
+    <p>WAGER</p>
+    <p>Put your bets in a pot</p>
+  </div>
 
-<%= image_tag "landing_win.svg" %>
-<p>WIN</p>
-<p>Money, fame and honour await you!</p>
+  <div class="step-card">
+    <%= image_tag "landing_win.svg" %>
+    <p>WIN</p>
+    <p>Money, fame and honour await you!</p>
+  </div>
+</div>
 
 <footer>
   <p>Made with <3 in Tel Aviv, Habibi!<br>Oddz 2019</p>
 </footer>
+
+<script>
+  document.getElementById('learn-more').addEventListener('click', function() {
+    document.scroll
+  })
+
+</script>
