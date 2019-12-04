@@ -1,3 +1,10 @@
-<h1>Scroll through the cards</h1>
+<% Bet.where(premade: true).each do |bet|%>
+  <div>
+    <%= link_to premade_path(bet: bet) do %>
+    <span style="color:white"><%= bet.video_title %> will reach <%= bet.metric_count %> <%= bet.metric %> in the next 2d and 12h.</span>
+
+    <% end %>
+  </div>
+<% end %>
 <%= render 'shared/betbar' %>
 
