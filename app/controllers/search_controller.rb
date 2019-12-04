@@ -9,9 +9,9 @@ class SearchController < ApplicationController
 
   def create
     if params[:type] == 'video'
-      url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{params[:target]}&type=video&key=AIzaSyDB35LsQ5MAlBIATAgo7BvvDJR5RWeYS3M"
+      url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{params[:target]}&type=video&key=#{ENV['YOUTUBE_API_KEY']}"
     else
-      url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{params[:target]}&type=channel&key=AIzaSyDB35LsQ5MAlBIATAgo7BvvDJR5RWeYS3M"
+      url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{params[:target]}&type=channel&key=#{ENV['YOUTUBE_API_KEY']}"
     end
     result = open(url).read
     @data = JSON.parse(result)
