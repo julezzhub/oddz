@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :bets, only: [:new, :create]
   resources :search, only: [:new, :create]
 
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
 	resources :bets, only:[] do
 	      member do
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
 	      end
 	    end
 	  end
-	  
+
   # post '/bets/:id/accept', to: 'bets#accept', as: 'accept_bet'
   # post '/bets/:id/reject', to: 'bets#reject', as: 'reject_bet'
   # get 'account/bets/pending'
