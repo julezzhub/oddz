@@ -1,36 +1,65 @@
 .account_invitations_pending {
 position: relative;
 h1 {
+  color: #FFFFFF;
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;
-  display: flex;
-  align-items: center;
   text-align: center;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
-
-  color: #FFFFFF;
+  margin-top: 30px;
+  margin-bottom: 20px;
   }
 
-  .bet-cards {
-  }
-
-  .bet-status {
-  }
-
-  .empty-card {
-  }
-
-  .bet-request {
+  .fixed-avatar {
+    position: absolute;
+    top: -13px;
+    left: -7px;
   }
 
   .request-upperwrap {
+    position: relative;
   }
 
+  .bet-content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 
-  .status-change {
+  .bet-request {
+    box-shadow: 0px 10px 30px rgba(0,0,0,.2);
+    color: white;
+    padding: 5px 0px 0px 0px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+
+  .request-upperwrap {
+    padding: 5px;
+    vertical-align: middle;
+    border-bottom: 1px solid white;
+    color: white;
+    font-family: Poppins;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .status-option {
+    height: 45px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  .status-option-reject {
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .status-option-accept {
+    border-left: none;
+    border-bottom: none;
   }
 }
