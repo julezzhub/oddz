@@ -24,4 +24,8 @@ class BetPolicy < ApplicationPolicy
   def reject?
     record.friend == user
   end
+
+  def new_premade?
+    new?
+  end
 end
