@@ -1,14 +1,17 @@
 const searchForm = document.getElementById('search');
 const results = document.getElementById('suggestions');
+const clickSuggestions = document.getElementById('click_suggestion');
 
 const populateAutocomplete = (data) => {
   const firstFive = [data[1][0], data[1][1], data[1][2], data[1][3], data[1][4]];
   console.log(firstFive)
+  results.innerHTML = "";
   firstFive.forEach((suggestion) => {
-    const resultItem = `<li>
-    <p>${suggestion}</p>
-    </li>`
-    results.insertAdjacentHTML('beforeend', resultItem)
+    const resultItem = `<div id="click_suggestion"><p>${suggestion}</p></div>`
+    results.insertAdjacentHTML('beforeend', resultItem);
+  });
+  resultItem.addEventListener('click', function(){
+    searchForm.value = resultItem.innerHTML;
   });
 };
 
@@ -16,7 +19,6 @@ const fetchSuggestions = (query) => {
   const suggestionsUrl = `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${query}`;
   // const apiUrl = `/search?q=${url}`;
   const apiUrl = `https://cors-anywhere.herokuapp.com/${suggestionsUrl}`;
-  results.innerHTML = "";
   fetch(apiUrl)
   .then(response => response.json())
   .then((data) => {
@@ -31,6 +33,14 @@ const initAutocomplete = () => {
     });
   }
 };
+
+// clickSuggestions.addEventListener('click', function(){
+//   searchForm.value = resultItem
+// })
+// function hoverAutocomplete(){
+//     results.style.backgroundColor = 'white';
+//   };
+
 
 
 export { initAutocomplete }
