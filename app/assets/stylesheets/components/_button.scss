@@ -1,25 +1,34 @@
-.btn-bet {
-  background: linear-gradient(146.62deg, #6C08FA -0.48%, rgba(255, 255, 255, 0) 220.52%), #7F28FA;
-  position: absolute;
-  left: 37.33%;
-  right: 37.33%;
-  top: 20%;
-  bottom: 12%;
+.round-button {
+  // position: absolute;
 
-  position: absolute;
-  left: 45.87%;
-  right: 45.87%;
-  top: 45.83%;
-  bottom: 38.33%
+  // top: 20%;
+  // bottom: 11.67%;
+  width:82px;
+  height:82px;
+}
+.round-button-circle {
+  width: 100%;
+  height:0;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background: linear-gradient(146.62deg, #6C08FA -0.48%, rgba(255, 255, 255, 0) 220.52%), #7F28FA;
+  }
+
+.round-button span {
+  display:block;
+  float:left;
+  width:100%;
+  padding-top:50%;
+  padding-bottom:50%;
+  line-height:1em;
+  margin-top:-0.5em;
+  text-align:center;
   font-family: ABeeZee;
   font-style: italic;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.1em;
+  color: white;
 }
 
 

@@ -1,13 +1,22 @@
+
 <div class="betbar">
-  <div id="home-icon">
-    <%= image_tag "home-button.svg" %>
+  <div class="betbar-inner">
+    <div id="home-icon">
+      <%= link_to (image_tag "home-button"), root_path, class: "navbar-brand"  %>
+    </div>
+
+  <div class="round-button">
+  <%= link_to new_bet_path do %>
+  <div class="round-button-circle">
+    <span>BET</span></div>
+    <% end %>
   </div>
 
-  <div id="bet-button">
-    <%#= link_to "Bet", new_bet_path, class: "btn-bet" %>
+    <div id="dashboard-icon">
+      <%= link_to (image_tag "stats-button" ), account_bets_path, class: "navbar-brand"%>
+    </div>
   </div>
-
-  <div id="dashboard-icon">
-    <%= image_tag "stats-button.svg" %>
+  <div>
+    <div class="filter"></div>
   </div>
 </div>
