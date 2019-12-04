@@ -7,6 +7,7 @@ class BetsController < ApplicationController
   def create
     @bet = Bet.new(bet_params)
     @bet.user = current_user
+    @bet.target = params[:target]
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
     @bet.end_time = @bet.start_time + params[:duration].to_i
