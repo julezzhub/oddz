@@ -4,9 +4,7 @@
 		<h1><span><%= "No Bet Invitations" %></span></h1>
 	<% else %>
 		<h1><span><%= "Bet Invitations" %></span></h1>
-
 		<div class="bet-status">
-			<%= @duration %> 
 			<% @bets.each do |bet| %>
 				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
 					<div class="request-upperwrap text-center">
@@ -20,8 +18,9 @@
 							<%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
 							<%= button_to "Reject", reject_bet_path(bet), method: :post,  class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none"%>
 					</div>
-				</div>	
+				</div>
 			<% end %>
 		</div>
 	<% end %>
 </div>
+<%= render 'shared/betbar' %>
