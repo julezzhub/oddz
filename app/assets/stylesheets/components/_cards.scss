@@ -1,0 +1,87 @@
+.video_card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 13px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.video_card img {
+  height: 13vh;
+  width: 160px;
+  object-fit: cover;
+}
+
+.video_info div p {
+  color: white;
+  font-size: 9px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  display: flex;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 26px;
+  padding-left: 8px;
+}
+
+.video_info div {
+  margin-right: 90px;
+}
+
+
+.data-channel-info {
+  // justify-content: between;
+  padding-left: 4px;
+}
+
+.data-channel-info div p {
+  color: white;
+  font-size: 9px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+  position: absolute;
+}
+
+.channel_card {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.channel_card img {
+  height: 44vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.channel_card p {
+  color: white;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 31px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+#search_results {
+  padding: 0;
+  margin-left: 12px;
+  margin-right: 12px;
+}

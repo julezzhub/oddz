@@ -16,6 +16,7 @@ option {
 .form-h3 {
   width: 75%;
   margin: 0 auto;
+  margin-top: 20px;
   font-weight: 600;
 }
 
@@ -41,7 +42,7 @@ label {
       to { opacity: 1; }
 }
 
-#recipe1forward, #page2, #channel-metric, #video-metric,
+#search_input, #time, #recipe1forward, #page2, #channel-metric, #video-metric,
 #metric-count, #time, #recipe2forward, #summary {
   animation: fadeIn 0.3s;
 }
