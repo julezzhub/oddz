@@ -3,16 +3,18 @@
 //   if (key === 13)
 // })
 
-// function refreshSearch(innerHTML) {
-//   const newSearchForm = document.getElementById('new_review');
-//   newSearchForm.innerHTML = innerHTML;
-// }
+function refreshSearch() {
+  const newSearchForm = document.getElementById('search');
+  const removeAutcomplete = document.getElementById('autocomplete_style');
+  newSearchForm.value = "";
+  removeAutcomplete.style.display = "none";
+}
 
 function listVideos() {
   const searchResults = document.getElementById('search_results');
   searchResults.innerHTML = '';
   <% @data["items"].each do |item| %>
-    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div><li>Title: <%= item["snippet"]["title"]%></li></div><div><p>Published At: <%= item["snippet"]["publishedAt"]%></p></div><div><p>Channel: <%= item["snippet"]["channelTitle"]%></p></div><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><% end%>')
+    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div class="video_card" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>"><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><div class="video_info"><div><p><%= item["snippet"]["title"]%></p></div><div class="d-flex data-channel-info"><div><p> <%= item["snippet"]["channelTitle"]%></p></div><div><p> <%= rand(1..48)%>hours ago</p></div></div></div></div><% end %>')
   <% end %>
 }
 
@@ -20,7 +22,7 @@ function listChannels() {
   const searchResults = document.getElementById('search_results');
   searchResults.innerHTML = '';
   <% @data["items"].each do |item| %>
-    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div><li>Title: <%= item["snippet"]["title"]%></li></div><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><% end%>')
+    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], method: :post) do %><div class="channel_card" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample%>"><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><div><p> <%= item["snippet"]["title"]%></p></div></div><% end %>')
   <% end %>
 }
 
@@ -30,4 +32,6 @@ if (<%= params[:type] == "video" %>) {
 else {
 listChannels();
 }
+
 // refreshSearch('<%#= j render "new"%>, @bet = Bet.new')
+refreshSearch()

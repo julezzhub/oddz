@@ -13,6 +13,8 @@
 @import "pages/index";
 @import "devise/index";
 @import "account/pending";
+@import "search/index";
+
 
 .poppins {
   font-family: Poppins;
@@ -20,7 +22,7 @@
 
 .dark-bckgrnd{
   background: $dark;
-} 
+}
 
 h1, h2, h3, p, label {
   color: white;
