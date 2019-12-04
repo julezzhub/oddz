@@ -33,6 +33,12 @@ class BetsController < ApplicationController
     flash[:notice] = "Bet rejected"
   end
 
+  def new_premade
+    @bet = Bet.new
+    authorize @bet
+    @premade_bet = Bet.find(params[:bet])
+  end
+
   private
 
   def bet_params
