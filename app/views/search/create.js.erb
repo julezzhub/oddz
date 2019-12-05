@@ -14,7 +14,7 @@ function listVideos() {
   const searchResults = document.getElementById('search_results');
   searchResults.innerHTML = '';
   <% @data["items"].each do |item| %>
-    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], title: item["snippet"]["title"], method: :post) do %><div class="video_card" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>"><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><div class="video_info"><div><p><%= item["snippet"]["title"]%></p></div><div class="d-flex data-channel-info"><div><p> <%= item["snippet"]["channelTitle"]%></p></div><div><p> <%= rand(1..48)%>hours ago</p></div></div></div></div><% end %>')
+    searchResults.insertAdjacentHTML('beforeend', '<%= link_to new_bet_path(target: item["id"], title: item["snippet"]["title"], method: :post) do %><div class="video_card" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>"><div><img src="<%= item["snippet"]["thumbnails"]["high"]["url"] %>" alt="Thumbnail"></div><div class="video_info"><div class="vid_title"><p><%= item["snippet"]["title"]%></p></div><div class="d-flex data-channel-info justify-content-between"><p> <%= item["snippet"]["channelTitle"]%></p><p> <%= distance_of_time_in_words(DateTime.now - DateTime.parse(item["snippet"]["publishedAt"]))%></p></div></div></div><% end %>')
   <% end %>
 }
 
