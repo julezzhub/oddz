@@ -16,6 +16,10 @@ puts "Creating bets"
 end
 
 puts "Creating premade bets"
-6.times do
-  Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "uelHwf8o7_U",  metric: "likes",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "Adele - Hello from the other side",  premade_hours: 1, premade_days: 2)
-end
+
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "uelHwf8o7_U",  metric: "likes",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "Adele - Hello",  premade_hours: 1, premade_days: 2)
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "_EyZUTDAH0U",  metric: "views",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "Travis Scott - WAKE UP",  premade_hours: 4, premade_days: 1)
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "2hmnsAIJg5I ",  metric: "views",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "NINJA | True Geordie Podcast",  premade_hours: 3, premade_days: 1)
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "VB5HTN1y1mg",  metric: "views",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "Lions Eating Snake (Anaconda)",  premade_hours: 2, premade_days: 2)
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "wfN4PVaOU5Q",  metric: "views",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "Rihanna - Needed Me",  premade_hours: 4, premade_days: 1)
+Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "9G6ANKkP9cE",  metric: "views",  metric_count: 1000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "PewDiePie ROBBED! #DramaAlert Alinity did it AGAIN!",  premade_hours: 1, premade_days: 4)
