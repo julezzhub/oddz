@@ -1,3 +1,8 @@
+<%= link_to pending_account_bets_path do %>
+<div class="invitation-banner">
+  <h3>Your bet invitations &nbsp; <%= image_tag "arrow_right.svg" %></h3>
+</div>
+<% end %>
 <div class = "container account_history_index">
   <h2>BET SUGGESTIONS</h2>
   <% Bet.where(premade: true).each do |bet|%>
