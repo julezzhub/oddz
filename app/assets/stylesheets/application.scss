@@ -13,11 +13,11 @@
 @import "pages/index";
 @import "devise/index";
 @import "recipe/index";
-@import "account/index";
-@import "account/pending";
 @import "search/index";
 @import "account/index";
-
+@import "account/pending";
+@import "account/setting";
+@import "account/index";
 
 .poppins {
   font-family: Poppins;
