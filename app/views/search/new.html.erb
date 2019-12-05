@@ -12,9 +12,9 @@
 
   <div class="d-none" id="search_input">
     <div> <%= form_with(url: search_index_path, remote: true) do %>
-     <%= hidden_field_tag :type, '', id: 'type' %>
-     <%= text_field_tag :target, '', placeholder: 'Search', id: "search", label: '' %>
-     <%#= submit_tag :submit, id: 'submit' %>
+       <%= hidden_field_tag :type, '', id: 'type' %>
+       <%= text_field_tag :target, '', placeholder: 'Search', id: "search", label: '', autocomplete: "off" %>
+       <%#= submit_tag :submit, id: 'submit' %>
      <% end %>
       <div id="autocomplete_style" class="d-none">
       <ul id="suggestions">
