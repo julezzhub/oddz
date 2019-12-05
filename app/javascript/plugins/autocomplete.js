@@ -2,17 +2,42 @@ const searchForm = document.getElementById('search');
 const results = document.getElementById('suggestions');
 const clickSuggestions = document.getElementById('click_suggestion');
 
+const onResultSelect = (result) => {
+  // hide the results
+  document.getElementById('autocomplete_style').classList.add('d-none')
+  // fill in the value of the input
+  searchForm.value = result
+  // submit the form
+  const form = document.querySelector('#search_input form')
+  Rails.fire(form, 'submit')
+}
+
+const setupSuggestionEvents = () => {
+  results.addEventListener('click', (e) => {
+    if (e.target) {
+      const target = e.target
+      if (target.classList.contains('click_suggestion')) {
+        const keyword = target.dataset.suggestion
+        console.log(`user clicked: ${keyword}`)
+        onResultSelect(keyword)
+      }
+    }
+  })
+}
+
 const populateAutocomplete = (data) => {
   const firstFive = [data[1][0], data[1][1], data[1][2], data[1][3], data[1][4]];
   console.log(firstFive)
   results.innerHTML = "";
   firstFive.forEach((suggestion) => {
-    const resultItem = `<div id="click_suggestion"><p>${suggestion}</p></div>`
+    const resultItem = `<div class="click_suggestion" data-suggestion="${suggestion}">
+                          ${suggestion}
+                        </div>`
     results.insertAdjacentHTML('beforeend', resultItem);
   });
-  resultItem.addEventListener('click', function(){
-    searchForm.value = resultItem.innerHTML;
-  });
+  // clickSuggestions.addEventListener('click', function(){
+  //   searchForm.value = clickSuggestions.innerHTML;
+  // });
 };
 
 const fetchSuggestions = (query) => {
@@ -29,14 +54,16 @@ const fetchSuggestions = (query) => {
 const initAutocomplete = () => {
   if (searchForm) {
     searchForm.addEventListener('keyup', (event) => {
+      document.getElementById('autocomplete_style').style.display = 'inline-block'
       fetchSuggestions(searchForm.value);
     });
+    setupSuggestionEvents()
   }
 };
 
 // clickSuggestions.addEventListener('click', function(){
-//   searchForm.value = resultItem
-// })
+//   searchForm.value = clickSuggestions.innerHTML
+// });
 // function hoverAutocomplete(){
 //     results.style.backgroundColor = 'white';
 //   };

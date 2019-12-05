@@ -18,9 +18,9 @@
   object-fit: cover;
 }
 
-.video_info div p {
+.vid_title p {
   color: white;
-  font-size: 9px;
+  font-size: 13px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
@@ -51,11 +51,11 @@
   // justify-content: space-between;
   padding-left: 4px;
   max-width: 65vw;
+  font-size: 10px;
 }
 
 .data-channel-info div p {
   color: white;
-  font-size: 9px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
