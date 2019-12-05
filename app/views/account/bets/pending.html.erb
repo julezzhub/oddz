@@ -1,6 +1,6 @@
 
 <div class = "container account_invitations_pending">
-	<% if current_user.bets.where(status: nil).empty? %>
+	<% if @bets.empty? %>
 		<h1><span><%= "No Bet Invitations" %></span></h1>
 	<% else %>
 		<h1><span><%= "Bet Invitations" %></span></h1>
