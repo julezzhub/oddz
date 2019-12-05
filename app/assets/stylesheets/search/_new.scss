@@ -1,9 +1,26 @@
+.search-form-container {
+
+  h3 {
+    color: #FFFFFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
 #search {
   width: 100%;
   border-radius: 3px;
   border: 2px solid white;
   margin-top: 25px;
   margin-bottom: 12px;
+  height: 2.5rem;
 }
 
 ::-webkit-input-placeholder {
