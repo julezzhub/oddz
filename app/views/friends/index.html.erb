@@ -1,28 +1,41 @@
-<%= form_with(url: request_friend_path, method: :post, remote: true) do %>
-  <%= text_field_tag :username%>
-  <%= submit_tag  "Create" %>
-<% end %>
 
-<h3>Sent Requests</h3>
-  <ul id="pending-friends">
-  <% current_user.pending_friends.each do |friend| %>
-    <li><%= friend.username %></li>
-  <% end %>
-  </ul>
+<div class = "container friends_add_friends_index">
 
-  <h3>Received Requests</h3>
-  <ul id="friend-requests">
-  <% current_user.requested_friends.each do |friend| %>
-    <li data-friend-id="<%= friend.id %>">
-      <%= friend.username %> <%= link_to "Accept", accept_friend_friend_path(friend), method: :post, remote: true, id: "accept"  %><%= link_to "Decline", decline_friend_friend_path(friend), method: :post, remote: true  %>
-    </li>
-  <% end %>
-  </ul>
+  <div class = "friend-form">
+    <h1>Friends</h1>
+    <%= form_with(url: request_friend_path, method: :post, remote: true) do %>
+      <%= text_field_tag :username, '', placeholder: 'e.g. Alvino', autocomplete: 'off', id: 'add_friend' %>
+      <%= submit_tag  "Add friend", id: 'sumbit_friend' %>
+    <% end %>
+  </div>
 
-  <h3>Friends</h3>
-  <ul id="friends-list">
-  <% current_user.friends.each do |friend| %>
-    <li><%= friend.username %></li>
-  <% end %>
-  </ul>
+  <div class = "sent-requests">
+    <h3>Sent Requests</h3>
+    <ul id="pending-friends">
+    <% current_user.pending_friends.each do |friend| %>
+      <li><%= friend.username %></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class = "received-requests">
+    <h3>Received Requests</h3>
+    <ul id="friend-requests">
+    <% current_user.requested_friends.each do |friend| %>
+      <li data-friend-id="<%= friend.id %>">
+        <%= friend.username %> <%= button_to "Accept", accept_friend_friend_path(friend), method: :post, remote: true, id: "accept", class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none" %><%= button_to "Decline", decline_friend_friend_path(friend), method: :post, remote: true, class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none" %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class = "friends-all">
+    <h3>Friends</h3>
+    <ul id="friends-list">
+    <% current_user.friends.each do |friend| %>
+      <li><%= friend.username %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
   <%= render 'shared/betbar' %>
