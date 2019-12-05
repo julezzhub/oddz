@@ -39,7 +39,7 @@
 			<!-- Past Bets -->
 			<div class = "container account_history_index">
 				<% if @past_bets.empty? %>
-					<h2><span><%= "No Current Bets" %></span></h2>
+					<h2><span><%= "No Past Bets" %></span></h2>
 				<% else %>
 					<div class="bet-status">
 				  	<% @past_bets.each do |bet| %>
