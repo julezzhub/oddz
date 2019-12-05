@@ -2,9 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :landing]
 
   def home
-    unless current_user
-      redirect_to landing_path
-    end
+    redirect_to landing_path unless current_user
   end
 
   def landing

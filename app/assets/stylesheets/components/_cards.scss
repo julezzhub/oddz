@@ -26,20 +26,31 @@
   font-weight: 500;
   line-height: 18px;
   display: flex;
+  padding-left: 4px;
   text-transform: uppercase;
-  position: relative;
-  padding-bottom: 26px;
-  padding-left: 8px;
+  // position: relative;
+  // padding-bottom: 26px;
+  // padding-left: 8px;
+  text-align: left;
 }
 
 .video_info div {
-  margin-right: 90px;
+  max-width: 65vw;
+}
+
+.video_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  min-width: 51%; // not sure if this works on phone, if everything breaks, comment me out
 }
 
 
 .data-channel-info {
-  // justify-content: between;
+  // justify-content: space-between;
   padding-left: 4px;
+  max-width: 65vw;
 }
 
 .data-channel-info div p {
@@ -51,8 +62,11 @@
   line-height: 18px;
   display: flex;
   align-items: center;
-  padding-left: 4px;
   position: absolute;
+}
+
+.data-channel-info p {
+  margin-bottom: 0 !important;
 }
 
 .channel_card {
