@@ -7,7 +7,7 @@ User.destroy_all
 puts "Creating new users"
 
 10.times do
-  User.create!(email: Faker::Internet.email, password: 'password', username: Faker::Name.first_name  + "...", remote_avatar_url: "https://source.unsplash.com/collection/566311/#{rand(1..268)}")
+  User.create!(email: Faker::Internet.email, password: 'password', username: Faker::Name.first_name, remote_avatar_url: "https://source.unsplash.com/collection/566311/#{rand(1..268)}")
 end
 
 puts "Creating bets"
