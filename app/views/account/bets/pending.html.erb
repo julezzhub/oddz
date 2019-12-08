@@ -6,7 +6,7 @@
 		<h1><span><%= "Bet Invitations" %></span></h1>
 		<div class="bet-status">
 			<% @bets.each do |bet| %>
-				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
+				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
 					<div class="request-upperwrap text-center">
 						<%= cl_image_tag bet.user.avatar, alt: bet.user.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
 						<%= bet.user.username %>
