@@ -1,24 +1,32 @@
-<h3 class="form-h3">Please select the video or channel you want to bet on</h3>
+<div class="search-form-container">
+<h3>Please select the video or channel you want to bet on</h3>
 
   <div class="row">
     <div class="col">
-      <p id="video_btn">Video</p>
+      <h1 id="video_btn-h3" class="btn">Video</h1>
     </div>
     <div class="col">
-      <p id="channel_btn">Channel</p>
+      <h1 id="channel_btn-h3" class="btn">Channel</h1>
     </div>
   </div>
 
-<div> <%= form_with(url: search_index_path, remote: true) do %>
- <%= hidden_field_tag :type, '', id: 'type' %>
-<%= text_field_tag :target, '', id: "search" %>
-<%= submit_tag :submit, id: 'submit' %>
-<% end %>
-<ul id="suggestions">
-</ul>
+  <div class="d-none" id="search_input">
+    <div> <%= form_with(url: search_index_path, remote: true) do %>
+       <%= hidden_field_tag :type, '', id: 'type' %>
+       <%= text_field_tag :target, '', placeholder: 'Search', id: "search", label: '', autocomplete: "off" %>
+       <%#= submit_tag :submit, id: 'submit' %>
+     <% end %>
+      <div id="autocomplete_style" class="d-none">
+      <ul id="suggestions">
+     </ul>
+     </div>
+   </div>
+  </div>
 </div>
 
-<h3 id="videos">Results</h3>
+
+
+<h3 id="videos"></h3>
 <div>
   <ul id="search_results" style="color: white">
 
@@ -27,12 +35,45 @@
 
 
 <script>
-  document.getElementById('video_btn').addEventListener('click', function() {
-    document.getElementById('type').value = 'video'
+  const video = document.getElementById('video_btn-h3')
+  const channel = document.getElementById('channel_btn-h3')
+  const searchInput = document.getElementById('search_input')
+  const insideSearch = document.getElementById('search')
+  const autocompleteStyle = document.getElementById('autocomplete_style')
+
+  function vidBtnSelected(){
+    channel.style.backgroundColor = "";
+    video.style.color = "black";
+    channel.style.color = "white";
+    video.style.backgroundColor = "white";
+  };
+
+   function chanBtnSelected(){
+    video.style.backgroundColor = "";
+    video.style.color = "white";
+    channel.style.color = "black";
+    channel.style.backgroundColor = "white";
+  };
+
+
+  insideSearch.addEventListener('keyup', function(){
+    autocompleteStyle.classList.remove('d-none')
   });
 
-  document.getElementById('channel_btn').addEventListener('click', function() {
-    document.getElementById('type').value = 'channel'
+  document.getElementById('video_btn-h3').addEventListener('click', function() {
+    document.getElementById('type').value = 'video'
+    searchInput.classList.remove('d-none')
   });
+
+
+
+  document.getElementById('channel_btn-h3').addEventListener('click', function() {
+    document.getElementById('type').value = 'channel'
+    searchInput.classList.remove('d-none')
+  });
+
+  video.addEventListener('click', vidBtnSelected);
+  channel.addEventListener('click', chanBtnSelected);
+
 </script>
 

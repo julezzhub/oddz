@@ -1,19 +1,19 @@
 <div id="page1">
   <h3>Your target: <%= params[:title] %></h3>
   <%= simple_form_for(@bet) do |f| %>
-  <% if params[:target][:kind] == "youtube#video" %>
-    <%= hidden_field_tag :target, params[:target][:videoId] %>
-    <div id="metric">
+    <% if params[:target][:kind] == "youtube#video" %>
+      <%= hidden_field_tag :target, params[:target][:videoId] %>
+      <div id="metric">
+          <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
+          <%= f.input :metric, label: "Select Video Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
+      </div>
+    <% else %>
+      <%= hidden_field_tag :target, params[:target][:channelId] %>
+  <!--     <div id="metric">
         <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
-        <%= f.input :metric, label: "Select Video Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
-    </div>
-  <% else %>
-    <%= hidden_field_tag :target, params[:target][:channelId] %>
-    <div id="metric">
-      <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
-      <%= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
-    </div>
-  <% end %>
+        <%#= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
+      </div>-->
+    <% end %>
 
   <div class="d-none", id="metric-count">
     <%= f.input :metric_count, label: "Amount" %>
@@ -37,11 +37,15 @@
     </div>
   </div>
 
-  <%= link_to new_search_path do %>
-    <%= image_tag "arrow_left.svg" %>
-  <% end %>
-  <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none" %>
+  <div class="progress-bar">
+      <%= link_to new_search_path do %>
+        <%= image_tag "arrow_left.svg", class:"arrow-left" %>
+      <% end %>
+      <div id="recipe-button" class="round-button">
 
+      </div>
+      <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
+  </div>
 </div>
 
 <div class="d-none" id=page2>
@@ -54,8 +58,8 @@
 <!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
   </div>
 
-  <%= image_tag "arrow_left.svg", id:"recipe2backward" %>
-  <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none" %>
+  <%= image_tag "arrow_left.svg", id:"recipe2backward", class:"arrow-left" %>
+  <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
 
 <div class="d-none" id="summary">
@@ -71,8 +75,11 @@
     <%= image_tag "friend.svg", style:"width: 80px; height: 80px;" %>
     <h3 id="friend-summary"></h3>
   </div>
-  <%= image_tag "arrow_left.svg", id:"summary-backward" %>
-  <%= f.button :submit, value:"BET", style:"color: white;" %>
+
+  <%= image_tag "arrow_left.svg", id:"summary-backward", class:"arrow-left" %>
+  <div class="round-button-circle">
+          <%= f.button :submit, value:"BET", style:"color: white;" %>
+        </div>
   <% end %>
 </div>
 

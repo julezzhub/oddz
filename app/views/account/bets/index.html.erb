@@ -1,3 +1,63 @@
-<h2>Current Bets</h2>
-<h2>Past Bets</h2>
+<!-- Tabs Start -->
+<div class="radio-tabs">
 
+	<input class="state" type="radio" title="currents" name="bets-state" id="currents" checked />
+  <input class="state" type="radio" title="pasts" name="bets-state" id="pasts" />
+
+	<div class="tabs mb-2 mt-2">
+    <label for="currents" id="currents-tab" class="tab">Current Bets</label>
+    <label for="pasts" id="pasts-tab" class="tab">Past Bets</label>
+  </div>
+
+	<div class="panels">
+    <ul id="currents-panel" class="panel active">
+<!-- Current Bets -->
+			<div class = "container account_history_index">
+				<% if @current_bets.empty? %>
+					<h2><span><%= "No Current Bets" %></span></h2>
+				<% else %>
+					<div class="bet-status">
+				  	<% @current_bets.each do |bet| %>
+				    	<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
+								<div class="request-upperwrap d-flex justify-content-between">
+									<div><%= bet.start_time.strftime("%d.%m.%y")%></div> 
+									<div class = "current-stake">	<%= humanized_money_with_symbol(bet.stake) %></div>
+								</div>
+				      	<div class="bet-content">
+									<p>Your bet against <strong><%=bet.friend.username%></strong> <%= image_tag "arrow_right.svg" %> </p>
+								</div>
+				   		</div>
+				   	<% end %>
+				  </div>
+				<% end %>
+				<%#= render 'shared/betbar' %>
+			</div>
+		</ul>
+		<%= render 'shared/betbar' %>
+
+		<ul id="pasts-panel" class="panel">
+			<!-- Past Bets -->
+			<div class = "container account_history_index">
+				<% if @past_bets.empty? %>
+					<h2><span><%= "No Past Bets" %></span></h2>
+				<% else %>
+					<div class="bet-status">
+				  	<% @past_bets.each do |bet| %>
+				    	<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
+								<div class="request-upperwrap">
+									<%=bet.start_time.strftime("%d.%m.%y")%>
+								</div>
+				      	<div class="bet-content d-flex justify-content-between">
+									<div class="past-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+									<div class="past-stake"><%=humanized_money_with_symbol(bet.stake)%></div>
+								</div>
+				   		</div>
+				   	<% end %>
+				  </div>
+				<% end %>
+			</div>
+		</ul>
+	</div>
+	<%= render 'shared/betbar' %>
+<!-- Tabs End -->
+</div>

@@ -12,7 +12,13 @@
 @import "components/index";
 @import "pages/index";
 @import "devise/index";
+@import "recipe/index";
+@import "search/index";
+@import "account/index";
 @import "account/pending";
+@import "account/setting";
+@import "account/index";
+@import "friends/index";
 
 .poppins {
   font-family: Poppins;
@@ -25,4 +31,5 @@
 h1, h2, h3, p, label {
   color: white;
   text-align: center;
+  font-family: Poppins;
 }

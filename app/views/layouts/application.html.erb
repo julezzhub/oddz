@@ -9,10 +9,10 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body class="dark-bckgrnd">
-    <%= render 'shared/navbar' unless current_page?(new_user_session_path) || current_page?(new_user_registration_path)%>
+    <%= render 'shared/navbar' unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(landing_path)%>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>

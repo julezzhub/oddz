@@ -1,0 +1,106 @@
+.account_history_index {
+	position: relative;
+
+	h2 {
+	  color: #FFFFFF;
+	  font-family: Poppins;
+	  font-style: normal;
+	  font-weight: 500;
+	  font-size: 20px;
+	  line-height: 36px;
+	  text-align: center;
+	  text-transform: uppercase;
+	  margin-top: 30px;
+	  margin-bottom: 20px;
+	 }
+
+	p {
+	 	padding-top: 5px;
+	 	padding-bottom: 30px;
+	 	padding-left: 15px;
+	 	text-align: left;
+	}
+
+	.bet-content img {
+		margin-left: 100px;
+	}
+
+	.past-text {
+		padding-top: 10px;
+		padding-left: 15px;
+	}
+
+	.current-stake {
+		margin-right: 20px;
+		font-size: 20px;
+		font-family: Poppins;
+		color: $purple1;
+	}
+
+	.past-stake {
+		margin-right: 20px;
+		font-size: 30px;
+		font-family: Poppins;
+		color: $green1;
+		padding-bottom: 20px;
+	}
+
+	 .bet-request {
+    box-shadow: 0px 10px 30px rgba(0,0,0,.2);
+    color: white;
+    padding: 5px 0px 0px 0px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+	.request-upperwrap {
+		margin-left: 15px;
+		color: #A6A6A6;
+	}
+}
+
+	ul#pasts-panel, ul#currents-panel {
+	  padding: 0 !important;
+	}
+
+	label#currents-tab, label#pasts-tab {
+	  width: calc(50vw - 6px);
+	  font-size: 18px;
+	  font-family: Poppins;
+	  letter-spacing: 2px;
+	}
+
+	.radio-tabs .state {
+	    position: absolute;
+	    left: -10000px;
+	}
+
+	.radio-tabs .tab {
+	    display: inline-block;
+	    padding: .5em;
+	    vertical-align: top;
+	    background-color: $dark;
+	    cursor: hand;
+	    cursor: pointer;
+	}
+
+	#currents:checked ~ .tabs #currents-tab,
+	#pasts:checked ~ .tabs #pasts-tab {
+	    background-color: $dark;
+	    border-bottom: .1em solid white;
+	    cursor: default;
+	}
+
+	.radio-tabs .panels {
+	    background-color: $dark;
+	    padding: .5em;
+	}
+	.radio-tabs .panel {
+	    display: none;
+	}
+
+	#currents:checked ~ .panels #currents-panel,
+	#pasts:checked ~ .panels #pasts-panel{
+	    display: block;
+	}
