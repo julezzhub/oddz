@@ -11,6 +11,7 @@ class BetsController < ApplicationController
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
     @bet.end_time = @bet.start_time + params[:duration].to_i
+    @bet.bet_expiration = (@bet.end_time - @bet.start_time) * 0.1
     @bet.save!
     authorize @bet
   end
