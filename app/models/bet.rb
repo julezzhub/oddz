@@ -6,8 +6,8 @@ class Bet < ApplicationRecord
   validates_presence_of :target, :metric, :metric_count, :start_time, :end_time, :stake
 
   validates :metric_count, numericality: { greater_than_or_equal_to: 0 }
-
   monetize :stake_cents
+
   # def completed?
   #   Time.now > self.end_time ? true : false
   # end

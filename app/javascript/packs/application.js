@@ -7,3 +7,4 @@ import { setupPendingBets } from '../plugins/pending-bet-countdown';
 initSliders()
 initAutocomplete()
 setupPendingBets()
+
