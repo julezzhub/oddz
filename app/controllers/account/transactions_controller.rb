@@ -22,8 +22,7 @@ class Account::TransactionsController < ApplicationController
   end
 
   def show
-    # @transaction = Transaction.find(params[:id])
-    @transaction = current_user.transactions.find(params[:id])
+    @transaction = Transaction.find(params[:id])
     authorize @transaction
   end
 

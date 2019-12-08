@@ -1,8 +1,15 @@
-
+<div class="betbar-filter">
+</div>
+<div class="betbar-filter2"></div>
 <div class="betbar">
+
   <div class="betbar-inner">
     <div id="home-icon">
-      <%= link_to (image_tag "home-button.svg"), root_path, class: "navbar-brand"  %>
+      <% if current_page?(root_path) %>
+        <%= link_to (image_tag "home_button_highlighted.svg" ), root_path, class: "navbar-brand"%>
+      <% else %>
+        <%= link_to (image_tag "home-button.svg" ), root_path, class: "navbar-brand"%>
+      <% end %>
     </div>
 
   <div class="round-button">
@@ -13,7 +20,15 @@
   </div>
 
     <div id="dashboard-icon">
-      <%= link_to (image_tag "stats-button.svg" ), account_bets_path, class: "navbar-brand"%>
+      <% if current_page?(account_bets_path) %>
+        <%= link_to (image_tag "stats-button-highlighted.svg" ), account_bets_path, class: "navbar-brand"%>
+      <% else %>
+        <%= link_to (image_tag "stats-button.svg" ), account_bets_path, class: "navbar-brand"%>
+      <% end %>
     </div>
   </div>
 </div>
+<div class="space-for-betbar">
+</div>
+
+

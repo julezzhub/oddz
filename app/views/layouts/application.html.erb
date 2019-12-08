@@ -21,6 +21,7 @@
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <%= render 'shared/betbar' if current_page?(root_path) || current_page?(friends_path) || current_page?(pending_account_bets_path) || current_page?(account_bets_path) || current_page?(account_settings_path) || current_page?(new_account_transaction_path) || current_page?(account_transactions_path) || current_page?(account_wallet_path)%>
     <%= yield(:after_js) %>
   </body>
 </html>
