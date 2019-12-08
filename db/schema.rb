@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2019_12_08_112002) do
 
   # These are extensions that must be enabled in order to support this database
@@ -77,24 +76,8 @@ ActiveRecord::Schema.define(version: 2019_12_08_112002) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "wallets", force: :cascade do |t|
-    t.string "state"
-    t.string "bet_sku"
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "EUR", null: false
-    t.string "checkout_session_id"
-    t.bigint "user_id"
-    t.bigint "bet_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bet_id"], name: "index_wallets_on_bet_id"
-    t.index ["user_id"], name: "index_wallets_on_user_id"
-  end
-
   add_foreign_key "bets", "users"
   add_foreign_key "bets", "users", column: "friend_id"
   add_foreign_key "bets", "users", column: "winner_id"
   add_foreign_key "transactions", "users"
-  add_foreign_key "wallets", "bets"
-  add_foreign_key "wallets", "users"
 end
