@@ -5,11 +5,12 @@
       <div class="pending-bets-icon">
         <%= cl_image_tag(current_user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
       </div>
+       <p>All</p>
     <% end %>
-    All
+
   </div>
   <% Bet.where(friend: current_user, status: nil).each do |bet| %>
-    <div data-remaining-time="<%= bet.bet_expiration %>">
+    <div data-remaining-time="<%= (bet.end_time - Time.now) * 0.1 %>">
       <%= link_to '#' do %>
         <div class="pending-bets-icon">
           <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
@@ -20,12 +21,12 @@
   <% end %>
 </div>
 <div class = "container account_history_index">
-  <h2>BET SUGGESTIONS</h2>
+  <h2>OUR HOTTEST BETS...</h2>
   <% Bet.where(premade: true).each do |bet|%>
       <%= link_to premade_path(bet: bet) do %>
-        <div class="premade-card" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
+        <div class="premade-card" style="background-image: linear-gradient(rgba(50,50,50,0.7), rgba(10,10,10,0.2)), url(<%= bet.thumbnail %>)">
         <div class="premade-recipe">
-        <p style="font-size: 20px"><%= bet.video_title %> will reach <strong><%= bet.metric_count %></strong>  <strong><%= bet.metric %></strong>  in the next <strong><%= bet.premade_days %>d</strong>  <strong><%= bet.premade_hours %>h</strong> .</p>
+        <p style="font-size: 20px, text-shadow: 2px 2px black"><%= bet.video_title %> will reach <strong><%= bet.metric_count %></strong>  <strong><%= bet.metric %></strong>  in the next <strong><%= bet.premade_days %>d</strong>  <strong><%= bet.premade_hours %>h</strong> .</p>
         </div>
         <div class="premade-arrow">
           <%= image_tag "arrow_right.svg" %>
