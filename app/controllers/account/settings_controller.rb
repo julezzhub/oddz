@@ -6,7 +6,6 @@ class Account::SettingsController < ApplicationController
   end
 
   def wallet
-    @amount = 50
     authorize :settings
   end
 end
