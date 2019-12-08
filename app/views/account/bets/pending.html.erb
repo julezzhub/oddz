@@ -6,13 +6,13 @@
 		<h1><span><%= "Bet Invitations" %></span></h1>
 		<div class="bet-status">
 			<% @bets.each do |bet| %>
-				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
+				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
 					<div class="request-upperwrap text-center">
-						<%= cl_image_tag bet.friend.avatar, alt: bet.friend.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
-						<%= bet.friend.username %>
+						<%= cl_image_tag bet.user.avatar, alt: bet.user.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
+						<%= bet.user.username %>
 					</div>
 						<div class="bet-content">
-							<p>I bet you <strong>€<%=bet.stake%></strong>	that <strong><%= bet.target %></strong>  will reach <strong><%= bet.metric_count %> <%= bet.metric %></strong> in <strong><%= distance_of_time_in_words(bet.end_time - Time.now) %></strong></p>
+							<p>I bet you <strong>€<%=bet.stake%></strong>	that <strong><%= bet.video_title %></strong>  will reach <strong><%= bet.metric_count %> <%= bet.metric %></strong> in <strong><%= distance_of_time_in_words(bet.end_time - Time.now) %></strong></p>
 						</div>
 					<div class="status-change d-flex">
 							<%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
@@ -23,5 +23,5 @@
 		</div>
 	<% end %>
 </div>
-<%= render 'shared/betbar' %>
+
 

@@ -19,8 +19,8 @@
 			</div>
 		<% end %>
 
-		<%= link_to "#", class: "wrap-link" do  %>
-			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Payment Settings</p><%= image_tag "small_arrow_right.svg" %>
+		<%= link_to account_wallet_path, class: "wrap-link" do  %>
+			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Your Wallet</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
 
@@ -35,5 +35,3 @@
     <% end %>
 	</div>
 </div>
-
-<%= render 'shared/betbar' %>

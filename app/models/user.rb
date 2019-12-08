@@ -6,9 +6,11 @@ class User < ApplicationRecord
 
   has_friendship
   has_many :bets
+  has_many :transactions
   validates_presence_of :username, :avatar
   validates_uniqueness_of :username, message: "exists already"
   validates :username, format: { with: /(?=.{3,20})[a-zA-Z0-9._]/, message: "must be 6-20 characters long and can only contain letters, numbers, . and _" }
+  has_many :wallet
 
   mount_uploader :avatar, PhotoUploader
   monetize :balance_cents

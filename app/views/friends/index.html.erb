@@ -3,9 +3,9 @@
 
   <div class = "friend-form">
     <h1>Friends</h1>
-    <%= form_with(url: request_friend_path, method: :post, remote: true) do %>
+    <%= form_with(url: request_friend_path, method: :post, remote: true, :html => {:id => "friend-form"}) do %>
       <%= text_field_tag :username, '', placeholder: 'e.g. Alvino', autocomplete: 'off', id: 'add_friend' %>
-      <%= submit_tag  "Add friend", id: 'sumbit_friend' %>
+      <%= submit_tag  "Add friend", id: 'submit_friend' %>
     <% end %>
   </div>
 
@@ -38,4 +38,3 @@
     </ul>
   </div>
 </div>
-  <%= render 'shared/betbar' %>
