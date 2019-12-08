@@ -20,7 +20,7 @@
 				  	<% @current_bets.each do |bet| %>
 				    	<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1"].sample %>">
 								<div class="request-upperwrap d-flex justify-content-between">
-									<div><%= bet.start_time.strftime("%d.%m.%y")%></div> 
+									<div><%= bet.start_time.strftime("%d.%m.%y")%></div>
 									<div class = "current-stake">	<%= humanized_money_with_symbol(bet.stake) %></div>
 								</div>
 				      	<div class="bet-content">
@@ -58,6 +58,5 @@
 			</div>
 		</ul>
 	</div>
-	<%= render 'shared/betbar' %>
 <!-- Tabs End -->
 </div>
