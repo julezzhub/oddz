@@ -1,7 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-oddz">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "wallet.svg"%>
-  <% end %>
+  <div class = "nav-wallet"> 
+    <%= link_to account_wallet_path, class: "navbar-brand" do %>
+      <%= image_tag "wallet.svg"%>
+      <%= humanized_money_with_symbol(current_user.balance_cents) %>
+    <% end %>
+  </div>
   <% if user_signed_in? %>
     <div class="nav-item active">
       <%= link_to "oddz", "#", class: "nav-link nav-color" %>
