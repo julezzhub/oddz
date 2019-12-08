@@ -9,10 +9,10 @@
       </div>
     <% else %>
       <%= hidden_field_tag :target, params[:target][:channelId] %>
-  <!--     <div id="metric">
-        <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
-        <%#= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
-      </div>-->
+      <div id="metric">
+          <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
+          <%= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
+      </div>
     <% end %>
 
   <div class="d-none", id="metric-count">
