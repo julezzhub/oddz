@@ -1,13 +1,21 @@
 
 <div class="invitation-banner d-flex">
-  <p><%= link_to pending_account_bets_path do %>
-    <div class="pending-bets-icon"> <%= cl_image_tag(current_user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
-    <% end %><br/>All</p>
-    </div>
+  <div>
+    <%= link_to pending_account_bets_path do %>
+      <div class="pending-bets-icon">
+        <%= cl_image_tag(current_user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
+      </div>
+    <% end %>
+    All
+  </div>
   <% Bet.where(friend: current_user, status: nil).each do |bet| %>
-  <p><%= link_to '#' do %>
-    <div class="pending-bets-icon"><%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
-  <% end %><br/><%= bet.expiration(bet.bet_expiration)%></p>
+    <div data-remaining-time="<%= bet.bet_expiration %>">
+      <%= link_to '#' do %>
+        <div class="pending-bets-icon">
+          <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
+        </div>
+      <% end %>
+      <div class="bet-remaining-time" style="color: white"></div>
     </div>
   <% end %>
 </div>

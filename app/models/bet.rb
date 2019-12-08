@@ -29,9 +29,9 @@ class Bet < ApplicationRecord
   def expiration(time_in_seconds)
     t = time_in_seconds
     # if t < 3600
-      # mm = t.divmod(60)
-      # return "%dm %ds" % [mm, t]
-      # "%02d:%02ds:" % [t / 3600, t / 60 % 60, t % 60]
+    # mm = t.divmod(60)
+    # return "%dm %ds" % [mm, t]
+    # "%02d:%02ds:" % [t / 3600, t / 60 % 60, t % 60]
     # elsif t > 86_400
     #   # mm = t.divmod(60)
     #   # hh, mm = mm.divmod(60)
@@ -39,10 +39,14 @@ class Bet < ApplicationRecord
     #   # return "%dd %dh %" % [dd, hh]
     #   "%02d:%02d:%02d" % [sec / 3600, sec / 60 % 60, sec % 60]
     # else
-      # mm = t.divmod(60)
-      # hh, mm = mm.divmod(60)
-      # return "%d:%dh" % [hh, mm]
-    "%02d:%02dh" % [t / 3600, t / 60 % 60]
-    # end
+    # mm = t.divmod(60)
+    # hh, mm = mm.divmod(60)
+    # return "%d:%dh" % [hh, mm]
+    # loop do
+    #   sleep 60
+    #   t -= 60
+    #   break if t <= 0
+
+      "%02d:%02dh" % [t / 3600, t / 60 % 60]
   end
 end
