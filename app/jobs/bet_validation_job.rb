@@ -20,7 +20,7 @@ class BetValidationJob < ApplicationJob
       @real_count = @statistics["#{metric.downcase.delete_suffix('s')}Count"].to_i
     end
     @bet = Bet.find(id)
-    @real_count >= metric_count ? @bet.update(winner_id: user_id) : @bet.updat_ide(winner_id: friend_id)
+    @real_count >= metric_count ? @bet.update(winner_id: user_id) : @bet.update(winner_id: friend_id)
     # skip_authorization
   end
 end

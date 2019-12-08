@@ -88,7 +88,8 @@
   text-transform: uppercase;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
   padding: 14px;
   letter-spacing: 0.1em;
 }
@@ -101,12 +102,11 @@
   font-size: 16px;
   border-radius: 6px;
   border: 1px solid white;
-  height: 52px;
+  height: 52px !important;
   text-align: center;
   line-height: 24px;
   text-transform: uppercase;
-  width: 90%;
-  margin: 20px auto;
+  width: 100%;
   padding: 14px;
   letter-spacing: 0.1em;
 }
@@ -116,14 +116,15 @@
   color: black;
 }
 
-.left {
-  padding-right: 0px;
-  padding-left: 26px;
-}
-
 .right {
-  padding-left: 0px;
-  padding-right: 26px;
+  padding-right: 0px;
 }
 
+.left {
+  padding-left: 0px;
+}
 
+.row {
+  width: 90% !important;
+  justify-content: space-between;
+}
