@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col">
+      <h1>Transaction #<%= @transaction.id %> <small><span class="badge badge-primary"><%= @transaction.state %></span></small></h1>
+      <ul class="list-unstyled", style = "color: white">
+        <li><strong>ISSUED ON</strong> <%= @transaction.created_at.to_date %></li>
+        <li><strong>TOTAL</strong> <%= humanized_money_with_symbol @transaction.amount %></li>
+        </li>
+      </ul>
+      <p><strong>Best of luck habibi! Humble wishes, your oddz team</strong></p>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/landing', to: 'pages#landing'
   get 'bets/new_premade', to: 'bets#new_premade', as: 'premade'
+  mount StripeEvent::Engine, at: '/stripe-webhooks' # http://c240207b.ngrok.io
 
   resources :bets, only: [:new, :create]
   resources :search, only: [:new, :create]
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
 	      end
 	    end
       get 'setting', to: 'settings#setting', as: 'settings'
+      resources :transactions, only: [:new, :show, :create]
+      get 'wallet', to: 'settings#wallet', as: 'wallet'
 	  end
   
   resources :friends, only: [:index] do
