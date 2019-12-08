@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :bets, only: [:new, :create]
   resources :search, only: [:new, :create]
 
+
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
 	resources :bets, only:[] do
 	      member do
 	      post 'accept'
@@ -27,7 +33,12 @@ Rails.application.routes.draw do
       resources :transactions, only: [:new, :show, :create]
       get 'wallet', to: 'settings#wallet', as: 'wallet'
 	  end
-  
+
+  # post '/bets/:id/accept', to: 'bets#accept', as: 'accept_bet'
+  # post '/bets/:id/reject', to: 'bets#reject', as: 'reject_bet'
+  # get 'account/bets/pending'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   resources :friends, only: [:index] do
     member do
       get 'friends', to: "friends#friends"
