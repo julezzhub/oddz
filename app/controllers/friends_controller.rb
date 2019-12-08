@@ -6,11 +6,13 @@ class FriendsController < ApplicationController
   end
 
   def request_friend
-    friended_user = User.find_by(username: params[:username])
-    current_user.friend_request(friended_user)
-    respond_to do |format|
-      format.html { render 'friends' }
-      format.js
+    @friended_user = User.find_by(username: params[:username].downcase)
+    if @friended_user
+      current_user.friend_request(@friended_user)
+      respond_to do |format|
+        format.html { render 'friends' }
+        format.js
+      end
     end
   end
 

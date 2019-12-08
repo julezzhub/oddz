@@ -6,12 +6,16 @@
   margin-bottom: 20px;
   border-radius: 4px;
   font-family: poppins;
-
+  background-position: center;
+  background-size: 100%;
+  height: 200px;
+  background-color: rgba(204, 204, 204, 0.5);
+  font-size: 20px;
+  text-shadow: 1px 1px black;
 }
 
 .premade-recipe {
   width: 87%;
-
 }
 
 .premade-arrow {
@@ -22,12 +26,16 @@
 
 .invitation-banner {
   width: 100%;
-  height: 70px;
-  background-color: $purple1;
-  h3 {
-    padding-top: 22px;
-    font-size: 22px
-  }
+  height: 100px;
+  overflow: auto;
+  white-space: nowrap;
+  font-family: poppins;
+  border-bottom: 1px solid white;
+}
+
+.pending-bets-icon {
+  color: white;
+  text-align: center;
 }
 
 
