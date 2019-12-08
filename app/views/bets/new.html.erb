@@ -75,14 +75,14 @@
 <div class="d-none" id="summary">
   <h3 class="form-h3">Done. See your bet summary below and hit bet!</h3>
 
-  <div class="summary">
-    <%= image_tag "video.svg", style:"width: 80px; height: 80px;" %>
+  <div class="summary-grid">
+    <%= image_tag "video.svg"%>
     <h3 class="form-h3" id="target-summary"></h3>
     <%= image_tag("thumbs_up.svg") %>
     <h3 class="form-h3" id="metric_count_time-summary"></h3>
     <%= image_tag("wallet.svg") %>
     <h3 class="form-h3" id="stake-summary"></h3>
-    <%= image_tag "friend.svg", style:"width: 80px; height: 80px;" %>
+    <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
     <h3 class="form-h3" id="friend-summary"></h3>
   </div>
 
@@ -98,10 +98,22 @@
 </div>
 
 <script>
-  document.getElementById('metric').addEventListener('change', function() {
+  const recipe1forward = document.getElementById('recipe1forward')
+
+  document.getElementById('bet_metric').addEventListener('change', function() {
     document.getElementById('bet_metric_count').placeholder = "How many " +
       document.getElementById('bet_metric').value.toLowerCase() + " will the target get?"
-    document.getElementById('metric-count').classList.remove('d-none')
+      document.getElementById('metric-count').classList.remove('d-none');
+  })
+
+  document.getElementById('page1').addEventListener('change', function() {
+    if ((document.getElementById('days').value === "00" && document.getElementById('hours').value === "00") ||
+      document.getElementById('bet_metric_count').value === "" ||
+      document.getElementById('bet_metric').value === "") {
+        recipe1forward.classList.add('d-none');
+    } else {
+      recipe1forward.classList.remove('d-none');
+    }
   })
   // when a metric is selected, change the placeholder of the next field and show it
 
@@ -109,8 +121,6 @@
     document.getElementById('time').classList.remove('d-none')
   })
   // when a metric count is selected, show the time field
-
-  const recipe1forward = document.getElementById('recipe1forward')
 
   document.getElementById('time').addEventListener('change', function() {
     document.getElementById('duration').value =
@@ -131,8 +141,12 @@
   const recipe2forward = document.getElementById('recipe2forward')
   const recipe2backward = document.getElementById('recipe2backward')
 
-  document.getElementById('friend-selection').addEventListener('change', function() {
-    recipe2forward.classList.remove('d-none')
+  document.getElementById('bet_friend').addEventListener('change', function() {
+    if (this.value === "") {
+      recipe2forward.classList.add('d-none');
+    } else {
+      recipe2forward.classList.remove('d-none');
+    }
   })
   // when a friend is selected, show the arrow leading to summary
 
