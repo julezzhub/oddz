@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_12_08_160511) do
 
   # These are extensions that must be enabled in order to support this database
@@ -50,6 +51,17 @@ ActiveRecord::Schema.define(version: 2019_12_08_160511) do
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.string "state"
+    t.string "transaction_sku"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,4 +81,5 @@ ActiveRecord::Schema.define(version: 2019_12_08_160511) do
   add_foreign_key "bets", "users"
   add_foreign_key "bets", "users", column: "friend_id"
   add_foreign_key "bets", "users", column: "winner_id"
+  add_foreign_key "transactions", "users"
 end

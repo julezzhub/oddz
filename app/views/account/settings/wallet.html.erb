@@ -1,0 +1,9 @@
+<div class = "container account_settings_wallet">
+	<h1>Wallet</h1>
+	<p><%= image_tag "wallet.svg" %> </p>
+	<p><%= humanized_money_with_symbol(current_user.balance_cents) %></p>
+	<%= form_tag account_transactions_path do %>
+	  <%= text_field_tag 'amount', '', placeholder: 'e.g. €1', autocomplete: 'off', id: 'wallet' %>
+	  <%= submit_tag 'Pay-In', id: 'submit_amount' %>
+	<% end %>
+</div>
