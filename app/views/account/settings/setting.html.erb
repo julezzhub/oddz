@@ -28,7 +28,12 @@
 			<div class=" p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Start tutorial again</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
+
+    <%= link_to destroy_user_session_path, method: :delete, class: "wrap-link" do  %>
+      <div class=" p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Log out</p><%= image_tag "small_arrow_right.svg" %>
+      </div>
+    <% end %>
 	</div>
-</div> 
+</div>
 
 <%= render 'shared/betbar' %>
