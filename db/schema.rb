@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_194751) do
+ActiveRecord::Schema.define(version: 2019_12_08_093909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_194751) do
     t.string "video_title"
     t.integer "premade_hours", default: 0
     t.integer "premade_days", default: 0
+    t.integer "bet_expiration"
     t.index ["friend_id"], name: "index_bets_on_friend_id"
     t.index ["user_id"], name: "index_bets_on_user_id"
     t.index ["winner_id"], name: "index_bets_on_winner_id"
