@@ -1,10 +1,16 @@
 class BetsController < ApplicationController
+  def show
+    @bet = Bet.find(params[:id])
+    authorize @bet
+  end
+
   def new
     @bet = Bet.new
     authorize @bet
   end
 
   def create
+    raise
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     @bet.target = params[:target]
