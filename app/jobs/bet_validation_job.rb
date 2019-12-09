@@ -21,6 +21,13 @@ class BetValidationJob < ApplicationJob
     end
     @bet = Bet.find(id)
     @real_count >= metric_count ? @bet.update(winner_id: user_id) : @bet.update(winner_id: friend_id)
+    # update balance
+    @bet.winner.update(balance_cents: @bet.winner.balance_cents + @bet.stake_cents)
+
+    loser_id = user_id == @bet.winner_id ? friend_id : user_id
+    loser = User.find(loser_id)
+    loser.update(balance_cents: loser.balance_cents - @bet.stake_cents)
+
     # skip_authorization
   end
 end

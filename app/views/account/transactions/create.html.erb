@@ -2,7 +2,7 @@
   <div class="row py-4">
     <div class="col">
       <h1>Connect to Stripe</h1>
-       <p>Pay In <strong><%= humanized_money_with_symbol(@transaction.amount) %></strong></p>
+       <p>Pay In <strong><%= image_tag "oddz_coin4.svg", size: "24"%><%= humanized_money(@transaction.amount)%></strong></p>
     <button id="pay" class="btn-purple">Go to Stripe</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>

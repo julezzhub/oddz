@@ -20,6 +20,7 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     @bet.update(status: true)
     authorize @bet
+    # BetValidationJob.perform_now(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
     BetValidationJob.set(wait_until: @bet.end_time).perform_later(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
 
     redirect_to pending_account_bets_path
