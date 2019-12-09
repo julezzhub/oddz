@@ -1,5 +1,6 @@
 
 <div class="invitation-banner d-flex">
+
   <div>
     <%= link_to pending_account_bets_path do %>
       <div class="pending-bets-icon">
@@ -7,7 +8,6 @@
       </div>
        <p>All</p>
     <% end %>
-
   </div>
   <% Bet.where(friend: current_user, status: nil).each do |bet| %>
     <div data-remaining-time="<%= (bet.end_time - Time.now) * 0.1 %>">

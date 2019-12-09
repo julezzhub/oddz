@@ -1,6 +1,6 @@
 
 <div class = "container account_settings_setting" >
-	<h1>Settings</h1>
+	<h1>Account</h1>
 	<div class="setting-upperwrap d-flex">
 		<div> <%= cl_image_tag current_user.avatar, alt: current_user.username, width: 60, height: 60, crop: :fill, class:" fixed-avatar", style:"object-fit: cover; border-radius: 50%;"%>
 		</div>
@@ -20,7 +20,7 @@
 		<% end %>
 
 		<%= link_to account_wallet_path, class: "wrap-link" do  %>
-			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Your Wallet</p><%= image_tag "small_arrow_right.svg" %>
+			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Payment Settings</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
 
