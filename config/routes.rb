@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'setting', to: 'settings#setting', as: 'settings'
       resources :transactions, only: [:new, :show, :create]
       get 'wallet', to: 'settings#wallet', as: 'wallet'
+      resources :notifications, only: [:index, :create]
 	  end
 
   # post '/bets/:id/accept', to: 'bets#accept', as: 'accept_bet'

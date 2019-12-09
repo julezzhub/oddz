@@ -2,7 +2,8 @@
   <div class = "nav-wallet">
     <%= link_to account_wallet_path, class: "navbar-brand" do %>
       <%= image_tag "wallet-Icon.svg"%>
-      <%= humanized_money_with_symbol(current_user.balance_cents) %>
+      <div id="nav-money"><%= humanized_money(current_user.balance)%></div>
+
     <% end %>
   </div>
   <% if user_signed_in? %>

@@ -1,0 +1,6 @@
+<h3>Notifications</h3>
+<ul>
+  <% @notifications.each do |notification| %>
+  <li> <%= User.find(notification.notifiable_id).username %> - <%= notification.category %> </li>
+<% end %>
+</ul>
