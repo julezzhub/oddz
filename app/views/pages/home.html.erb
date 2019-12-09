@@ -12,7 +12,7 @@
     <div data-remaining-time="<%= bet.time_to_accept %>">
       <%= link_to '#' do %>
         <div class="pending-bets-icon">
-          <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
+          <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, crop: :fill, class: "avatar-large-bordered")%>
         </div>
       <% end %>
       <div class="bet-remaining-time" style="color: white"></div>

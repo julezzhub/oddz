@@ -35,7 +35,6 @@ class Bet < ApplicationRecord
   def time_to_accept
     if Time.now > accept_deadline
       0
-      #self.update(status: false)
     else
       accept_deadline - Time.now
     end
@@ -44,6 +43,11 @@ class Bet < ApplicationRecord
   def self.current_pending_bets(user)
     bets = Bet.where(friend: user, status: nil)
     bets.select { |bet| bet.time_to_accept.positive? }
+  end
+
+  def self.expired_pending_bets
+    bets = Bet.where(status: nil)
+    bets.select { |bet| bet.time_to_accept.zero? }
   end
 
   def expiration(time_in_seconds)
