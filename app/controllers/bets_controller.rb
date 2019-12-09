@@ -19,6 +19,8 @@ class BetsController < ApplicationController
     @bet.bet_expiration = params[:duration].to_i
     @bet.save!
     authorize @bet
+    notification = Notification.new(user: @bet.friend, notifiable: current_user, category: "New Bet Invitation")
+    notification.save
   end
 
   def accept
@@ -27,7 +29,8 @@ class BetsController < ApplicationController
     authorize @bet
     # BetValidationJob.perform_now(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
     BetValidationJob.set(wait_until: @bet.end_time).perform_later(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
-
+    notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Accepted Bet Invitation")
+    notification.save
     redirect_to pending_account_bets_path
     flash[:notice] = "Bet accepted"
   end
@@ -36,7 +39,8 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     @bet.update(status: false)
     authorize @bet
-
+    notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Rejected Bet Invitation")
+    notification.save
     redirect_to pending_account_bets_path
     flash[:notice] = "Bet rejected"
   end
