@@ -2,6 +2,7 @@
   background: $dark;
   border-bottom: 1px solid #white !important;
   height: 10vh;
+  position: relative;
 }
 
 .navbar-oddz .navbar-collapse {
@@ -9,7 +10,7 @@
 }
 
 .navbar-oddz .navbar-brand img {
-  width: 40px;
+  width: 30px;
 }
 
 .navbar-brand {
@@ -30,4 +31,11 @@
 	font-size: 16px;
 	line-height: 20px;
   margin-right: 55px;
+}
+
+.nav-item img {
+   width: 25px;
+   position: absolute;
+   right: 1rem;
+   top: 2rem;
 }
