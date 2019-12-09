@@ -2,6 +2,7 @@ require 'faker'
 
 puts "Deleting all users"
 Bet.destroy_all
+Transaction.destroy_all
 User.destroy_all
 
 puts "Creating new users"
