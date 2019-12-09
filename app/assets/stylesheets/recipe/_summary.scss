@@ -1,5 +1,12 @@
-.summary {
+.summary-grid {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  grid-template-rows: 80px;
   align-items: center;
+  grid-row-gap: 24px;
+
+  img {
+    height: 80px;
+    width: 80px;
+  }
 }
