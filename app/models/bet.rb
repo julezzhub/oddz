@@ -40,6 +40,11 @@ class Bet < ApplicationRecord
     end
   end
 
+  def self.current_pending_bets(user)
+    bets = Bet.where(friend: user, status: nil)
+    bets.select { |bet| bet.time_to_accept.positive? }
+  end
+
   def expiration(time_in_seconds)
     t = time_in_seconds
     # if t < 3600
