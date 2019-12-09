@@ -10,8 +10,10 @@ class User < ApplicationRecord
   validates_presence_of :username, :avatar
   validates_uniqueness_of :username, message: "exists already"
   validates :username, format: { with: /(?=.{3,20})[a-zA-Z0-9._]/, message: "must be 6-20 characters long and can only contain letters, numbers, . and _" }
-  has_many :wallet
   has_many :notifications, as: :notifiable
+
+  # has_one :wallet
+
 
   mount_uploader :avatar, PhotoUploader
   monetize :balance_cents

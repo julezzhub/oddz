@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-	resources :bets, only:[] do
-	      member do
+	resources :bets, only:[:show] do
+	   member do
 	      post 'accept'
 	    end
 	    member do

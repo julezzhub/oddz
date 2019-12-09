@@ -12,23 +12,22 @@
 	  text-transform: uppercase;
 	  margin-top: 30px;
 	  margin-bottom: 20px;
-	 }
-
-	p {
-	 	padding-top: 5px;
-	 	padding-bottom: 30px;
-	 	padding-left: 15px;
-	 	text-align: left;
 	}
 
-	.bet-content img {
-		margin-left: 100px;
-	}
+	.current-bet-request {
+    box-shadow: 0px 10px 30px rgba(0,0,0,.2);
+    color: white;
+    padding: 5px 0px 0px 0px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    width: 100%;
+  }
 
-	.past-text {
-		padding-top: 10px;
-		padding-left: 15px;
-	}
+  .current-arrow {
+  	justify-content: flex-end;
+  	margin-right: 15px;
+  	margin-top: 5px;
+  }
 
 	.current-stake {
 		margin-right: 20px;
@@ -37,21 +36,57 @@
 		color: $purple1;
 	}
 
+	.current-text {
+		padding-left: 15px;
+	}
+
+	#current-coin {
+		margin-top: 4px;
+	}
+
+	#current-stake {
+		float: left;
+		color: $purple1;
+		font-family: Poppins;
+		font-size: 24px;
+		margin-right: 15px;
+	}
+
+	.current-bet-content img {
+		margin-bottom: 15px;
+		vertical-align: middle;
+	}
+
+	.past-bet-content img {
+		margin-left: 100px;
+	}
+
+	.past-text {
+		padding-top: 10px;
+		padding-left: 15px;
+	}
+
 	.past-stake {
-		margin-right: 20px;
-		font-size: 30px;
+		margin-right: 10px;
+		font-size: 24px;
+		width: 68px;
 		font-family: Poppins;
 		color: $green1;
 		padding-bottom: 20px;
+		justify-content: flex-end;
 	}
 
-	 .bet-request {
+	 .past-bet-request {
     box-shadow: 0px 10px 30px rgba(0,0,0,.2);
     color: white;
     padding: 5px 0px 0px 0px;
     margin-bottom: 20px;
     border-radius: 4px;
     width: 100%;
+  }
+
+  .bet-loser {
+  	color: $red1 !important;
   }
 
 	.request-upperwrap {
@@ -96,6 +131,7 @@
 	    background-color: $dark;
 	    padding: .5em;
 	}
+
 	.radio-tabs .panel {
 	    display: none;
 	}

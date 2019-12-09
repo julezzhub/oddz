@@ -9,6 +9,10 @@ class BetPolicy < ApplicationPolicy
     user
   end
 
+  def show?
+    record.friend == user
+  end
+
   def create?
     new?
   end

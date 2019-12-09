@@ -1,4 +1,9 @@
 class BetsController < ApplicationController
+  def show
+    @bet = Bet.find(params[:id])
+    authorize @bet
+  end
+
   def new
     @bet = Bet.new
     authorize @bet
@@ -11,7 +16,7 @@ class BetsController < ApplicationController
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
     @bet.end_time = @bet.start_time + params[:duration].to_i
-    # @bet.bet_expiration =  params[:duration].to_i * 0.1
+    @bet.bet_expiration = params[:duration].to_i
     @bet.save!
     authorize @bet
     notification = Notification.new(user: @bet.friend, notifiable: current_user, category: "New Bet Invitation")
@@ -22,6 +27,7 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     @bet.update(status: true)
     authorize @bet
+    # BetValidationJob.perform_now(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
     BetValidationJob.set(wait_until: @bet.end_time).perform_later(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
     notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Accepted Bet Invitation")
     notification.save

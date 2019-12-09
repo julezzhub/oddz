@@ -31,10 +31,11 @@
   white-space: nowrap;
   font-family: poppins;
   border-bottom: 1px solid white;
+  overflow-y: hidden;
 }
 
-.pending-bets-icon {
-  color: white;
+.bet-remaining-time {
+  width: 82px;
   text-align: center;
 }
 
