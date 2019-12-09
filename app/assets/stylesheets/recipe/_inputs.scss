@@ -1,0 +1,36 @@
+#metric, #metric-count, #time, .bet_stake, #friend-selection {
+  margin-bottom: 40px;
+}
+
+#days, #hours {
+  margin: 0 auto;
+  display: block;
+  font-size: 30px;
+}
+
+#time {
+  select {
+  appearance: none;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  padding-left: 30px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 100;
+  border: none;
+  border-bottom: $purple1 solid;
+  border-top: $purple1 solid;
+  }
+
+  p {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 10px;
+  }
+}

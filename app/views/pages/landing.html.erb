@@ -19,7 +19,7 @@
 </div>
 <h3 id="learn-more" class="btn-transparent">Learn More</h3>
 
-<div class="description">
+<div id="description">
   <h1>How does it work?</h1>
 
   <p>Oddz is a social betting platform.</p>
@@ -66,7 +66,7 @@
 
 <script>
   document.getElementById('learn-more').addEventListener('click', function() {
-    document.scroll
+    document.getElementById('description').scrollIntoView({ behavior: 'smooth' })
   })
 
 </script>

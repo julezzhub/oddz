@@ -1,19 +1,19 @@
 <div class="search-form-container">
-<h3>Please select the video or channel you want to bet on</h3>
+<h3 class="form-h3">Please select the video or channel you want to bet on</h3>
 
   <div class="row">
     <div class="col">
-      <h1 id="video_btn-h3" class="btn">Video</h1>
+      <h1 id="video_btn-h3" class="btn-half">Video</h1>
     </div>
     <div class="col">
-      <h1 id="channel_btn-h3" class="btn">Channel</h1>
+      <h1 id="channel_btn-h3" class="btn-half">Channel</h1>
     </div>
   </div>
 
   <div class="d-none" id="search_input">
     <div> <%= form_with(url: search_index_path, remote: true) do %>
        <%= hidden_field_tag :type, '', id: 'type' %>
-       <%= text_field_tag :target, '', placeholder: 'Search', id: "search", label: '', autocomplete: "off" %>
+       <%= text_field_tag :target, '', placeholder: 'Search', id: "search", label: '', autocomplete: "off", style:"padding-left: 10px" %>
        <%#= submit_tag :submit, id: 'submit' %>
      <% end %>
       <div id="autocomplete_style" class="d-none">
