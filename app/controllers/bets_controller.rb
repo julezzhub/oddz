@@ -10,7 +10,6 @@ class BetsController < ApplicationController
   end
 
   def create
-    raise
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     @bet.target = params[:target]
