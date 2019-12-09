@@ -35,6 +35,7 @@ class Bet < ApplicationRecord
   def time_to_accept
     if Time.now > accept_deadline
       0
+      #self.update(status: false)
     else
       accept_deadline - Time.now
     end
