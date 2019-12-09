@@ -79,9 +79,7 @@
         <svg width="88px" height="70.4px" id="circle_svg">
           <circle cx="41" cy="41" r="40"></circle>
         </svg>
-        <div class="percent">
-          <span class="progress-text">50%</span>
-        </div>
+          <p id="progress-text">20%</p>
       </div>
     </div>
   </div>
@@ -97,6 +95,8 @@
     document.getElementById('bet_metric_count').placeholder = "How many " +
       this.value.toLowerCase() + " will the target get?"
       document.getElementById('metric-count').classList.remove('d-none');
+    document.getElementById('progress-text').classList.add('scaled1');
+    document.getElementById('progress-text').innerHTML = "40%";
     document.getElementById('circle_svg').classList.add('transition1');
   })
 
@@ -113,6 +113,8 @@
 
   document.getElementById('metric-count').addEventListener('change', function() {
     document.getElementById('time').classList.remove('d-none')
+    document.getElementById('progress-text').classList.add('scaled2');
+    document.getElementById('progress-text').innerHTML = "60%"
     document.getElementById('circle_svg').classList.add('transition2');
   })
   // when a metric count is selected, show the time field
@@ -122,6 +124,8 @@
       document.getElementById('days').value.to_i * 86400
       + document.getElementById('hours').value.to_i * 3600
 /*      + document.getElementById('minutes').value * 60 */
+    document.getElementById('progress-text').classList.add('scaled3');
+    document.getElementById('progress-text').innerHTML = "80%"
     document.getElementById('circle_svg').classList.add('transition3');
     recipe1forward.classList.remove('d-none')
   })
@@ -149,6 +153,8 @@
     } else {
       recipe2forward.classList.remove('d-none');
     }
+    document.getElementById('progress-text').classList.add('scaled4');
+    document.getElementById('progress-text').innerHTML = "100%"
     document.getElementById('circle_svg').classList.add('transition4');
     document.getElementById('progress-btn').classList.add('shake');
   })

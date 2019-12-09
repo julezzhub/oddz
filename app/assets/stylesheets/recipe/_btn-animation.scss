@@ -77,3 +77,43 @@
     transform: translate3d(4px, -2px, 0);
   }
 }
+
+#progress-btn {
+  position: relative;
+}
+
+#progress-text {
+  position: absolute;
+  top: 35px;
+  left: 2px;
+  display: block;
+  float: left;
+  width: 100%;
+  line-height: 1em;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+
+.scaled1 {
+  transform: scale(1.1);
+  transition: 2s;
+}
+
+.scaled2 {
+  transform: scale(1.2);
+  transition: 2s;
+}
+
+.scaled3 {
+  transform: scale(1.3);
+  transition: 2s;
+}
+
+.scaled4 {
+  transform: scale(1.4);
+  transition: 1s;
+}
+
