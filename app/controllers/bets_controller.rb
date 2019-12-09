@@ -1,4 +1,9 @@
 class BetsController < ApplicationController
+  def show
+    @bet = Bet.find(params[:id])
+    authorize @bet
+  end
+
   def new
     @bet = Bet.new
     authorize @bet

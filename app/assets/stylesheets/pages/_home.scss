@@ -31,12 +31,7 @@
   white-space: nowrap;
   font-family: poppins;
   border-bottom: 1px solid white;
-}
-
-.pending-bets-icon p {
-  // color: white;
-  // text-align: center;
-  // margin-left: 12px;
+  overflow-y: hidden;
 }
 
 .bet-remaining-time {

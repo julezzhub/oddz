@@ -6,9 +6,9 @@ class BetValidationJob < ApplicationJob
 
   def perform(target, metric, metric_count, id, user_id, friend_id)
     if metric == "Subscribers" || metric == "View Count"
-      url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{target}&key=#{ENV['YOUTUBE_API_KEY1']}"
+      url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{target}&key=#{ENV['YOUTUBE_API_KEY3']}"
     else
-      url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{target}&key=#{ENV['YOUTUBE_API_KEY2']}"
+      url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{target}&key=#{ENV['YOUTUBE_API_KEY4']}"
     end
     result = open(url).read
 
