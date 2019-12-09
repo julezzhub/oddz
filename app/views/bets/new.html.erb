@@ -1,19 +1,68 @@
 <div id="page1">
-  <h6 id="target-notice"><b>YOUR TARGET</b><br> <%= params[:title] %> </h6>
+  <h6 id="target-notice"><%= params[:title] %> </h6>
+  <%= hidden_field_tag :title, params[:title] %>
+
   <%= simple_form_for(@bet) do |f| %>
     <% if params[:target][:kind] == "youtube#video" %>
       <%= hidden_field_tag :target, params[:target][:videoId] %>
       <div id="metric">
+          <div class="current-stats-box">
+            <div class="current-stats">
+              <%= image_tag "video.svg" %>
+              <div>
+                <p id="current-label">Current <span>Views</span></p>
+                <p>8,899,889,089<%#= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label">Current <span>Comments</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "comments.svg" %>
+            </div>
+            <div class="current-stats">
+              <%= image_tag "thumbs_up.svg" %>
+              <div>
+                <p id="current-label">Current <span>Likes</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label">Current <span>Dislikes</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "thumbs_up.svg", style:"transform: rotate(180deg)" %>
+            </div>
+          </div>
           <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
           <%= f.input :metric, label: "Select Video Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
       </div>
     <% else %>
       <%= hidden_field_tag :target, params[:target][:channelId] %>
       <div id="metric">
+        <div class="current-stats-box">
+            <div class="current-stats">
+              <%= image_tag "video.svg" %>
+              <div>
+                <p id="current-label">Current <span>Subscribers</span></p>
+                <p>8,899,889,089<%#= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label">Current <span>Total Views</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "comments.svg" %>
+            </div>
+          </div>
           <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
           <%= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
       </div>
     <% end %>
+    <div id="metric-tag"></div>
 
   <div class="d-none", id="metric-count">
     <%= f.input :metric_count, label: "Amount" %>
@@ -88,7 +137,6 @@
   <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
   <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
-<div class="space-for-betbar"></div>
 <% end %>
 
 <script>
@@ -101,6 +149,38 @@
     document.getElementById('progress-text').classList.add('scaled1');
     document.getElementById('progress-text').innerHTML = "40%";
     document.getElementById('circle_svg').classList.add('transition1');
+  })
+
+  document.querySelectorAll('.current-stats').forEach(stat => {
+    stat.addEventListener('click', event => {
+      document.querySelectorAll('.current-stats').forEach(stat => {
+        stat.classList.remove('selected')
+      })
+      document.querySelectorAll('#metric_tag').forEach(item => {
+        item.innerHTML = ""
+      })
+    stat.classList.add('selected');
+    switch (document.querySelector('.selected span').innerText.toLowerCase()) {
+      case 'views':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Views' %>';
+        break;
+      case 'comments':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Comments' %>';
+        break;
+      case 'likes':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Likes' %>';
+        break;
+      case 'dislikes':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Dislikes' %>';
+        break;
+      case 'subscribers':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Subscribers' %>';
+        break;
+      case 'total views':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'View Count' %>';
+        break;
+      }
+    })
   })
 
   document.getElementById('page1').addEventListener('change', function() {

@@ -1,13 +1,26 @@
+require 'json'
+require 'open-uri'
+
 class BetsController < ApplicationController
   def new
+    #if params[:target][:kind] == "youtube#channel"
+     # url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{params[:target][:channelId]}&key=#{ENV['YOUTUBE_API_KEY1']}"
+    #else
+     # url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{params[:target][:videoId]}&key=#{ENV['YOUTUBE_API_KEY2']}"
+    #end
+    #result = open(url).read
+    #data = JSON.parse(result)
+    #@statistics = data["items"][0]["statistics"]
     @bet = Bet.new
     authorize @bet
   end
 
   def create
+    raise
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     @bet.target = params[:target]
+    @bet.metric = params[:metric]
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
     @bet.end_time = @bet.start_time + params[:duration].to_i
@@ -44,6 +57,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:target, :metric, :metric_count, :stake, :premade, :end_time)
+    params.require(:bet).permit(:target, :metric_count, :stake, :premade, :end_time)
   end
 end
