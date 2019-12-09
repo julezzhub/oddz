@@ -1,7 +1,27 @@
 .navbar-oddz {
   background: $dark;
-  border-bottom: 1px solid #white !important;
+  border-bottom: 1px solid white !important;
   height: 10vh;
+}
+
+#nav-wallet {
+  float: left;
+}
+
+#nav-coin {
+  float: left;
+  margin-top: 5px;
+  margin-left: -12px;
+}
+
+#nav-money {
+  float: left;
+  margin-top: 6px;
+  margin-left: -5px;
+}
+
+#nav-menu {
+  margin-right: 10px;
 }
 
 .navbar-oddz .navbar-collapse {
@@ -9,11 +29,12 @@
 }
 
 .navbar-oddz .navbar-brand img {
-  width: 40px;
+  width: 30px;
+  margin-left: 10px;
 }
 
 .navbar-brand {
-	margin-right: 0;
+  padding-bottom: 8px;
 }
 
 .navbar-light .navbar-brand {
