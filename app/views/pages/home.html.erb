@@ -9,8 +9,8 @@
        <p>All</p>
     <% end %>
   </div>
-  <% Bet.where(friend: current_user, status: nil).each do |bet| %>
-    <div data-remaining-time="<%= (bet.end_time - Time.now) * 0.1 %>">
+  <% Bet.current_pending_bets(current_user).each do |bet| %>
+    <div data-remaining-time="<%= bet.time_to_accept %>">
       <%= link_to '#' do %>
         <div class="pending-bets-icon">
           <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>

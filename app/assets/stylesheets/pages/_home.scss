@@ -33,8 +33,14 @@
   border-bottom: 1px solid white;
 }
 
-.pending-bets-icon {
-  color: white;
+.pending-bets-icon p {
+  // color: white;
+  // text-align: center;
+  // margin-left: 12px;
+}
+
+.bet-remaining-time {
+  width: 82px;
   text-align: center;
 }
 

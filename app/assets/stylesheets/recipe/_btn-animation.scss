@@ -1,0 +1,119 @@
+.transition1 {
+  animation: buttonTransition1 1.5s forwards
+}
+
+@keyframes buttonTransition1 {
+  from {
+      height: 70.4px;
+  }
+  to {
+      height: 52.8px;
+  }
+}
+
+.transition2 {
+  animation: buttonTransition2 1s forwards;
+}
+
+@keyframes buttonTransition2 {
+  from {
+      height: 52.8px;
+  }
+  to {
+      height: 35.2px;
+  }
+}
+
+.transition3 {
+  animation: buttonTransition3 1s forwards;
+}
+
+@keyframes buttonTransition3 {
+  from {
+      height: 35.2px;
+  }
+  to {
+      height: 17.6px;
+  }
+}
+
+.transition4 {
+  animation: buttonTransition4 1s forwards;
+}
+
+@keyframes buttonTransition4 {
+  from {
+      height: 17.6px;
+  }
+  to {
+      height: 0px;
+  }
+}
+
+.shake {
+  animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.face:hover {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 2px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, -2px, 0);
+  }
+}
+
+#progress-btn {
+  position: relative;
+}
+
+#progress-text {
+  position: absolute;
+  top: 35px;
+  left: 2px;
+  display: block;
+  float: left;
+  width: 100%;
+  line-height: 1em;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+
+.scaled1 {
+  transform: scale(1.1);
+  transition: 2s;
+}
+
+.scaled2 {
+  transform: scale(1.2);
+  transition: 2s;
+}
+
+.scaled3 {
+  transform: scale(1.3);
+  transition: 2s;
+}
+
+.scaled4 {
+  transform: scale(1.4);
+  transition: 1s;
+}
+

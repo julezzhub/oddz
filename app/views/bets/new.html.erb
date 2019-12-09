@@ -36,19 +36,9 @@
       <%= hidden_field_tag :duration, 0, id:"duration" %>
     </div>
   </div>
-
-  <div class="progress-bar">
-    <%= link_to new_search_path do %>
-      <%= image_tag "arrow_left.svg", class:"arrow-left" %>
-    <% end %>
-    <div class="round-button" style="margin: 0 auto">
-      <div class="round-button-circle">
-        <span class="progress-text">50%</span>
-      </div>
-    </div>
-    <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
-  </div>
 </div>
+
+
 
 <div class="d-none" id=page2>
   <h3 class="form-h3">Last but not least, choose an amount and a friend</h3>
@@ -59,100 +49,153 @@
     <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
 <!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
   </div>
-
-  <div class="progress-bar">
-    <%= image_tag "arrow_left.svg", id:"recipe2backward", class:"arrow-left" %>
-    <div class="round-button" style="margin: 0 auto">
-      <div class="round-button-circle">
-        <span class="progress-text">75%</span>
-      </div>
-    </div>
-    <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
-  </div>
-
 </div>
 
 <div class="d-none" id="summary">
   <h3 class="form-h3">Done. See your bet summary below and hit bet!</h3>
 
-  <div class="summary">
-    <%= image_tag "video.svg", style:"width: 80px; height: 80px;" %>
+  <div class="summary-grid">
+    <%= image_tag "video.svg"%>
     <h3 class="form-h3" id="target-summary"></h3>
     <%= image_tag("thumbs_up.svg") %>
     <h3 class="form-h3" id="metric_count_time-summary"></h3>
     <%= image_tag("wallet.svg") %>
     <h3 class="form-h3" id="stake-summary"></h3>
-    <%= image_tag "friend.svg", style:"width: 80px; height: 80px;" %>
+    <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
     <h3 class="form-h3" id="friend-summary"></h3>
   </div>
+</div>
 
-  <div class="progress-bar">
-    <%= image_tag "arrow_left.svg", id:"summary-backward", class:"arrow-left" %>
-    <div class="round-button" style="margin: 0 auto">
-      <div class="round-button-circle">
-        <%= f.button :submit, value:"BET" %>
+<div class="betbar-filter"></div>
+<div class="betbar-filter2"></div>
+<div id="progress-bar" class="progress-bar">
+  <%= link_to new_search_path do %>
+    <%= image_tag "arrow_left.svg", id:"recipe1backward", class:"arrow-left" %>
+  <% end %>
+  <%= image_tag "arrow_left.svg", id:"recipe2backward", class:"d-none arrow-left" %>
+  <%= image_tag "arrow_left.svg", id:"summary-backward", class:"d-none arrow-left" %>
+  <div id="progress-btn" class="round-button" style="margin: 0 auto">
+    <div class="round-button-circle">
+      <%= f.button :submit, value:"BET", id:"bet-btn", class:"d-none"%>
+      <div id="circle">
+        <svg width="88px" height="70.4px" id="circle_svg">
+          <circle cx="41" cy="41" r="40"></circle>
+        </svg>
+          <p id="progress-text">20%</p>
       </div>
     </div>
   </div>
-  <% end %>
+  <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
+  <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
+<div class="space-for-betbar"></div>
+<% end %>
 
 <script>
-  document.getElementById('metric').addEventListener('change', function() {
+  const recipe1forward = document.getElementById('recipe1forward')
+
+  document.getElementById('bet_metric').addEventListener('change', function() {
     document.getElementById('bet_metric_count').placeholder = "How many " +
-      document.getElementById('bet_metric').value.toLowerCase() + " will the target get?"
-    document.getElementById('metric-count').classList.remove('d-none')
+      this.value.toLowerCase() + " will the target get?"
+      document.getElementById('metric-count').classList.remove('d-none');
+    document.getElementById('progress-text').classList.add('scaled1');
+    document.getElementById('progress-text').innerHTML = "40%";
+    document.getElementById('circle_svg').classList.add('transition1');
+  })
+
+  document.getElementById('page1').addEventListener('change', function() {
+    if ((document.getElementById('days').value === "00" && document.getElementById('hours').value === "00") ||
+      document.getElementById('bet_metric_count').value === "" ||
+      document.getElementById('bet_metric').value === "") {
+        recipe1forward.classList.add('d-none');
+    } else {
+      recipe1forward.classList.remove('d-none');
+    }
   })
   // when a metric is selected, change the placeholder of the next field and show it
 
   document.getElementById('metric-count').addEventListener('change', function() {
     document.getElementById('time').classList.remove('d-none')
+    document.getElementById('progress-text').classList.add('scaled2');
+    document.getElementById('progress-text').innerHTML = "60%"
+    document.getElementById('circle_svg').classList.add('transition2');
   })
   // when a metric count is selected, show the time field
-
-  const recipe1forward = document.getElementById('recipe1forward')
 
   document.getElementById('time').addEventListener('change', function() {
     document.getElementById('duration').value =
       document.getElementById('days').value.to_i * 86400
       + document.getElementById('hours').value.to_i * 3600
 /*      + document.getElementById('minutes').value * 60 */
+    document.getElementById('progress-text').classList.add('scaled3');
+    document.getElementById('progress-text').innerHTML = "80%"
+    document.getElementById('circle_svg').classList.add('transition3');
     recipe1forward.classList.remove('d-none')
   })
   // whenever sth in the time field changes, update the "duration" hidden field tag
   // and show the rightward arrow
-
-  recipe1forward.addEventListener('click', function() {
-    document.getElementById('page1').classList.add("d-none")
-    document.getElementById('page2').classList.remove("d-none")
-  })
-  // when you click on the rightward arrow, you get to the next page
-
   const recipe2forward = document.getElementById('recipe2forward')
   const recipe2backward = document.getElementById('recipe2backward')
 
-  document.getElementById('friend-selection').addEventListener('change', function() {
-    recipe2forward.classList.remove('d-none')
+  recipe1forward.addEventListener('click', function() {
+    this.classList.add("d-none")
+    document.getElementById('page1').classList.add("d-none")
+    document.getElementById('page2').classList.remove("d-none")
+    document.getElementById('recipe1backward').classList.add("d-none")
+    document.getElementById('recipe2backward').classList.remove("d-none")
+    if (document.getElementById('bet_friend').value !== "") {
+      recipe2forward.classList.remove('d-none');
+    }
+  })
+  // when you click on the rightward arrow, you get to the next page
+
+
+  document.getElementById('bet_friend').addEventListener('change', function() {
+    if (this.value === "") {
+      recipe2forward.classList.add('d-none');
+    } else {
+      recipe2forward.classList.remove('d-none');
+    }
+    document.getElementById('progress-text').classList.add('scaled4');
+    document.getElementById('progress-text').innerHTML = "100%"
+    document.getElementById('circle_svg').classList.add('transition4');
+    document.getElementById('progress-btn').classList.add('shake');
   })
   // when a friend is selected, show the arrow leading to summary
 
   recipe2backward.addEventListener('click', function() {
     document.getElementById('page2').classList.add("d-none")
     document.getElementById('page1').classList.remove("d-none")
+    document.getElementById('recipe2backward').classList.add("d-none")
+    document.getElementById('recipe2forward').classList.add("d-none")
+    document.getElementById('recipe1backward').classList.remove("d-none")
+    document.getElementById('recipe1forward').classList.remove("d-none")
   })
   // when you click on the leftward arrow, you get to page 1
 
   recipe2forward.addEventListener('click', function() {
     document.getElementById('page2').classList.add("d-none")
+    document.getElementById('recipe2backward').classList.add("d-none")
+    document.getElementById('recipe2forward').classList.add("d-none")
     document.getElementById('summary').classList.remove("d-none")
+    document.getElementById('summary-backward').classList.remove("d-none")
+    document.getElementById('circle').classList.add('d-none')
+    document.getElementById('bet-btn').classList.remove('d-none')
 
     document.getElementById('target-summary').innerHTML = "<%= params[:title] %>"
 
-    document.getElementById('metric_count_time-summary').innerHTML =
+    if (document.getElementById('days').value !== "00") {
+      document.getElementById('metric_count_time-summary').innerHTML =
       parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
       + document.getElementById('bet_metric').value + " in "
-      + document.getElementById('days').value + " days and "
-      + document.getElementById('hours').value + " hours."
+        + document.getElementById('days').value + " days and "
+        + document.getElementById('hours').value + " hours."
+    } else {
+      document.getElementById('metric_count_time-summary').innerHTML =
+      parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
+      + document.getElementById('bet_metric').value + " in "
+        + document.getElementById('hours').value + " hours."
+    }
 /*      + document.getElementById('minutes').value + " minutes."
 */
     document.getElementById('stake-summary').innerHTML =
@@ -168,6 +211,12 @@
   document.getElementById('summary-backward').addEventListener('click', function() {
     document.getElementById('summary').classList.add("d-none")
     document.getElementById('page2').classList.remove("d-none")
+    document.getElementById('progress-bar').classList.remove('d-none')
+    document.getElementById('circle').classList.remove('d-none')
+    document.getElementById('bet-btn').classList.add('d-none')
+    document.getElementById('summary-backward').classList.add('d-none')
+    document.getElementById('recipe2backward').classList.remove('d-none')
+    document.getElementById('recipe2forward').classList.remove('d-none')
   })
   //when you click on the backward arrow, you get to page 2 again
 </script>
