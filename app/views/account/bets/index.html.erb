@@ -27,7 +27,11 @@
 									</div>
 								</div>
 				      	<div class="current-bet-content d-flex justify-content-between">
-									<div class="current-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+									<% if bet.user == current_user %>
+                    <div class="current-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+                  <% else %>
+                    <div class="current-text">Your bet against <strong><%=bet.user.username%></strong></div>
+                  <% end %>
 									<div class="current-arrow d-flex"><%= image_tag "arrow_right.svg" %></div>
 								</div>
 				   		</div>
@@ -50,7 +54,11 @@
 									<%=bet.start_time.strftime("%d.%m.%y")%>
 								</div>
 				      	<div class="past-bet-content d-flex justify-content-between">
-									<div class="past-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+                  <% if bet.user == current_user %>
+                    <div class="past-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+                  <% else %>
+                    <div class="past-text">Your bet against <strong><%=bet.user.username%></strong></div>
+                  <% end %>
 									<% if bet.winner == current_user %>
 									<div class="past-stake d-flex"><div>+<%= image_tag "oddz_coin_green.svg", size: "25", class: "ml-0 pb-1" %><%=humanized_money(bet.stake)%></div></div>
 									<% else %>

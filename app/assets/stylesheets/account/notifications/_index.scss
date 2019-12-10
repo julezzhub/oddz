@@ -1,0 +1,70 @@
+.notification-card-new {
+  position: relative;
+  box-shadow: 0px 10px 30px rgba(0,0,0,.2);
+  color: white;
+  padding: 5px 0px 0px 0px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-family: poppins;
+  background: rgba(194, 153, 252, 0.76);
+}
+
+.notification-category-new {
+  width: 100%;
+  padding-left: 10px;
+  border-bottom: solid 1px;
+  border-color: white;
+   padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.notification-width-new {
+  padding: 10px;
+
+  p {
+  text-align: left;
+  }
+}
+
+.notification-arrow-new {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.notification-card-seen {
+  position: relative;
+  box-shadow: 0px 10px 30px rgba(0,0,0,.2);
+  color: $grey-subtle;
+  padding: 5px 0px 0px 0px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: solid 1px;
+  border-color: rgba(194, 153, 252, 0.76);
+  font-family: poppins;
+  background: transparent;
+}
+
+.notification-category-seen {
+  width: 100%;
+  padding-left: 10px;
+  border-bottom: solid 1px;
+  border-color: rgba(194, 153, 252, 0.76);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.notification-width-seen {
+  padding: 10px;
+  p {
+  text-align: left;
+  color: white;
+  }
+}
+
+.notification-arrow-seen {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+

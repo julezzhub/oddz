@@ -14,13 +14,27 @@ class BetValidationJob < ApplicationJob
 
     @data = JSON.parse(result)
     @statistics = @data["items"][0]["statistics"]
-    if metric == "View Count"
+    if metric == "Total Views"
       @real_count = @statistics["viewCount"].to_i
     else
       @real_count = @statistics["#{metric.downcase.delete_suffix('s')}Count"].to_i
     end
     @bet = Bet.find(id)
-    @real_count >= metric_count ? @bet.update(winner_id: user_id) : @bet.update(winner_id: friend_id)
+
+    if @real_count >= metric_count
+      @bet.update(winner_id: user_id)
+      notification_winner = Notification.new(user: @bet.winner, notifiable: @bet.friend, category: "Bet Won")
+      notification_winner.save
+      notification_loser = Notification.new(user: @bet.friend, notifiable: @bet.winner, category: "Bet Lost")
+      notification_loser.save
+    else
+      @bet.update(winner_id: friend_id)
+      notification_winner = Notification.new(user: @bet.winner, notifiable: @bet.user, category: "Bet Won")
+      notification_winner.save
+      notification_loser = Notification.new(user: @bet.user, notifiable: @bet.winner, category: "Bet Lost")
+      notification_loser.save
+    end
+
     # update balance
     @bet.winner.update(balance_cents: @bet.winner.balance_cents + @bet.stake_cents)
 
