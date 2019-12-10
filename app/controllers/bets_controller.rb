@@ -1,6 +1,22 @@
+require 'json'
+require 'open-uri'
+
 class BetsController < ApplicationController
   def show
     @bet = Bet.find(params[:id])
+    if @bet.metric == 'Subscribers' || @bet.metric == 'View Count'
+      url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{@bet.target}&key=#{ENV['YOUTUBE_API_KEY1']}"
+    else
+      url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{@bet.target}&key=#{ENV['YOUTUBE_API_KEY2']}"
+    end
+    result = open(url).read
+    @data = JSON.parse(result)
+    @statistics = @data['items'][0]['statistics']
+    if @bet.metric == "View Count"
+      @real_count = @statistics["viewCount"].to_i
+    else
+      @real_count = @statistics["#{@bet.metric.downcase.delete_suffix('s')}Count"].to_i
+    end
     authorize @bet
   end
 
