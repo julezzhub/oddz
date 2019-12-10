@@ -1,6 +1,19 @@
-<h3>Notifications</h3>
-<ul>
-  <% @notifications.each do |notification| %>
-  <li> <%= User.find(notification.notifiable_id).username %> - <%= notification.category %> </li>
-<% end %>
-</ul>
+<div class = "container account_history_index">
+  <h2>NOTIFICATIONS</h2>
+  <% notifications = @notifications.reverse %>
+  <% notifications.each do |notification| %>
+    <%= render 'notification', notification: notification %>
+  <% end %>
+</div>
+
+<!--
+ALL CURRENT NOTIFICATIONS:
+
+notification.category == "Bet Won"
+notification.category == "Friend Request Accepted"
+notification.category == "New Friend Request"
+notification.category == "New Bet Invitation"
+notification.category == "Bet Lost"
+notification.category == "Accepted Bet Invitation"
+notification.category == "Rejected Bet Invitation"
+ -->
