@@ -1,5 +1,9 @@
-#metric, #metric-count, #time, .bet_stake, #friend-selection {
-  margin-bottom: 40px;
+#metric-count, #time, .bet_stake, #friend-selection {
+  margin-bottom: 30px;
+}
+
+#metric {
+  margin-bottom: 10px;
 }
 
 #days, #hours {
@@ -37,4 +41,34 @@
 
 #bet_metric_count::-webkit-input-placeholder {
   text-align: left;
+}
+
+.bet_metric_count {
+  input {
+    border: none;
+    height: 40px;
+    width: 240px;
+    font-weight: 100;
+    border-bottom: $purple1 solid;
+    margin: 0 auto;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 2px;
+    overflow: hidden;
+  }
+
+  :focus {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  input::-webkit-input-placeholder {
+    font-size: 15px;
+    text-align: center !important;
+  }
+}
+
+.bet_stake {
+  width: 80%;
+  margin: 0 auto;
 }

@@ -4,11 +4,11 @@
 
   & > div {
     display: flex;
-    margin: 5px;
+    margin: 4px;
     align-items: center;
     border-radius: 3px;
     border: white thin solid;
-    height: 80px;
+    height: 75px;
     line-height: 100%;
   }
 
@@ -19,8 +19,8 @@
   }
 
   div > img {
-    height: 45px;
-    width: 45px;
+    height: 35px;
+    width: 35px;
   }
 
   div > div {
@@ -31,7 +31,7 @@
     margin-left: 0px;
 
     img {
-      margin-left: 8px;
+      margin-left: 12px;
     }
 
     div > p {
@@ -45,7 +45,7 @@
     justify-content: flex-end;
 
     img {
-      margin-right: 8px;
+      margin-right: 12px;
     }
 
     div > p {

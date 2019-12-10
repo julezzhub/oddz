@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.2.0",
+    "autonumeric": "^4.5.10",
     "bootstrap": "^4.4.1",
     "ion-rangeslider": "^2.3.0",
     "jquery": "^3.4.1",
