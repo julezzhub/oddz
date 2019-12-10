@@ -1,5 +1,6 @@
-.account_transactions_create {
-	h1 {
+.account_transactions_show {
+   
+  h1 {
     color: #white;
     font-family: Poppins;
     font-style: normal;
@@ -12,15 +13,38 @@
     margin-bottom: 20px;
   }
 
-  p {
-    margin-top: 30px;
-  	color: #white;
+  .btn-transaction {
+    background: $purple1 !important;
+    color: #FFFFFF;
     font-family: Poppins;
-    font-size: 30px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    text-transform: uppercase;
+    width: 30%;
+    letter-spacing: 0.1em;
+    padding: 3px;
+    margin-top: 10px;
   }
-  
-  button {
+
+  .receipt {
+    margin-top: 20px;
+    color: white;
+    font-size: 18px;
+    text-align: center
+  }
+
+  .issued {
     margin-top: 30px;
+  }
+
+  .total {
+    margin-top: 40px;
+  }
+
+  .phrase {
+    margin-top: 60px;
   }
 
   .setting-link a {
@@ -32,7 +56,7 @@
   }
 
   .wrap-link {
-    margin-top: 40px;
+    margin-top: 10px;
     text-decoration: none;
     border-top: 1px solid $grey-subtle;
     border-bottom: 1px solid $grey-subtle;

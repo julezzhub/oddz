@@ -1,8 +1,9 @@
-.account_settings_wallet {
+ .account_settings_wallet {
   position: relative;
+  font-family: Poppins;
+
   h1 {
     color: #white;
-    font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -16,29 +17,90 @@
 
   p {
     margin-top: 40px;
-    font-size: 30px;
+    font-size: 20px;
     color: white !important;
   }
 
-  #wallet {
+  .amount-form {
+    margin-top: 20px;
+    #wallet {
     margin-top: 30px;
     font-family: Poppins;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid white;
+    background: transparent;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px; 
+    }
+  }
+
+  .cash-buttons {
+    margin-top: 10px !important;
+    width: 91%;
+    margin: 0 auto;
+    
+    .btn-white {
+    color: white !important;
+    font-family: Poppins;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-align: center;
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid white;
     background: transparent;
-    height: 40px;
+    height: 50px;
     width: 49%;
-    margin-top: 30px; 
+    margin-left: 3px;
+    }
+    .btn-pay {
+      width: 51%;
+      #submit-pay {
+      background: white !important;
+      color: $dark !important;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-family: Poppins;
+      border-radius: 4px;
+      box-sizing: border-box;
+      height: 50px;
+      width: 98%;
+      }
+    }
   }
 
-  #submit_amount {
-    background: white !important;
-    color: $dark;
-    font-family: Poppins;
-    border-radius: 4px;
-    box-sizing: border-box;
-    height: 41px;
-    width: 49%;
+  .wrap-amount {
+    margin-top: 40px;
+  }
+
+  .wallet-amount {
+    font-size: 30px;
+  }
+
+  .setting-link a {
+    color: $grey-subtle;
+    padding-left: 20px;
+    align-items: center;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+  }
+
+  .wrap-link {
+    margin-top: 60px;
+    text-decoration: none;
+    border-top: 1px solid $grey-subtle;
+    border-bottom: 1px solid $grey-subtle;
+  }
+
+  .wrap-link p {
+    color: $grey-subtle !important;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    margin-left: 25px;
   }
 }
