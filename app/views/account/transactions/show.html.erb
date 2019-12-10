@@ -1,6 +1,6 @@
 <div class="container account_transactions_show">
   <div class="row py-4 justify-content-center">
-    <div><h1>Transaction #<%= @transaction.id %> </h1></div>
+    <div><h1>Transaction # <%= @transaction.id %> </h1></div>
     <div class="btn-transaction"><%= @transaction.state %></div>
     <div class="receipt">
       <div class="issued">ISSUED ON<br>- <%=@transaction.created_at.to_date.strftime("%d.%m.%y")%> -</div>
