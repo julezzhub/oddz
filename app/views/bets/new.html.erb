@@ -16,13 +16,13 @@
               <%= image_tag "video.svg" %>
               <div>
                 <p id="current-label"><span>Views</span></p>
-                <p>8,899,889,089<%#= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+                <p><%= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
               </div>
             </div>
             <div class="current-stats">
               <div>
                 <p id="current-label"><span>Comments</span></p>
-                <p>9898998<%#= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
+                <p><%= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
               </div>
               <%= image_tag "comments.svg" %>
             </div>
@@ -30,13 +30,13 @@
               <%= image_tag "thumbs_up.svg" %>
               <div>
                 <p id="current-label"><span>Likes</span></p>
-                <p>9898998<%#= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
+                <p><%= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
               </div>
             </div>
             <div class="current-stats">
               <div>
                 <p id="current-label"><span>Dislikes</span></p>
-                <p>9898998<%#= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
+                <p><%= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
               </div>
               <%= image_tag "thumbs_up.svg", style:"transform: rotate(180deg)" %>
             </div>

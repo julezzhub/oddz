@@ -21,20 +21,19 @@ class BetsController < ApplicationController
   end
 
   def new
-    #if params[:target][:kind] == "youtube#channel"
-     # url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{params[:target][:channelId]}&key=#{ENV['YOUTUBE_API_KEY1']}"
-    #else
-     # url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{params[:target][:videoId]}&key=#{ENV['YOUTUBE_API_KEY2']}"
-    #end
-    #result = open(url).read
-    #data = JSON.parse(result)
-    #@statistics = data["items"][0]["statistics"]
+    if params[:target][:kind] == "youtube#channel"
+     url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{params[:target][:channelId]}&key=#{ENV['YOUTUBE_API_KEY1']}"
+    else
+     url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{params[:target][:videoId]}&key=#{ENV['YOUTUBE_API_KEY2']}"
+    end
+    result = open(url).read
+    data = JSON.parse(result)
+    @statistics = data["items"][0]["statistics"]
     @bet = Bet.new
     authorize @bet
   end
 
   def create
-    raise
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     @bet.target = params[:target]
