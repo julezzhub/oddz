@@ -18,7 +18,7 @@
 				<% else %>
 					<div class="bet-status">
 				  	<% @current_bets.each do |bet| %>
-				    	<div class="current-bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+				    	<div class="current-bet-request" style="background-color: <%= ["#474776"].sample %>">
 								<div class="request-upperwrap d-flex justify-content-between">
 									<%= bet.start_time.strftime("%d.%m.%y")%>
 									<div class="request-upperwrap d-flex justify-content-between">
@@ -49,7 +49,7 @@
 				<% else %>
 					<div class="bet-status">
 				  	<% @past_bets.each do |bet| %>
-				    	<div class="past-bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+				    	<div class="past-bet-request" style="background-color: <%= ["#3A3452"].sample %>">
 								<div class="request-upperwrap">
 									<%=bet.start_time.strftime("%d.%m.%y")%>
 								</div>
