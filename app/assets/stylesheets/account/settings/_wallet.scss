@@ -1,6 +1,7 @@
  .account_settings_wallet {
   position: relative;
   font-family: Poppins;
+  font-weight: bolder;
 
   h1 {
     color: #white;
@@ -13,12 +14,14 @@
     text-transform: uppercase;
     margin-top: 30px;
     margin-bottom: 20px;
+    font-weight: bolder;
   }
 
   p {
     margin-top: 40px;
     font-size: 20px;
     color: white !important;
+    font-weight: bolder;
   }
 
   .amount-form {
@@ -34,6 +37,7 @@
     height: 50px;
     width: 100%;
     margin-top: 30px; 
+    font-weight: bolder;
     }
   }
 
@@ -41,6 +45,7 @@
     margin-top: 10px !important;
     width: 91%;
     margin: 0 auto;
+    font-weight: bolder;
     
     .btn-white {
     color: white !important;
@@ -55,6 +60,7 @@
     height: 50px;
     width: 49%;
     margin-left: 3px;
+    font-weight: bolder;
     }
     .btn-pay {
       width: 51%;
@@ -66,6 +72,7 @@
       font-family: Poppins;
       border-radius: 4px;
       box-sizing: border-box;
+      font-weight: bolder;
       height: 50px;
       width: 98%;
       }
@@ -74,14 +81,17 @@
 
   .wrap-amount {
     margin-top: 40px;
+    font-weight: bolder;
   }
 
   .wallet-amount {
     font-size: 30px;
+    font-weight: bolder;
   }
 
   .setting-link a {
     color: $grey-subtle;
+    font-weight: bolder;
     padding-left: 20px;
     align-items: center;
     font-size: 18px;
@@ -91,16 +101,18 @@
   .wrap-link {
     margin-top: 60px;
     text-decoration: none;
+    font-weight: bolder;
     border-top: 1px solid $grey-subtle;
     border-bottom: 1px solid $grey-subtle;
   }
 
   .wrap-link p {
     color: $grey-subtle !important;
+    font-weight: bolder;
     font-size: 18px;
     letter-spacing: 0.1em;
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
+    margin-top: 14px !important;
+    margin-bottom: 14px !important;
     margin-left: 25px;
   }
 }
