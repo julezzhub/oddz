@@ -1,16 +1,17 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-oddz">
-  <div class = "nav-wallet">
+  <div class = "nav-wallet d-flex"> 
     <%= link_to account_wallet_path, class: "navbar-brand" do %>
-      <%= image_tag "wallet-Icon.svg"%>
-      <%= humanized_money_with_symbol(current_user.balance_cents) %>
+      <div id="nav-wallet"><%= image_tag "wallet-icon.svg"%></div>
+      <div id="nav-coin"><%= image_tag "oddz_coin4.svg", size: "16"%></div>
+      <div id="nav-money"><%= humanized_money(current_user.balance)%></div>
     <% end %>
   </div>
   <% if user_signed_in? %>
-    <div class="nav-item active">
+    <div class="nav-item active d-flex">
       <%= link_to "oddz", root_path, class: "nav-link nav-color" %>
     </div>
     <div class="nav-item">
-      <%= link_to account_settings_path do %><%= image_tag "menu.svg" %><% end %>
+      <div id = "nav-menu"><%= link_to account_settings_path do %><%= image_tag "menu.svg" %><% end %></div> 
     </div>
   <% else %>
     <div class="nav-item">
@@ -18,3 +19,5 @@
     </div>
   <% end %>
 </div>
+
+

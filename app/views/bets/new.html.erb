@@ -98,7 +98,7 @@
   </div>
   <h3 class="form-h3">Last but not least, choose an amount and a friend</h3>
 
-  <%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1 money-slider'} %>
+    <%= f.input :stake, label: 'oddz coins', input_html: { class: 'js-range-slider1'} %>
 
   <div id="friend-selection">
     <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>

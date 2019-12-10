@@ -1,18 +1,19 @@
 
 <div class="invitation-banner d-flex">
+
   <div>
     <%= link_to pending_account_bets_path do %>
       <div class="pending-bets-icon">
-        <%= cl_image_tag(current_user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
+        <%= cl_image_tag(current_user.avatar, crop: :fill, class: "avatar-large-bordered")%>
       </div>
        <p>All</p>
     <% end %>
   </div>
   <% Bet.current_pending_bets(current_user).each do |bet| %>
     <div data-remaining-time="<%= bet.time_to_accept %>">
-      <%= link_to '#' do %>
+      <%= link_to bet_path do %>
         <div class="pending-bets-icon">
-          <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, width: 40, height: 40, crop: :fill, class: "avatar-large-bordered")%>
+          <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, crop: :fill, class: "avatar-large-bordered")%>
         </div>
       <% end %>
       <div class="bet-remaining-time" style="color: white"></div>
@@ -22,16 +23,16 @@
 <div class = "container account_history_index">
   <h2>OUR HOTTEST BETS...</h2>
   <% Bet.where(premade: true).each do |bet|%>
-      <%= link_to premade_path(bet: bet) do %>
-        <div class="premade-card" style="background-image: linear-gradient(rgba(50,50,50,0.7), rgba(10,10,10,0.2)), url(<%= bet.thumbnail %>)">
-        <div class="premade-recipe">
-        <p style="font-size: 20px, text-shadow: 2px 2px black"><%= bet.video_title %> will reach <strong><%= bet.metric_count %></strong>  <strong><%= bet.metric %></strong>  in the next <strong><%= bet.premade_days %>d</strong>  <strong><%= bet.premade_hours %>h</strong> .</p>
-        </div>
-        <div class="premade-arrow">
-          <%= image_tag "arrow_right.svg" %>
-        </div>
-      <% end %>
+    <%= link_to premade_path(bet: bet) do %>
+  <div class="premade-card" style="background-image: linear-gradient(rgba(50,50,50,0.7), rgba(10,10,10,0.2)), url(<%= bet.thumbnail %>)">
+    <div class="premade-recipe">
+      <p style="font-size: 20px, text-shadow: 2px 2px black"><%= bet.video_title %> will reach <strong><%= bet.metric_count %></strong>  <strong><%= bet.metric %></strong>  in the next <strong><%= bet.premade_days %>d</strong>  <strong><%= bet.premade_hours %>h</strong> .</p>
     </div>
+    <div class="premade-arrow">
+      <%= image_tag "arrow_right.svg" %>
+    </div>
+    <% end %>
+  </div>
   <% end %>
 </div>
 

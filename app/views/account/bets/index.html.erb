@@ -18,22 +18,28 @@
 				<% else %>
 					<div class="bet-status">
 				  	<% @current_bets.each do |bet| %>
-				    	<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+				    	<div class="current-bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
 								<div class="request-upperwrap d-flex justify-content-between">
-									<div><%= bet.start_time.strftime("%d.%m.%y")%></div>
-									<div class = "current-stake">	<%= humanized_money_with_symbol(bet.stake) %></div>
+									<%= bet.start_time.strftime("%d.%m.%y")%>
+									<div class="request-upperwrap d-flex justify-content-between">
+										<div id="current-coin"><%= image_tag "oddz_coin_purple.svg", size: "20", class: "ml-0"%></div>
+										<div id="current-stake"><%= humanized_money(bet.stake)%></div>
+									</div>
 								</div>
-				      	<div class="bet-content">
-									<p>Your bet against <strong><%=bet.friend.username%></strong> <%= image_tag "arrow_right.svg" %> </p>
+				      	<div class="current-bet-content d-flex justify-content-between">
+									<% if bet.user == current_user %>
+                    <div class="current-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+                  <% else %>
+                    <div class="current-text">Your bet against <strong><%=bet.user.username%></strong></div>
+                  <% end %>
+									<div class="current-arrow d-flex"><%= image_tag "arrow_right.svg" %></div>
 								</div>
 				   		</div>
 				   	<% end %>
 				  </div>
 				<% end %>
-				<%#= render 'shared/betbar' %>
 			</div>
 		</ul>
-		<%= render 'shared/betbar' %>
 
 		<ul id="pasts-panel" class="panel">
 			<!-- Past Bets -->
@@ -43,13 +49,21 @@
 				<% else %>
 					<div class="bet-status">
 				  	<% @past_bets.each do |bet| %>
-				    	<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+				    	<div class="past-bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
 								<div class="request-upperwrap">
 									<%=bet.start_time.strftime("%d.%m.%y")%>
 								</div>
-				      	<div class="bet-content d-flex justify-content-between">
-									<div class="past-text">Your bet against <strong><%=bet.friend.username%></strong></div>
-									<div class="past-stake"><%=humanized_money_with_symbol(bet.stake)%></div>
+				      	<div class="past-bet-content d-flex justify-content-between">
+                  <% if bet.user == current_user %>
+                    <div class="past-text">Your bet against <strong><%=bet.friend.username%></strong></div>
+                  <% else %>
+                    <div class="past-text">Your bet against <strong><%=bet.user.username%></strong></div>
+                  <% end %>
+									<% if bet.winner == current_user %>
+									<div class="past-stake d-flex"><div>+<%= image_tag "oddz_coin_green.svg", size: "25", class: "ml-0 pb-1" %><%=humanized_money(bet.stake)%></div></div>
+									<% else %>
+									<div class="past-stake d-flex bet-loser"><div>-<%= image_tag "oddz_coin_red.svg", size: "25", class: "ml-0 pb-1" %><%=humanized_money(bet.stake)%></div></div>
+									<% end %>
 								</div>
 				   		</div>
 				   	<% end %>

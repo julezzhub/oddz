@@ -2,11 +2,14 @@ class Bet < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
   belongs_to :winner, class_name: 'User', optional: true
-
+  has_many :notifications, as: :notifiable
   validates_presence_of :target, :metric, :metric_count, :start_time, :end_time, :stake
 
   validates :metric_count, numericality: { greater_than_or_equal_to: 0 }
   monetize :stake_cents
+
+  # after_create :on_bet_create
+  # around_update :around_bet_update
 
   # def completed?
   #   Time.now > self.end_time ? true : false
@@ -45,6 +48,11 @@ class Bet < ApplicationRecord
     bets.select { |bet| bet.time_to_accept.positive? }
   end
 
+  def self.expired_pending_bets
+    bets = Bet.where(status: nil)
+    bets.select { |bet| bet.time_to_accept.zero? }
+  end
+
   def expiration(time_in_seconds)
     t = time_in_seconds
     # if t < 3600
@@ -68,4 +76,33 @@ class Bet < ApplicationRecord
 
       "%02d:%02dh" % [t / 3600, t / 60 % 60]
   end
+
+  private
+
+  # def on_bet_create
+  #   puts "bet created!"
+  #   # Create notification: Bet invitation
+  # end
+
+  # def around_bet_update
+  #   # if status has been changed now to 'true':
+  #   #    bet accepted notification
+  #   # if winner id has  changed:
+  #   #   bet completed notification
+
+  #   accepting = status_changed? && status == true
+  #   completed = winner_id_changed? && !winner.nil?
+
+  #   yield
+
+  #   if accepting
+
+  #   end
+
+  #   if completed
+  #     # create a new 'bet completed' notification
+  #     puts ">>>>>>>>>>>>>>>> completed!"
+  #   end
+
+  # end
 end
