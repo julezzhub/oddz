@@ -14,7 +14,7 @@ class BetValidationJob < ApplicationJob
 
     @data = JSON.parse(result)
     @statistics = @data["items"][0]["statistics"]
-    if metric == "View Count"
+    if metric == "Total Views"
       @real_count = @statistics["viewCount"].to_i
     else
       @real_count = @statistics["#{metric.downcase.delete_suffix('s')}Count"].to_i

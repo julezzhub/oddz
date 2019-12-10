@@ -1,25 +1,85 @@
 <div id="page1">
-  <h6 id="target-notice"><b>YOUR TARGET</b><br> <%= params[:title] %> </h6>
+  <% if params[:target][:kind] == "youtube#video" %>
+    <div id="bet-form-thumbnail-vid"><img src= "<%= params[:thumbnail] %>" alt="Thumbnail"></div>
+  <% else %>
+    <div id="bet-form-thumbnail-channel"><img src= "<%= params[:thumbnail] %>" alt="Thumbnail"></div>
+  <% end %>
   <%= simple_form_for(@bet) do |f| %>
     <% if params[:target][:kind] == "youtube#video" %>
+      <p id="target-type" hidden>video</p>
       <%= hidden_field_tag :target, params[:target][:videoId] %>
+<!--           <h6 id="target-notice"><b><%#= params[:title] %></b></h6> -->
       <div id="metric">
-          <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
-          <%= f.input :metric, label: "Select Video Metric", collection: ['Views', 'Likes', 'Dislikes', 'Comments'] %>
+          <h3 id="subheader">See the current video statistics below and tap the one you want to bet on!</h3>
+          <div class="current-stats-box">
+            <div class="current-stats">
+              <%= image_tag "video.svg" %>
+              <div>
+                <p id="current-label"><span>Views</span></p>
+                <p>8,899,889,089<%#= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label"><span>Comments</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "comments.svg" %>
+            </div>
+            <div class="current-stats">
+              <%= image_tag "thumbs_up.svg" %>
+              <div>
+                <p id="current-label"><span>Likes</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label"><span>Dislikes</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "thumbs_up.svg", style:"transform: rotate(180deg)" %>
+            </div>
+          </div>
       </div>
+
     <% else %>
+      <p id="target-type" hidden>channel</p>
       <%= hidden_field_tag :target, params[:target][:channelId] %>
+<!--           <h6 id="target-notice"><b><%#= params[:title] %></b></h6> -->
       <div id="metric">
-          <h3 class="form-h3">Now Select your betting metric, quantity and time period</h3>
-          <%= f.input :metric, label: "Select Channel Metric", collection: ['Subscribers', 'View Count'] %>
+        <h3 id="subheader">See the current channel statistics below and tap the one you want to bet on!</h3>
+        <div class="current-stats-box">
+            <div class="current-stats">
+              <%= image_tag "video.svg" %>
+              <div>
+                <p id="current-label"><span>Subscribers</span></p>
+                <p>8,899,889,089<%#= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
+              </div>
+            </div>
+            <div class="current-stats">
+              <div>
+                <p id="current-label"><span>Total Views</span></p>
+                <p>9898998<%#= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+              </div>
+              <%= image_tag "comments.svg" %>
+            </div>
+          </div>
       </div>
     <% end %>
+    <div id="metric-tag"></div>
 
   <div class="d-none", id="metric-count">
-    <%= f.input :metric_count, label: "Amount" %>
+    <h6 class="walkthrough-text" id="metric-count-message"></h6>
+    <%= f.input :metric_count, label: false, input_html: { class: "bet_metric_count", inputmode:"numeric", pattern:"[0-9]*" }, placeholder: "Enter here" %>
   </div>
 
-  <div class="d-none", id="time">
+</div>
+
+
+
+<div class="d-none" id=page2>
+  <div id="time">
     <div class="row">
       <div class="col">
         <p>Days</p>
@@ -36,14 +96,9 @@
       <%= hidden_field_tag :duration, 0, id:"duration" %>
     </div>
   </div>
-</div>
-
-
-
-<div class="d-none" id=page2>
   <h3 class="form-h3">Last but not least, choose an amount and a friend</h3>
 
-  <%= f.input :stake, label: 'oddz coins', input_html: { class: 'js-range-slider1'} %>
+    <%= f.input :stake, label: 'oddz coins', input_html: { class: 'js-range-slider1'} %>
 
   <div id="friend-selection">
     <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
@@ -88,39 +143,91 @@
   <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
   <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
-<div class="space-for-betbar"></div>
+<%= hidden_field_tag :thumbnail, params[:thumbnail] %>
 <% end %>
 
 <script>
   const recipe1forward = document.getElementById('recipe1forward')
+  const recipe1backward = document.getElementById('recipe1backward')
 
-  document.getElementById('bet_metric').addEventListener('change', function() {
-    document.getElementById('bet_metric_count').placeholder = "How many " +
-      this.value.toLowerCase() + " will the target get?"
-      document.getElementById('metric-count').classList.remove('d-none');
+  const targetType = document.getElementById('target-type').innerText
+
+  document.querySelectorAll('.current-stats').forEach(stat => {
+    stat.addEventListener('click', event => {
+      document.querySelectorAll('.current-stats').forEach(stat => {
+        stat.classList.remove('selected')
+      })
+      document.querySelectorAll('#metric_tag').forEach(item => {
+        item.innerHTML = ""
+      })
+    stat.classList.add('selected');
+    switch (document.querySelector('.selected span').innerText.toLowerCase()) {
+      case 'views':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Views', id:'hidden_metric_tag' %>';
+        break;
+      case 'comments':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Comments', id:'hidden_metric_tag'%>';
+        break;
+      case 'likes':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Likes', id:'hidden_metric_tag' %>';
+        break;
+      case 'dislikes':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Dislikes', id:'hidden_metric_tag' %>';
+        break;
+      case 'subscribers':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Subscribers', id:'hidden_metric_tag' %>';
+        break;
+      case 'total views':
+        document.getElementById('metric-tag').innerHTML = '<%= hidden_field_tag :metric, 'Total Views', id:'hidden_metric_tag' %>';
+        break;
+      }
+
+    const hidden_metric = document.getElementById('hidden_metric_tag').value
+
+    document.getElementById('metric-count-message').innerHTML = "And how many " +
+      hidden_metric.toLowerCase() + " do you think<br>this " + targetType + " is going to get?"
+    document.getElementById('metric-count').classList.remove('d-none');
     document.getElementById('progress-text').classList.add('scaled1');
     document.getElementById('progress-text').innerHTML = "40%";
     document.getElementById('circle_svg').classList.add('transition1');
+    })
   })
+  // 1. when a metric is selected, change the placeholder of the next field and show it
+
+  document.getElementById('metric-count').addEventListener('change', function() {
+    document.getElementById('progress-text').classList.add('scaled2');
+    document.getElementById('progress-text').innerHTML = "60%"
+    document.getElementById('circle_svg').classList.add('transition2');
+  },
+  { once: true }
+  )
+  // 2. when a metric count is selected, fill up the percentage
 
   document.getElementById('page1').addEventListener('change', function() {
-    if ((document.getElementById('days').value === "00" && document.getElementById('hours').value === "00") ||
-      document.getElementById('bet_metric_count').value === "" ||
-      document.getElementById('bet_metric').value === "") {
+    if (document.getElementById('bet_metric_count').value === "") {
         recipe1forward.classList.add('d-none');
     } else {
       recipe1forward.classList.remove('d-none');
     }
   })
-  // when a metric is selected, change the placeholder of the next field and show it
+  // 3. show arrow to page2 only when metric and metric count are given
 
-  document.getElementById('metric-count').addEventListener('change', function() {
-    document.getElementById('time').classList.remove('d-none')
-    document.getElementById('progress-text').classList.add('scaled2');
-    document.getElementById('progress-text').innerHTML = "60%"
-    document.getElementById('circle_svg').classList.add('transition2');
+  const recipe2forward = document.getElementById('recipe2forward')
+  const recipe2backward = document.getElementById('recipe2backward')
+
+  recipe1forward.addEventListener('click', function() {
+    this.classList.add("d-none")
+    document.getElementById('page1').classList.add("d-none")
+    document.getElementById('page2').classList.remove("d-none")
+    recipe1backward.classList.add("d-none")
+    recipe2backward.classList.remove("d-none")
+    if (document.getElementById('bet_friend').value !== "" &&
+      !(document.getElementById('days').value === "" &&
+        document.getElementById('hours').value === "")) {
+      recipe2forward.classList.remove('d-none');
+    }
   })
-  // when a metric count is selected, show the time field
+  // 4. when you click on the rightward arrow, you get to the next page
 
   document.getElementById('time').addEventListener('change', function() {
     document.getElementById('duration').value =
@@ -130,25 +237,9 @@
     document.getElementById('progress-text').classList.add('scaled3');
     document.getElementById('progress-text').innerHTML = "80%"
     document.getElementById('circle_svg').classList.add('transition3');
-    recipe1forward.classList.remove('d-none')
   })
-  // whenever sth in the time field changes, update the "duration" hidden field tag
+  // 5. whenever sth in the time field changes, update the "duration" hidden field tag
   // and show the rightward arrow
-  const recipe2forward = document.getElementById('recipe2forward')
-  const recipe2backward = document.getElementById('recipe2backward')
-
-  recipe1forward.addEventListener('click', function() {
-    this.classList.add("d-none")
-    document.getElementById('page1').classList.add("d-none")
-    document.getElementById('page2').classList.remove("d-none")
-    document.getElementById('recipe1backward').classList.add("d-none")
-    document.getElementById('recipe2backward').classList.remove("d-none")
-    if (document.getElementById('bet_friend').value !== "") {
-      recipe2forward.classList.remove('d-none');
-    }
-  })
-  // when you click on the rightward arrow, you get to the next page
-
 
   document.getElementById('bet_friend').addEventListener('change', function() {
     if (this.value === "") {
@@ -161,7 +252,7 @@
     document.getElementById('circle_svg').classList.add('transition4');
     document.getElementById('progress-btn').classList.add('shake');
   })
-  // when a friend is selected, show the arrow leading to summary
+  // 6. when a friend is selected, show the arrow leading to summary
 
   recipe2backward.addEventListener('click', function() {
     document.getElementById('page2').classList.add("d-none")
@@ -187,13 +278,13 @@
     if (document.getElementById('days').value !== "00") {
       document.getElementById('metric_count_time-summary').innerHTML =
       parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
-      + document.getElementById('bet_metric').value + " in "
+      + hidden_metric_tag.value + " in "
         + document.getElementById('days').value + " days and "
         + document.getElementById('hours').value + " hours."
     } else {
       document.getElementById('metric_count_time-summary').innerHTML =
       parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
-      + document.getElementById('bet_metric').value + " in "
+      + hidden_metric_tag.value + " in "
         + document.getElementById('hours').value + " hours."
     }
 /*      + document.getElementById('minutes').value + " minutes."

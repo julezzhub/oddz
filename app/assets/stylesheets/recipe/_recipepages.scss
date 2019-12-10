@@ -3,13 +3,37 @@
   height: 90vh;
 }
 
+#bet-form-thumbnail-vid {
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+#bet-form-thumbnail-channel {
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
 #target-notice {
   color: white;
   width: 91%;
   text-align: center;
-  padding-top: 15px;
+  padding: 10px 0px;
   margin: 0px auto;
   line-height: 20px;
+  font-size: 15px;
+}
+
+#subheader {
+  margin-top: 20px;
+  margin-bottom: 5px !important;
+  font-size: 15px;
+  font-weight: 100;
 }
 
 #page2 {
@@ -20,4 +44,14 @@
 #summary {
   width: 91%;
   margin: 0 auto;
+}
+
+.walkthrough-text {
+  margin-top: 40px;
+  color: white;
+  text-align: center;
+  padding: 10px 0px;
+  line-height: 20px;
+  font-size: 15px;
+  margin-bottom: 0px;
 }
