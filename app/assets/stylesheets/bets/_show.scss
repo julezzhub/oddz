@@ -5,6 +5,7 @@
   width: 90%;
   margin: 0 auto;
   border-radius: 5px;
+  margin-top: 50px;
 }
 
 .details-container .details-infos {
@@ -23,9 +24,13 @@
   margin-right: auto;
   margin-left: auto;
   display: block;
-  height: 20vh;
-  width: 31vh;
-  border-radius: 21px;
+  border-radius: 50%;
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  left: 8px;
+  top: 350px;
+  box-shadow: 3px 3px 6px;
 }
 
 .details-title {
@@ -41,6 +46,10 @@
   background-position: center;
 }
 
-.details-page-header {
+.details-target-stats {
+  margin-top: 50px;
+}
 
+.details-target-stats p {
+  color: black;
 }

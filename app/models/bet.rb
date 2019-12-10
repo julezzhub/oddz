@@ -77,8 +77,6 @@ class Bet < ApplicationRecord
       "%02d:%02dh" % [t / 3600, t / 60 % 60]
   end
 
-  private
-
   # def on_bet_create
   #   puts "bet created!"
   #   # Create notification: Bet invitation
