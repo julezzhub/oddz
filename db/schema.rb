@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_12_09_160355) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "friend_id"
     t.integer "notifiable_id"
     t.string "notifiable_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"

@@ -3,7 +3,7 @@
   <% link_path = account_bets_path %>
 <% elsif cat == "New Bet Invitation" %>
   <% link_path = pending_account_bets_path %>
-<% elsif ["Friend Request Accepted", "New Friend Request"].include?(cat) %>
+<% elsif ["Accepted Friend Request", "New Friend Request"].include?(cat) %>
   <% link_path = friends_path %>
 <% end %>
 
@@ -24,10 +24,10 @@
           <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> rejected your bet</p>
         <% elsif notification.category == "New Bet Invitation" %>
           <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a bet invitation</p>
-        <% elsif notification.category == "Friend Request Accepted" %>
-        <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your friend request</p>
-          <% elsif notification.category == "New Friend Request" %>
-        <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a friend request</p>
+        <% elsif notification.category == "Accepted Friend Request" %>
+          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your friend request</p>
+        <% elsif notification.category == "New Friend Request" %>
+          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a friend request</p>
           <% end %>
       </div>
       <div class="notification-arrow-seen">
@@ -50,7 +50,7 @@
           <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> rejected your bet</p>
         <% elsif notification.category == "New Bet Invitation" %>
           <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a bet invitation</p>
-        <% elsif notification.category == "Friend Request Accepted" %>
+        <% elsif notification.category == "Accepted Friend Request" %>
         <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your friend request</p>
           <% elsif notification.category == "New Friend Request" %>
         <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a friend request</p>
