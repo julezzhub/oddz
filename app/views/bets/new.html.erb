@@ -143,6 +143,7 @@
   <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
   <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
+<%= hidden_field_tag :thumbnail, params[:thumbnail] %>
 <% end %>
 
 <script>
@@ -230,8 +231,8 @@
 
   document.getElementById('time').addEventListener('change', function() {
     document.getElementById('duration').value =
-      document.getElementById('days').value.to_i * 86400
-      + document.getElementById('hours').value.to_i * 3600
+      parseInt(document.getElementById('days').value, 10) * 86400
+      + parseInt(document.getElementById('hours').value, 10) * 3600
 /*      + document.getElementById('minutes').value * 60 */
     document.getElementById('progress-text').classList.add('scaled3');
     document.getElementById('progress-text').innerHTML = "80%"
