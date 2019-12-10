@@ -47,7 +47,7 @@ h1 {
     font-size: 18px;
     letter-spacing: 0.1em;
   }
-  
+
   .username-setting {
     flex-grow: 1;
     display: flex;
@@ -55,4 +55,15 @@ h1 {
     align-items: center;
     border-bottom: 1px solid $grey-subtle;
   }
+}
+
+.new-notification {
+  position: relative;
+}
+
+#notification-image img {
+  width: 20px;
+  position: absolute;
+  left: -1.2rem;
+  top: 1.5rem;
 }

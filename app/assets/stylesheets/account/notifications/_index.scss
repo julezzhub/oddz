@@ -12,10 +12,14 @@
 .notification-category-new {
   width: 100%;
   padding-left: 10px;
+  padding-right: 10px;
   border-bottom: solid 1px;
   border-color: white;
    padding-top: 5px;
   padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .notification-width-new {
@@ -23,6 +27,8 @@
 
   p {
   text-align: left;
+  font-size: 20px;
+  margin-right: 20px;
   }
 }
 
@@ -48,17 +54,23 @@
 .notification-category-seen {
   width: 100%;
   padding-left: 10px;
+  padding-right: 10px;
   border-bottom: solid 1px;
   border-color: rgba(194, 153, 252, 0.76);
   padding-top: 5px;
   padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .notification-width-seen {
   padding: 10px;
   p {
   text-align: left;
-  color: white;
+  color: $grey-subtle;
+  font-size: 20px;
+  margin-right: 5px;
   }
 }
 
@@ -66,5 +78,6 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
+  color: $grey-subtle;
 }
 
