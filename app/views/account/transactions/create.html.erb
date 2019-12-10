@@ -2,8 +2,9 @@
   <div class="row py-4">
     <div class="col">
       <h1>Connect to Stripe</h1>
-       <p>Pay In <strong><%= image_tag "oddz_coin4.svg", size: "24"%><%= humanized_money(@transaction.amount)%></strong></p>
-    <button id="pay" class="btn-purple">Go to Stripe</button>
+      <p><%= image_tag "credit_card.svg", size: "85" %> </p>
+      <p>ADD <strong><%= image_tag "oddz_coin4.svg", size:"36", style:"margin-bottom: 6px"%><%= humanized_money(@transaction.amount)%></strong> <br> TO YOUR WALLET </p>
+      <button id="pay" class="btn-purple">Go to Stripe</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         const paymentButton = document.getElementById('pay');
@@ -16,4 +17,11 @@
       </script>
     </div>
   </div>
+  <div class="settings-link d-flex flex-column bd-highlight mb-3">
+    <%= link_to account_wallet_path, class: "wrap-link" do  %>
+    <div class="link d-flex justify-content-between align-items-center"><p>Back to Wallet</p><%= image_tag "small_arrow_right.svg" %>
+    </div>
+    <% end %>
+  </div>
+
 </div>
