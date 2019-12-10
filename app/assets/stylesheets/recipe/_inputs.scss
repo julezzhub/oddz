@@ -40,14 +40,16 @@
 }
 
 #bet_metric_count::-webkit-input-placeholder {
-  text-align: left;
+  text-align: center;
+  font-size: 12.5px;
+  padding-top: 10px;
 }
 
 .bet_metric_count {
   input {
     border: none;
     height: 40px;
-    width: 240px;
+    width: 320px;
     font-weight: 100;
     border-bottom: $purple1 solid;
     margin: 0 auto;
@@ -61,14 +63,47 @@
     border: none !important;
     box-shadow: none !important;
   }
-
-  input::-webkit-input-placeholder {
-    font-size: 15px;
-    text-align: center !important;
-  }
 }
 
 .bet_stake {
   width: 80%;
   margin: 0 auto;
+}
+
+#friend-selection {
+  display: flex;
+  justify-content: center;
+}
+
+#opponent-avatar {
+  margin-right: 10px;
+}
+
+.bet_friend {
+  select {
+    appearance: none;
+    border: none;
+    height: 40px;
+    width: 180px;
+    font-weight: 100;
+    border-bottom: $purple1 solid;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2px;
+    overflow: hidden;
+  }
+
+  :focus {
+    border-bottom: $purple1 solid;
+    box-shadow: none !important;
+  }
+
+  value {
+    text-align: center;
+  }
+}
+
+#coin-summary {
+  height: 16px;
+  width: 16px;
 }

@@ -10,8 +10,8 @@
       <%= hidden_field_tag :target, params[:target][:videoId] %>
 <!--           <h6 id="target-notice"><b><%#= params[:title] %></b></h6> -->
       <div id="metric">
-          <h3 id="subheader">See the current video statistics below and tap the one you want to bet on!</h3>
-          <div class="current-stats-box">
+          <h3 id="subheader">Tap the statistic you want to bet on!</h3>
+          <div id="current-stats-box" class="current-stats-box">
             <div class="current-stats">
               <%= image_tag "video.svg" %>
               <div>
@@ -48,13 +48,13 @@
       <%= hidden_field_tag :target, params[:target][:channelId] %>
 <!--           <h6 id="target-notice"><b><%#= params[:title] %></b></h6> -->
       <div id="metric">
-        <h3 id="subheader">See the current channel statistics below and tap the one you want to bet on!</h3>
-        <div class="current-stats-box">
+        <h3 id="subheader">Tap the statistic you want to bet on!</h3>
+        <div id="current-stats-box" class="current-stats-box">
             <div class="current-stats">
               <%= image_tag "video.svg" %>
               <div>
                 <p id="current-label"><span>Subscribers</span></p>
-                <p>8,899,889,089<%#= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
+                <p>8899889089<%#= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
               </div>
             </div>
             <div class="current-stats">
@@ -69,9 +69,12 @@
     <% end %>
     <div id="metric-tag"></div>
 
+
   <div class="d-none", id="metric-count">
-    <h6 class="walkthrough-text" id="metric-count-message"></h6>
-    <%= f.input :metric_count, label: false, input_html: { class: "bet_metric_count", inputmode:"numeric", pattern:"[0-9]*" }, placeholder: "Enter here" %>
+    <h6 class="walkthrough-text" id="metric-count-message">Your Bet:</h6>
+    <%= f.input :metric_count, label: false, input_html: { class: "bet_metric_count", type:"text", inputmode:"numeric", pattern:"[0-9]*" } %>
+    <%= hidden_field_tag :hidden_metric_count, value:""%>
+    <h6 id="metric-error" class="walkthrough-text"></h6>
   </div>
 
 </div>
@@ -80,6 +83,7 @@
 
 <div class="d-none" id=page2>
   <div id="time">
+    <h3 class="form-h3">Bet Duration</h3>
     <div class="row">
       <div class="col">
         <p>Days</p>
@@ -96,18 +100,27 @@
       <%= hidden_field_tag :duration, 0, id:"duration" %>
     </div>
   </div>
-  <h3 class="form-h3">Last but not least, choose an amount and a friend</h3>
 
+  <div id="stake" class="d-none">
+    <h3 class="form-h3">Stake</h3>
     <%= f.input :stake, label: 'oddz coins', input_html: { class: 'js-range-slider1'} %>
+    <h6 id="stake-error" class="walkthrough-text"></h6>
+  </div>
 
-  <div id="friend-selection">
-    <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
-<!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
+  <div id="friend-bet-form" class="d-none">
+    <h3 class="form-h3">Opponent</h3>
+    <div id="friend-selection">
+      <div id="opponent-avatar">
+        <%= image_tag "friend.svg" %>
+      </div>
+      <%= f.input :friend, label: false, collection: current_user.friend_names, prompt: "Select a friend", input_html: { class: "bet_friend"} %>
+  <!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
+    </div>
   </div>
 </div>
 
 <div class="d-none" id="summary">
-  <h3 class="form-h3">Done. See your bet summary below and hit bet!</h3>
+  <h3 class="form-h3">Summary</h3>
 
   <div class="summary-grid">
     <%= image_tag "video.svg"%>
@@ -115,7 +128,7 @@
     <%= image_tag("thumbs_up.svg") %>
     <h3 class="form-h3" id="metric_count_time-summary"></h3>
     <%= image_tag("wallet.svg") %>
-    <h3 class="form-h3" id="stake-summary"></h3>
+    <h3 class="form-h3"><span id="stake-summary"></span><span><%= image_tag "oddz_coin4.svg", id:"coin-summary"%></span></h3>
     <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
     <h3 class="form-h3" id="friend-summary"></h3>
   </div>
@@ -144,6 +157,7 @@
   <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
 </div>
 <%= hidden_field_tag :thumbnail, params[:thumbnail] %>
+<%= hidden_field_tag :title, params[:title] %>
 <% end %>
 
 <script>
@@ -184,33 +198,39 @@
 
     const hidden_metric = document.getElementById('hidden_metric_tag').value
 
-    document.getElementById('metric-count-message').innerHTML = "And how many " +
-      hidden_metric.toLowerCase() + " do you think<br>this " + targetType + " is going to get?"
+    document.getElementById('bet_metric_count').placeholder = "How many " + hidden_metric.toLowerCase() + " will this " + targetType + " get?"
+    })
+
+  })
+  // 1. when a metric is selected, change the placeholder of the metric count field and show it
+
+  document.getElementById('current-stats-box').addEventListener('click', function() {
     document.getElementById('metric-count').classList.remove('d-none');
     document.getElementById('progress-text').classList.add('scaled1');
     document.getElementById('progress-text').innerHTML = "40%";
     document.getElementById('circle_svg').classList.add('transition1');
-    })
-  })
-  // 1. when a metric is selected, change the placeholder of the next field and show it
+  },
+  { once: true }
+  )
+  // 2. When a metric is selected, change the progress bubble
 
-  document.getElementById('metric-count').addEventListener('change', function() {
+  document.getElementById('bet_metric_count').addEventListener('change', function() {
     document.getElementById('progress-text').classList.add('scaled2');
     document.getElementById('progress-text').innerHTML = "60%"
     document.getElementById('circle_svg').classList.add('transition2');
   },
   { once: true }
   )
-  // 2. when a metric count is selected, fill up the percentage
+  // 3. when a metric count is selected, change the progress bubble
 
-  document.getElementById('page1').addEventListener('change', function() {
+/*  document.getElementById('page1').addEventListener('change', function() {
     if (document.getElementById('bet_metric_count').value === "") {
         recipe1forward.classList.add('d-none');
     } else {
       recipe1forward.classList.remove('d-none');
     }
-  })
-  // 3. show arrow to page2 only when metric and metric count are given
+  })*/
+  // 4. show arrow to page2 only when metric and metric count are given
 
   const recipe2forward = document.getElementById('recipe2forward')
   const recipe2backward = document.getElementById('recipe2backward')
@@ -222,37 +242,72 @@
     recipe1backward.classList.add("d-none")
     recipe2backward.classList.remove("d-none")
     if (document.getElementById('bet_friend').value !== "" &&
-      !(document.getElementById('days').value === "" &&
-        document.getElementById('hours').value === "")) {
+      !(document.getElementById('days').value === "00" &&
+        document.getElementById('hours').value === "00")) {
       recipe2forward.classList.remove('d-none');
     }
   })
-  // 4. when you click on the rightward arrow, you get to the next page
+  // 5. when you click on the rightward arrow, you get to the next page
 
   document.getElementById('time').addEventListener('change', function() {
     document.getElementById('duration').value =
       parseInt(document.getElementById('days').value, 10) * 86400
       + parseInt(document.getElementById('hours').value, 10) * 3600
 /*      + document.getElementById('minutes').value * 60 */
+    document.getElementById('stake').classList.remove('d-none');
+    if (document.getElementById('nav-money').innerText >= document.getElementById('bet_stake').value) {
+      document.getElementById('friend-bet-form').classList.remove('d-none');
+    } else {
+      document.getElementById('stake-error').innerText = "Insufficient funds"
+    }
+  })
+  // 6. whenever sth in the time field changes, update the "duration" hidden field tag
+
+  document.getElementById('time').addEventListener('change', function() {
     document.getElementById('progress-text').classList.add('scaled3');
     document.getElementById('progress-text').innerHTML = "80%"
     document.getElementById('circle_svg').classList.add('transition3');
+  },
+  { once: true }
+  )
+  // 7. when a time is selected, change the progress bubble
+
+  document.getElementById('stake').addEventListener('touchend', function() {
+      if (document.getElementById('nav-money').innerText < document.getElementById('bet_stake').value) {
+      document.getElementById('friend-bet-form').classList.add('d-none');
+      document.getElementById('stake-error').innerText = "Insufficient funds";
+      recipe2forward.classList.add('d-none')
+    } else {
+      document.getElementById('friend-bet-form').classList.remove('d-none');
+      document.getElementById('stake-error').innerText = ""
+      if (document.getElementById('bet_friend').value !== ""
+        && !(document.getElementById('days').value === "00"
+          && document.getElementById('hours').value === "00")) {
+      recipe2forward.classList.remove('d-none')}
+    }
   })
-  // 5. whenever sth in the time field changes, update the "duration" hidden field tag
-  // and show the rightward arrow
 
   document.getElementById('bet_friend').addEventListener('change', function() {
-    if (this.value === "") {
-      recipe2forward.classList.add('d-none');
-    } else {
-      recipe2forward.classList.remove('d-none');
-    }
+    // const opponent = document.getElementById('bet_friend').value
+    // const percentagesign = "%"
+    // document.getElementById('opponent-avatar').innerHTML = "<%#= cl_image_tag User.find_by(username: '" + opponent + "').avatar %>"
     document.getElementById('progress-text').classList.add('scaled4');
     document.getElementById('progress-text').innerHTML = "100%"
     document.getElementById('circle_svg').classList.add('transition4');
     document.getElementById('progress-btn').classList.add('shake');
   })
-  // 6. when a friend is selected, show the arrow leading to summary
+  // 8. when a friend is selected, change the progress bubble
+
+  document.getElementById('page2').addEventListener('change', function() {
+    if (document.getElementById('bet_friend').value !== ""
+      && !(document.getElementById('days').value === "00"
+        && document.getElementById('hours').value === "00")) {
+      recipe2forward.classList.remove('d-none');
+    } else {
+      recipe2forward.classList.add('d-none');
+    }
+  })
+  // 9. show arrow to summary only when duration, stake and friend are given
 
   recipe2backward.addEventListener('click', function() {
     document.getElementById('page2').classList.add("d-none")
@@ -277,20 +332,20 @@
 
     if (document.getElementById('days').value !== "00") {
       document.getElementById('metric_count_time-summary').innerHTML =
-      parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
+      parseInt(document.getElementById('hidden_metric_count').value, 10).toLocaleString() + " "
       + hidden_metric_tag.value + " in "
         + document.getElementById('days').value + " days and "
         + document.getElementById('hours').value + " hours."
     } else {
       document.getElementById('metric_count_time-summary').innerHTML =
-      parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
+      parseInt(document.getElementById('hidden_metric_count').value, 10).toLocaleString() + " "
       + hidden_metric_tag.value + " in "
         + document.getElementById('hours').value + " hours."
     }
 /*      + document.getElementById('minutes').value + " minutes."
 */
     document.getElementById('stake-summary').innerHTML =
-      document.getElementById('bet_stake').value + "€"
+      document.getElementById('bet_stake').value
 
     document.getElementById('friend-summary').innerHTML =
       document.getElementById('bet_friend').value

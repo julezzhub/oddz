@@ -14,7 +14,7 @@
 #bet-form-thumbnail-channel {
   img {
     width: 100%;
-    height: 200px;
+    height: 280px;
     object-fit: cover;
   }
 }
@@ -54,4 +54,17 @@
   line-height: 20px;
   font-size: 15px;
   margin-bottom: 0px;
+}
+
+#stake-error {
+  margin-top: 0px;
+  text-transform: uppercase;
+}
+
+#metric-error {
+  margin-top: 10px;
+}
+
+#metric-count-message {
+  margin-top: 25px;
 }
