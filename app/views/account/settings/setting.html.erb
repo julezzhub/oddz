@@ -9,13 +9,13 @@
 		</div>
 	</div>
 	<div class = "setting-links d-flex flex-column bd-highlight mb-3">
-		<%= link_to "#", class: "wrap-link" do  %>
-			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>About</p><%= image_tag "small_arrow_right.svg" %>
-			</div>
-		<% end %>
+    <%= link_to account_notifications_path, class: "wrap-link" do  %>
+      <div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Notifications</p><%= image_tag "small_arrow_right.svg" %>
+      </div>
+    <% end %>
 
 		<%= link_to friends_path, class: "wrap-link" do  %>
-			<div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Add friends</p><%= image_tag "small_arrow_right.svg" %>
+			<div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Friends</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
 
@@ -26,6 +26,11 @@
 
 		<%= link_to "#", class: "wrap-link" do  %>
 			<div class=" p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Start tutorial again</p><%= image_tag "small_arrow_right.svg" %>
+			</div>
+		<% end %>
+
+		<%= link_to "#", class: "wrap-link" do  %>
+			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>About</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
 
