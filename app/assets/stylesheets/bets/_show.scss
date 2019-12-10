@@ -2,9 +2,9 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  margin-top: 80px;
   width: 90%;
   margin: 0 auto;
+  border-radius: 5px;
 }
 
 .details-container .details-infos {
@@ -12,10 +12,35 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  position: relative;
 }
 
 #details-thumbnail {
   height: 35vh;
+  width: 100%;
 }
 
+#avatar-for-details {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  height: 20vh;
+  width: 31vh;
+  border-radius: 21px;
+}
+
+.details-title {
+  color: black;
+  padding: 13px;
+  h3 {
+    text-align: left;
+    text-shadow: 1px 1px black;
+  }
+}
+
+.image-container {
+  background-position: center;
+}
+
+.details-page-header {
+
+}
