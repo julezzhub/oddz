@@ -1,11 +1,9 @@
 
 <div class="invitation-banner d-flex">
-
   <div>
     <%= link_to pending_account_bets_path do %>
       <div class="pending-bets-icon">
         <%= cl_image_tag(current_user.avatar, crop: :fill, class: "avatar-large-bordered", style:"object-fit: cover;")%>
-
       </div>
        <p>All</p>
     <% end %>
