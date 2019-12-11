@@ -1,21 +1,20 @@
   <div class="details-container" id="details-show-container">
-  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.3), rgba(50,50,50,0.05)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
-  <div class="d-flex align-items-center"  id="avatar-for-details" >
-    <img src="<%= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
-    <p class="my-0 ml-2"><%= @bet.user.username.upcase %></p>
-  </div>
-  </div>
-
-  <div class="details-infos">
-
-    <div class="details-title">
-      <h5 style="color: white"> <%= @bet.video_title %> </h5>
-      <div class="current-metric" style="top: 48%">
-        <div><h6><%= image_tag("play_white.svg", size: '20') %><%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
+    <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.3), rgba(50,50,50,0.05)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
+      <div class="d-flex align-items-center"  id="avatar-for-details" >
+        <img src="<%= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
+        <p class="my-0 ml-2"><%= @bet.user.username.upcase %></p>
       </div>
     </div>
-    <div class="details-lowerwrapper d-flex px-0">
 
+    <div class="details-infos">
+
+      <div class="details-title">
+        <h5 style="color: white"> <%= @bet.video_title %> </h5>
+        <div class="current-metric" style="top: 48%">
+          <div><h6><%= image_tag("play_white.svg", size: '20') %><%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
+        </div>
+      </div>
+      <div class="details-lowerwrapper d-flex px-0">
         <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
           <%=image_tag("oddz_coin_purple.svg", size: '30') %>
           <p> <%= humanized_money(@bet.stake) %> coins</p>
@@ -25,9 +24,9 @@
           <p><%= number_with_delimiter(@bet.metric_count, :delimiter => ',') %></p>
         </div>
         <div class="details-attributes col-4 px-0 mx-0"><p>DEADLINE</p>
-        <%=image_tag("time.svg", size: '30') %>
-        <p>13.11.19 11:11<%#= @time_until_end %></p>
+          <%=image_tag("time.svg", size: '30') %>
+          <p>13.11.19 11:11<%#= @time_until_end %></p>
         </div>
+      </div>
     </div>
-  </div>
   </div>
