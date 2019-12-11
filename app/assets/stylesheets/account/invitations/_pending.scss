@@ -1,3 +1,18 @@
+
+
+  .details-container {
+  overflow: hidden;
+  background: #160B25;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-top: 50px;
+
+  .image-container {
+    background-position: center;
+     }
+
 .account_invitations_received {
   position: relative;
   h1 {
@@ -13,37 +28,42 @@
     margin-bottom: 20px;
   }
 
-  .fixed-avatar {
+  .details-title {
     position: absolute;
-    top: -13px;
-    left: -7px;
+    bottom: 60%;
+    padding: 13px;
+    width: 90%;
+    h5 {
+      text-align: left;
+      text-shadow: 1px 1px black;
+      font-weight: bold;
+    }
+ 
+
+  #details-thumbnail {
+    height: 25vh;
+    width: 100%;
   }
 
-  .request-upperwrap {
+  .current-metric {
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    left: 8%;
+    top: 308px;
+    color: white;
+  }
+
+  #running-time {
+    font-size: 22px;
     position: relative;
+    left: 72%;
+    top: -16%;
   }
 
-  .bet-content {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .bet-request {
-    box-shadow: 0px 10px 30px rgba(0,0,0,.2);
-    color: white;
-    padding: 5px 0px 0px 0px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-  }
-
-  .request-upperwrap {
-    padding: 5px;
-    vertical-align: middle;
-    border-bottom: 1px solid white;
-    color: white;
-    font-family: Poppins;
-    font-size: 16px;
-    letter-spacing: 1px;
+  .details-lowerwrapper {
+    justify-content: space-between;
+    padding: 12px;
   }
 
   .status-option {
@@ -62,6 +82,28 @@
     border-left: none;
     border-bottom: none;
   }
+
+  #avatar-for-details {
+    position: relative;
+    left: 1%;
+    top: 3%;
+    img {
+      height: 40px;
+      width: 40px;
+      box-shadow: 3px 3px 6px;
+    }
+  }
+
+  .details-attributes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    img {
+      margin-bottom: 10px;
+    }
+  }
+
 }
 
 .account_invitations_sent {

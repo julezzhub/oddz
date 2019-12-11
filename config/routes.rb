@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 	  end
 
 	  namespace :account do
-	    resources :bets, only: [:index] do
+	    resources :bets, only: [:index, :show] do
 	      collection do
 	        get 'pending'
 	      end
