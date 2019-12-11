@@ -20,23 +20,25 @@
 
           <% @bets.each do |bet| %>
           <div class="details-container" style="">
-            <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.2), rgba(50,50,50,0.7)), url(<%= bet.thumbnail %>)" id="details-thumbnail">
+            <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.4), rgba(50,50,50,0.7)), url(<%= bet.thumbnail %>)" id="details-thumbnail">
               <!-- <img src="https://i.ytimg.com/vi/leJNDpm_G10/hqdefault.jpg" alt="<%= bet.video_title %>" id="details-thumbnail"> -->
-              <div class="d-flex align-items-center"  id="avatar-for-details" >
-                <img src="<%= bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
-                <p class="my-0 ml-2"><%= bet.user.username.upcase %></p>
-              </div>
-              <div data-remaining-time="<%= bet.time_to_accept %>" id="running-time">
-                <div class="bet-remaining-time" style="color: white"></div>
+              <div class="d-flex align-items-center justify-content-between"  id="avatar-for-details" >
+                <div class="details-avatar-and-user d-flex align-items-center">
+                  <img src="<%= bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
+                  <p class="my-0 ml-2"><%= bet.friend.username.upcase %></p>
+                </div>
+                <div data-remaining-time="<%= bet.time_to_accept %>" id="running-time">
+                  <div class="bet-remaining-time" style="color: white"></div>
+                </div>
               </div>
               <div class="details-title">
                 <h5 style="color: white"> <%= bet.video_title %> </h5>
-              </div>
-            </div>
-            <div class="details-infos">
               <div class="current-metric">
                 <div><h6><%= image_tag("play_white.svg", size: '20') %> <%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
               </div>
+              </div>
+            </div>
+            <div class="details-infos">
               <div class="details-lowerwrapper d-flex px-0">
                 <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
                   <%=image_tag("oddz_coin_purple.svg", size: '30') %>
@@ -84,12 +86,14 @@
          <div class="details-container" style="">
           <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.2), rgba(50,50,50,0.7)), url(<%= bet.thumbnail %>)" id="details-thumbnail">
             <!-- <img src="https://i.ytimg.com/vi/leJNDpm_G10/hqdefault.jpg" alt="<%= bet.video_title %>" id="details-thumbnail"> -->
-            <div class="d-flex align-items-center"  id="avatar-for-details" >
-              <img src="<%= bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
-              <p class="my-0 ml-2"><%= bet.friend.username.upcase %></p>
-            </div>
-            <div data-remaining-time="<%= bet.time_to_accept %>" id="running-time">
-              <div class="bet-remaining-time" style="color: white"></div>
+            <div class="d-flex align-items-center "  id="avatar-for-details" >
+              <div class="details-avatar-and-user d-flex">
+                <img src="<%= bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
+                <p class="my-0 ml-2"><%= bet.friend.username.upcase %></p>
+              </div>
+              <div data-remaining-time="<%= bet.time_to_accept %>" id="running-time">
+                <div class="bet-remaining-time" style="color: white"></div>
+              </div>
             </div>
             <div class="details-title">
               <h5 style="color: white"> <%= bet.video_title %> </h5>
