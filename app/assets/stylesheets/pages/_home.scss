@@ -16,22 +16,19 @@
 
 .premade-recipe {
   width: 87%;
+  p {
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .premade-arrow {
   position: absolute;
   right: 10px;
   bottom: 10px;
-}
-
-.invitation-banner {
-  width: 100%;
-  height: 100px;
-  overflow: auto;
-  white-space: nowrap;
-  font-family: poppins;
-  border-bottom: 1px solid white;
-  overflow-y: hidden;
 }
 
 .bet-remaining-time {
