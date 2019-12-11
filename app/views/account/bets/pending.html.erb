@@ -53,7 +53,11 @@
               </div>
             </div>
             <div class="status-change d-flex">
-              <%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
+              <% if current_user.balance < bet.stake %>
+                <%= link_to "Top up", account_wallet_path, class:"status-option status-option-accept text-center status-no-money", style:"width: 90%; border-right: none"%>
+              <% else %>
+                <%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
+              <% end %>
               <%= button_to "Reject", reject_bet_path(bet), method: :post,  class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none"%>
             </div>
           </div>

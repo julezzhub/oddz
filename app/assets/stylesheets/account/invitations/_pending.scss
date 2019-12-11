@@ -87,6 +87,17 @@
     border-bottom: none;
   }
 
+  .status-no-money {
+    padding-top: 10px;
+    border-top: solid white;
+    color: black;
+    background-color: white;
+
+    &:hover {
+    color: black
+    }
+  }
+
   #avatar-for-details {
     position: relative;
     left: 1%;

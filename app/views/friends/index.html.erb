@@ -15,7 +15,7 @@
       <% current_user.requested_friends.each do |friend| %>
         <div data-friend-id="<%= friend.id %>" class="friend-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
           <div class="request-upperwrap text-center">
-            <%= cl_image_tag friend.avatar, alt: friend.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
+            <%= cl_image_tag friend.avatar, alt: friend.username, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
           </div>
             <div class="friend-content">
               <p > <%= friend.username %> would like to be friends with you</p>
