@@ -4,6 +4,7 @@ require 'open-uri'
 class BetsController < ApplicationController
   def show
     @bet = Bet.find(params[:id])
+    @time_until_end = seconds_to_hms(@bet.end_time - Time.now)
     if @bet.metric == 'Subscribers' || @bet.metric == 'View Count'
       url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{@bet.target}&key=#{ENV['YOUTUBE_API_KEY1']}"
     else
@@ -38,6 +39,8 @@ class BetsController < ApplicationController
     @bet.user = current_user
     @bet.target = params[:target]
     @bet.metric = params[:metric]
+    @bet.metric_count = params[:hidden_metric_count]
+    @bet.video_title = params[:title]
     @bet.thumbnail = params[:thumbnail]
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
@@ -77,9 +80,17 @@ class BetsController < ApplicationController
     @premade_bet = Bet.find(params[:bet])
   end
 
+  def seconds_to_hms(sec)
+    "%02d hours %02d minutes" % [sec / 3600, sec / 60 % 60]
+  end
+
   private
 
   def bet_params
-    params.require(:bet).permit(:target, :metric_count, :stake, :premade, :end_time)
+    if params[:premade]
+      params.require(:bet).permit(:target, :metric_count, :stake, :premade, :end_time)
+    else
+      params.require(:bet).permit(:target, :stake, :premade, :end_time)
+    end
   end
 end

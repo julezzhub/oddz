@@ -45,7 +45,10 @@ label {
 }
 
 #search_input, #time, #recipe1forward, #page2, #channel-metric, #video-metric,
-#metric-count, #time, #recipe2forward, #summary {
+#metric-count, #time, #recipe2forward, #summary, #stake, #friend-selection {
   animation: fadeIn 0.3s;
 }
 
+#friend-bet-form {
+  animation: fadeIn 1s;
+}

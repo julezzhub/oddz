@@ -12,7 +12,7 @@
   </div>
   <% Bet.current_pending_bets(current_user).each do |bet| %>
     <div data-remaining-time="<%= bet.time_to_accept %>">
-      <%= link_to bet_path(bet) do %>
+      <%= link_to account_bet_path(bet) do %>
         <div class="pending-bets-icon">
           <%= cl_image_tag(bet.user.avatar, alt: bet.user.avatar, crop: :fill, class: "avatar-large-bordered", style:"object-fit: cover;")%>
         </div>
