@@ -1,6 +1,6 @@
 <div class="container account_transactions_show">
   <div class="row py-4 justify-content-center">
-    <div><h1>Transaction # <%= @transaction.id %> </h1></div>
+    <div><h1>Transaction confirmed</h1></div>
     <div class="btn-transaction"><%= @transaction.state %></div>
     <div class="receipt">
       <div class="issued">ISSUED ON<br>- <%=@transaction.created_at.to_date.strftime("%d.%m.%y")%> -</div>
@@ -10,8 +10,8 @@
   </div>
 
   <div class="settings-link d-flex flex-column bd-highlight mb-3">
-    <%= link_to root_path, class: "wrap-link" do  %>
-    <div class="link d-flex justify-content-between align-items-center"><p>Back Home</p><%= image_tag "small_arrow_right.svg" %>
+    <%= link_to  account_wallet_path, class: "wrap-link" do  %>
+    <div class="link d-flex justify-content-between align-items-center"><p>Back to Wallet</p><%= image_tag "small_arrow_right.svg" %>
     </div>
     <% end %>
   </div>

@@ -5,7 +5,7 @@ class Account::BetsController < ApplicationController
   end
 
   def index
-    @all_bets = policy_scope(Bet).where(friend: current_user).or(Bet.where(user: current_user))
+    @all_bets = policy_scope(Bet).where(friend: current_user).or(Bet.where(user: current_user)).order(start_time: :desc)
     @current_bets = @all_bets.select { |bet| bet.end_time > Time.now && !bet.status.nil? }
     @past_bets = @all_bets.select { |bet| bet.end_time < Time.now && !bet.status.nil? }
   end
@@ -31,7 +31,7 @@ class Account::BetsController < ApplicationController
 
   def pending
     # receiving invitations
-    @bets = policy_scope(Bet).where(friend: current_user, status: nil)
+    @bets = policy_scope(Bet).where(friend: current_user, status: nil).order(end_time: :desc)
     # receiving invitations cards
     @bets.each do |bet|
       @time_until_end = seconds_to_hms(bet.end_time - Time.now)
@@ -52,7 +52,7 @@ class Account::BetsController < ApplicationController
     end
 
     # sent invitations
-    @sent_bets = policy_scope(Bet).where(user: current_user, status: nil) # .order(:start_time)
+    @sent_bets = policy_scope(Bet).where(user: current_user, status: nil).order(start_time: :desc)
     # sent invitations cards
   end
 
