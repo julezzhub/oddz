@@ -8,7 +8,7 @@
 
 	<div class="amount-form">
 		<%= form_tag account_transactions_path do %>
-    <div><%=text_field_tag 'amount', '', placeholder: 'Enter amount', autocomplete: 'off', id: 'wallet', required: true%></div> 
+    <div><%=text_field_tag 'amount', '', placeholder: 'Enter amount', autocomplete: 'off', id: 'wallet', required: true, inputmode:"numeric", pattern:"[0-9]*"%></div>
   </div>
   <div class="cash-buttons d-flex justify-content-evenly">
     <div class="btn-pay d-flex justify-content-center align-items-center"><%=submit_tag 'PAY-IN', id: 'submit-pay'%></div>

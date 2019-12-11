@@ -1,7 +1,10 @@
-<p class = "logo">oddz</p>
-<h1>Your bet invitation has been sent</h1>
-<%= image_tag "mail_sent.svg" %>
-<p>We will let you know as soon as <%= params[:bet][:friend] %> has responded.</p>
-<%= link_to root_path do %>
-  <p>To my homepage</p>
-<% end %>
+
+<div class="container bets_sent_invitation"> 
+  <div class = "logo">oddz</div>
+  <h2>Your bet invitation has been sent</h2>
+  <div class="mailer"><%= image_tag "mail_sent.svg" %></div>
+
+  <%= link_to pending_account_bets_path  do %>
+    <div> <button class="btn-purple">To Invitations</button></div>
+  <% end %>
+</div>

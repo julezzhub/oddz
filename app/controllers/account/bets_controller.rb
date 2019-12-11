@@ -31,6 +31,7 @@ class Account::BetsController < ApplicationController
 
   def pending
     @bets = policy_scope(Bet).where(friend: current_user, status: nil)
+    @sent_bets = policy_scope(Bet).where(user: current_user, status: nil) #.order(:start_time)
       @bets.each do |bet|
       @time_until_end = seconds_to_hms(bet.end_time - Time.now)
         if bet.metric == 'Subscribers' || bet.metric == 'View Count'
