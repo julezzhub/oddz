@@ -7,7 +7,7 @@ import { initAutocomplete } from '../plugins/autocomplete';
 import { setupPendingBets } from '../plugins/pending-bet-countdown';
 import AutoNumeric from 'autonumeric';
 
-if (document.getElementById('bet_metric_count')) {
+if (document.getElementById('metric-count-message')) {
   const metric_count = new AutoNumeric(document.getElementById('bet_metric_count'), {
       decimalCharacter : ',',
       digitGroupSeparator : '.',

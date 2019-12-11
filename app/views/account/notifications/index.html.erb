@@ -1,6 +1,6 @@
 <div class = "container account_history_index">
   <h2>NOTIFICATIONS</h2>
-  <% notifications = @notifications.reverse %>
+  <% notifications = @notifications%>
   <% notifications.each do |notification| %>
     <%= render 'notification', notification: notification %>
   <% end %>

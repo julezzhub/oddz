@@ -26,7 +26,6 @@
   width: 90%;
   margin: 0 auto;
   border-radius: 5px;
-  margin-top: 50px;
   border: 1px solid white;
   }
 
@@ -34,7 +33,7 @@
 .details-title {
   // position: absolute;
   // bottom: 60%;
-  padding: 13px;
+  padding: 7px;
   // width: 90%;
     h5 {
       text-align: left;
@@ -53,16 +52,11 @@
   }
 
   .current-metric {
-    margin-right: auto;
-    margin-left: auto;
     color: white;
   }
 
   #running-time {
     font-size: 22px;
-    position: relative;
-    left: 72%;
-    top: -16%;
   }
 
   .details-lowerwrapper {
@@ -87,10 +81,22 @@
     border-bottom: none;
   }
 
+  .status-no-money {
+    padding-top: 10px;
+    border-top: solid white;
+    color: black;
+    background-color: white;
+
+    &:hover {
+    color: black
+    }
+  }
+
   #avatar-for-details {
     position: relative;
     left: 1%;
     top: 3%;
+    width: 95%;
     img {
       height: 40px;
       width: 40px;

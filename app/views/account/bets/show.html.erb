@@ -1,14 +1,17 @@
-  <div class="details-container" id="details-show-container">
-    <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.3), rgba(50,50,50,0.05)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
-      <div class="d-flex align-items-center"  id="avatar-for-details" >
-        <img src="<%= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
-        <p class="my-0 ml-2"><%= @bet.user.username.upcase %></p>
-      </div>
-      <div data-remaining-time="<%= @bet.time_to_accept %>" id="running-time" style="top: -11%">
-        <div class="bet-remaining-time" style="color: white"></div>
-      </div>
-    </div>
+  <div class="title-for-details-show"><h1><%= "Bet Invitation" %></h1></div>
 
+  <div class="details-container" id="details-show-container">
+  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.4), rgba(50,50,50,0.05)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
+  <div class="d-flex align-items-center justify-content-between"  id="avatar-for-details" >
+    <div class="d-flex align-items-center">
+      <img src="<%= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
+      <p class="my-0 ml-2"><%= @bet.user.username.upcase %></p>
+    </div>
+    <div data-remaining-time="<%= @bet.time_to_accept %>" id="running-time" style="top: -11%">
+      <div class="bet-remaining-time" style="color: white"></div>
+    </div>
+  </div>
+  </div>
     <div class="details-infos">
 
       <div class="details-title">

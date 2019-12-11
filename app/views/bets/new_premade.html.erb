@@ -110,10 +110,12 @@
     document.getElementById('progress-text').innerHTML = "100%"
     document.getElementById('circle_svg').classList.add('transition4');
     document.getElementById('progress-btn').classList.add('shake');
-    if (document.getElementById('bet_friend').value !== "") {
+    if (document.getElementById('bet_friend').value !== "" &&
+        parseInt(document.getElementById('nav-money').innerText.replace(/\./g,''), 10) >= document.getElementById('bet_stake').value) {
       recipe2forward.classList.remove('d-none');
     } else {
       recipe2forward.classList.add('d-none');
+      document.getElementById('stake-error').innerText = "Insufficient funds";
     }
   })
   // 8. when a friend is selected, change the progress bubble
