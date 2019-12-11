@@ -38,6 +38,8 @@ class BetsController < ApplicationController
     @bet.user = current_user
     @bet.target = params[:target]
     @bet.metric = params[:metric]
+    @bet.metric_count = params[:hidden_metric_count]
+    @bet.video_title = params[:title]
     @bet.thumbnail = params[:thumbnail]
     @bet.friend = User.find_by(username: params[:bet][:friend])
     @bet.start_time = Time.now
@@ -80,6 +82,10 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:target, :metric_count, :stake, :premade, :end_time)
+    if params[:premade]
+      params.require(:bet).permit(:target, :metric_count, :stake, :premade, :end_time)
+    else
+      params.require(:bet).permit(:target, :stake, :premade, :end_time)
+    end
   end
 end
