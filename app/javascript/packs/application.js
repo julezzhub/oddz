@@ -11,6 +11,7 @@ const metric_count = new AutoNumeric(document.getElementById('bet_metric_count')
     allowDecimalPadding: false,
     outputFormat: "number"
 });
+
 initSliders()
 initAutocomplete()
 setupPendingBets()

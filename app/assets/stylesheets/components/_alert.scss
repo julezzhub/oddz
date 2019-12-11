@@ -1,6 +1,36 @@
 .alert {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  top: 16px;
+  right: -500px;
   z-index: 1000;
+  animation: 9s animateIn;
+  background-color: $purple1;
+  color: white;
+  font-family: poppins;
+  border: none;
+  span {
+    color: $purple1;
+    text-shadow: none;
+  }
+}
+
+
+
+
+@keyframes animateIn {
+  0% {
+    right: -500px;
+  }
+
+  40% {
+    right: 16px;
+  }
+
+  30% {
+    right: 16px;
+  }
+
+  70% {
+    right: -500px;
+  }
 }
