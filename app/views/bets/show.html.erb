@@ -17,15 +17,15 @@
       <div class="details-lowerwrapper d-flex px-0">
         <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
           <%=image_tag("oddz_coin_purple.svg", size: '30') %>
-          <p> <%= humanized_money(@bet.stake) %> coins</p>
+          <p style="font-size: 14px"> <%= humanized_money(@bet.stake) %> coins</p>
         </div>
         <div class="details-attributes col-4 px-0 mx-0"><p><%= @bet.metric.upcase %> </p>
           <%=image_tag("video.svg", size: '30') %>
-          <p><%= number_with_delimiter(@bet.metric_count, :delimiter => ',') %></p>
+          <p style="font-size: 14px"><%= number_with_delimiter(@bet.metric_count, :delimiter => ',') %></p>
         </div>
         <div class="details-attributes col-4 px-0 mx-0"><p>DEADLINE</p>
           <%=image_tag("time.svg", size: '30') %>
-          <p>13.11.19 11:11<%#= @time_until_end %></p>
+          <p style="font-size: 14px"><%= bet.end_time.strftime("%h %m %H:%M")  %> </p>
         </div>
       </div>
     </div>
