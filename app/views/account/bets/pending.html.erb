@@ -89,12 +89,12 @@
             </div>
             <div class="details-title">
               <h5 style="color: white"> <%= bet.video_title %> </h5>
+              <div class="current-metric">
+                <div><h6><%= image_tag("play_white.svg", size: '20') %> <%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
+              </div>
             </div>
           </div>
           <div class="details-infos">
-            <div class="current-metric">
-              <div><h6><%= image_tag("play_white.svg", size: '20') %> <%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
-            </div>
             <div class="details-lowerwrapper d-flex px-0">
               <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
                 <%=image_tag("oddz_coin_purple.svg", size: '30') %>

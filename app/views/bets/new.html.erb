@@ -138,7 +138,7 @@
 <div class="betbar-filter2"></div>
 <div id="progress-bar" class="progress-bar">
   <%= link_to new_search_path do %>
-    <%= image_tag "arrow_left.svg", id:"recipe1backward", class:"arrow-left" %>
+    <%= image_tag "search.svg", id:"recipe1backward", class:"arrow-left", style:"width: 33%" %>
   <% end %>
   <%= image_tag "arrow_left.svg", id:"recipe2backward", class:"d-none arrow-left" %>
   <%= image_tag "arrow_left.svg", id:"summary-backward", class:"d-none arrow-left" %>
@@ -256,7 +256,7 @@
       + parseInt(document.getElementById('hours').value, 10) * 3600
 /*      + document.getElementById('minutes').value * 60 */
     document.getElementById('stake').classList.remove('d-none');
-    if (document.getElementById('nav-money').innerText >= document.getElementById('bet_stake').value) {
+    if (parseInt(document.getElementById('nav-money').innerText.replace(/\./g,''), 10) >= document.getElementById('bet_stake').value) {
       document.getElementById('friend-bet-form').classList.remove('d-none');
     } else {
       document.getElementById('stake-error').innerText = "Insufficient funds"
@@ -274,7 +274,7 @@
   // 7. when a time is selected, change the progress bubble
 
   document.getElementById('stake').addEventListener('touchend', function() {
-      if (document.getElementById('nav-money').innerText < document.getElementById('bet_stake').value) {
+      if (parseInt(document.getElementById('nav-money').innerText.replace(/\./g,''), 10) < document.getElementById('bet_stake').value) {
       document.getElementById('friend-bet-form').classList.add('d-none');
       document.getElementById('stake-error').innerText = "Insufficient funds";
       recipe2forward.classList.add('d-none')
@@ -366,10 +366,6 @@
     document.getElementById('recipe2forward').classList.remove('d-none')
   })
   //when you click on the backward arrow, you get to page 2 again
-
-  document.getElementById('bet-btn').addEventListener('click', function() {
-    this.value = "BET"
-  })
 </script>
 
 <%= content_for :after_js do %>
