@@ -1,8 +1,7 @@
-
 <div class = "container account_settings_setting" >
 	<h1>Account</h1>
 	<div class="setting-upperwrap d-flex">
-		<div> <%= cl_image_tag current_user.avatar, alt: current_user.username, width: 60, height: 60, crop: :fill, class:" fixed-avatar", style:"object-fit: cover; border-radius: 50%;"%>
+		<div> <%= cl_image_tag current_user.avatar, alt: current_user.username, crop: :fill, class:"avatar-large-bordered-settings", style:"object-fit: cover;"%>
 		</div>
 		<div class="username-setting">
 			<div><%= current_user.username %></div>
