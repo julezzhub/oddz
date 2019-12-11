@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     bets_to_remove = Bet.expired_pending_bets
     bets_to_remove.each { |bet| bet.update(status: false) }
   end
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
 end
