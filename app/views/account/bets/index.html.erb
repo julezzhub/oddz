@@ -18,6 +18,7 @@
 				<% else %>
 					<div class="bet-status">
 				  	<% @current_bets.each do |bet| %>
+            <%= link_to bet_path(bet) do %>
 				    	<div class="current-bet-request" style="background-color: <%= ["#474776"].sample %>">
 								<div class="request-upperwrap d-flex justify-content-between">
 									<%= bet.start_time.strftime("%d.%m.%y")%>
@@ -35,6 +36,7 @@
 									<div class="current-arrow d-flex"><%= image_tag "arrow_right.svg" %></div>
 								</div>
 				   		</div>
+              <% end %>
 				   	<% end %>
 				  </div>
 				<% end %>
