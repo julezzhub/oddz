@@ -256,7 +256,7 @@
       + parseInt(document.getElementById('hours').value, 10) * 3600
 /*      + document.getElementById('minutes').value * 60 */
     document.getElementById('stake').classList.remove('d-none');
-    if (parseInt(document.getElementById('nav-money').innerText, 10) >= document.getElementById('bet_stake').value) {
+    if (parseInt(document.getElementById('nav-money').innerText.replace(/\./g,''), 10) >= document.getElementById('bet_stake').value) {
       document.getElementById('friend-bet-form').classList.remove('d-none');
     } else {
       document.getElementById('stake-error').innerText = "Insufficient funds"
@@ -274,7 +274,7 @@
   // 7. when a time is selected, change the progress bubble
 
   document.getElementById('stake').addEventListener('touchend', function() {
-      if (parseInt(document.getElementById('nav-money').innerText, 10) < document.getElementById('bet_stake').value) {
+      if (parseInt(document.getElementById('nav-money').innerText.replace(/\./g,''), 10) < document.getElementById('bet_stake').value) {
       document.getElementById('friend-bet-form').classList.add('d-none');
       document.getElementById('stake-error').innerText = "Insufficient funds";
       recipe2forward.classList.add('d-none')
