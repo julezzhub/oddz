@@ -19,6 +19,7 @@ class BetsController < ApplicationController
       @real_count = @statistics["#{@bet.metric.downcase.delete_suffix('s')}Count"].to_i
     end
     authorize @bet
+    skip_authorization
   end
 
   def new
