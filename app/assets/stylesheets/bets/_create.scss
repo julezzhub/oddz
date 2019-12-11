@@ -9,11 +9,26 @@
     text-align: center;
     letter-spacing: 0.1em;
     color: #FFFFFF;
-    margin-bottom: 50px;
+    margin-bottom: 250px;
+    position:relative;
   }
-  .mailer {
+
+  #mailer {
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 70px;
+    top: 200px;
+    margin-bottom: 100px;
+    position: absolute;
+    animation: 2s slideIn;
+    left: 50px;
+  }
+}
+// transform: translateX()
+
+@keyframes slideIn {
+  0% {
+    left: -400px;
+  }
+  100% {
+    left: 50px;
   }
 }
