@@ -10,7 +10,47 @@ class Account::BetsController < ApplicationController
     @past_bets = @all_bets.select { |bet| bet.end_time < Time.now && !bet.status.nil? }
   end
 
+  def show
+    @bet = Bet.find(params[:id])
+    @time_until_end = seconds_to_hms(@bet.end_time - Time.now)
+    if @bet.metric == 'Subscribers' || @bet.metric == 'View Count'
+      url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{@bet.target}&key=#{ENV['YOUTUBE_API_KEY1']}"
+    else
+      url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{@bet.target}&key=#{ENV['YOUTUBE_API_KEY2']}"
+    end
+    result = open(url).read
+    @data = JSON.parse(result)
+    @statistics = @data['items'][0]['statistics']
+    if @bet.metric == "View Count"
+      @real_count = @statistics["viewCount"].to_i
+    else
+      @real_count = @statistics["#{@bet.metric.downcase.delete_suffix('s')}Count"].to_i
+    end
+    authorize @bet
+  end
+
   def pending
     @bets = policy_scope(Bet).where(friend: current_user, status: nil)
+      @bets.each do |bet|
+      @time_until_end = seconds_to_hms(bet.end_time - Time.now)
+        if bet.metric == 'Subscribers' || bet.metric == 'View Count'
+          url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{bet.target}&key=#{ENV['YOUTUBE_API_KEY1']}"
+        else
+          url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{bet.target}&key=#{ENV['YOUTUBE_API_KEY2']}"
+        end
+      result = open(url).read
+      @data = JSON.parse(result)
+      @statistics = @data['items'][0]['statistics']
+        if bet.metric == "View Count"
+          @real_count = @statistics["viewCount"].to_i
+        else
+          @real_count = @statistics["#{bet.metric.downcase.delete_suffix('s')}Count"].to_i
+        end
+      authorize bet
+    end
+  end
+
+  def seconds_to_hms(sec)
+    "%02d hrs %02d mins" % [sec / 3600, sec / 60 % 60]
   end
 end

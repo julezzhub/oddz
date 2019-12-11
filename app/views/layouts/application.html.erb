@@ -10,15 +10,16 @@
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <link href="https://fonts.googleapis.com/css?family=ABeeZee|Poppins|Roboto+Mono:100,300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="node-modules/circlebars/dist/circle.css">
-    <script src="node-modules/circlebars/dist/circle.js"></script>
-    <link rel="stylesheet" type="text/css" href="node-modules/circlebars/dist/skins/whitecircle.css">
-    <!-- <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"></link> -->
+<!--     <link rel="stylesheet" type="text/css" href="node-modules/circlebars/dist/circle.css">
+ -->    <!-- <script src="node-modules/circlebars/dist/circle.js"></script> -->
+<!--     <link rel="stylesheet" type="text/css" href="node-modules/circlebars/dist/skins/whitecircle.css">
+ -->    <!-- <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"></link> -->
     <title>oddz</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/circlebars@1.0.3/dist/circle.css">
   </head>
   <body class="dark-bckgrnd">
     <%= render 'shared/navbar' unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(landing_path)%>
