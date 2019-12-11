@@ -29,11 +29,8 @@ class Account::BetsController < ApplicationController
     authorize @bet
   end
 
-  def pending
-    # receiving invitations
-    @bets = policy_scope(Bet).where(friend: current_user, status: nil).order(end_time: :desc)
-    # receiving invitations cards
-    @bets.each do |bet|
+  def display_pending(bets)
+    bets.each do |bet|
       @time_until_end = seconds_to_hms(bet.end_time - Time.now)
       if bet.metric == 'Subscribers' || bet.metric == 'View Count'
         url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{bet.target}&key=#{ENV['YOUTUBE_API_KEY1']}"
@@ -50,9 +47,17 @@ class Account::BetsController < ApplicationController
       end
       authorize bet
     end
+  end
 
+
+  def pending
+    # receiving invitations
+    @bets = policy_scope(Bet).where(friend: current_user, status: nil).order(end_time: :desc)
+    display_pending(@bets)
+    # receiving invitations cards
     # sent invitations
     @sent_bets = policy_scope(Bet).where(user: current_user, status: nil).order(start_time: :desc)
+    display_pending(@sent_bets)
     # sent invitations cards
   end
 

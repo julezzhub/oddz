@@ -29,6 +29,10 @@ class BetPolicy < ApplicationPolicy
     record.friend == user
   end
 
+    def reject_to_home?
+    record.friend == user
+  end
+
   def new_premade?
     new?
   end
