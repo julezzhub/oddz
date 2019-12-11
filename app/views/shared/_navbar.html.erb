@@ -1,3 +1,4 @@
+  <% if user_signed_in? %>
 <div class="navbar navbar-expand-sm navbar-light navbar-oddz">
   <div class = "nav-wallet d-flex">
     <%= link_to account_wallet_path, class: "navbar-brand" do %>
@@ -6,12 +7,12 @@
       <div id="nav-money"><%= humanized_money(current_user.balance)%></div>
     <% end %>
   </div>
-  <% if user_signed_in? %>
     <div class="nav-item active d-flex">
       <%= link_to "oddz", root_path, class: "nav-link nav-color" %>
     </div>
     <div class="nav-item">
       <div id = "nav-menu"><%= link_to account_settings_path do %><%= image_tag "menu.svg" %><% end %></div>
+
     </div>
     <% new_notifications = Notification.where(user_id: current_user, seen: false) %>
     <% unless new_notifications.empty?%>
