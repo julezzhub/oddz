@@ -80,6 +80,18 @@ class BetsController < ApplicationController
     flash[:notice] = "Bet rejected"
   end
 
+  def reject_to_home
+    @bet = Bet.find(params[:id])
+    @bet.update(status: false)
+    authorize @bet
+    notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Rejected Bet Invitation")
+    notification.save
+    @bet.user.balance += @bet.stake
+    @bet.user.save
+    redirect_to root_path
+    flash[:notice] = "Bet rejected"
+  end
+
   def new_premade
     @bet = Bet.new
     authorize @bet

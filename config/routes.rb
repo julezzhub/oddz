@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 	    end
 	    member do
 	      post 'reject'
+        post 'reject_to_home'
 	    end
 	  end
 
