@@ -9,6 +9,26 @@
     <% end %>
   </div>
 
+  <div class = "received-requests">
+    <h3>Received Requests</h3>
+    <div class="bet-status">
+      <% current_user.requested_friends.each do |friend| %>
+        <div data-friend-id="<%= friend.id %>" class="friend-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+          <div class="request-upperwrap text-center">
+            <%= cl_image_tag friend.avatar, alt: friend.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
+          </div>
+            <div class="friend-content">
+              <p > <%= friend.username %> would like to be friends with you</p>
+            </div>
+            <div class="status-change d-flex">
+              <%= button_to "Accept", accept_friend_friend_path(friend), method: :post, remote: true, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
+              <%= button_to "Reject", decline_friend_friend_path(friend), method: :post, remote: true,  class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none"%>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
   <div class = "sent-requests">
     <h3>Sent Requests</h3>
     <ul id="pending-friends">
@@ -18,16 +38,6 @@
     </ul>
   </div>
 
-  <div class = "received-requests">
-    <h3>Received Requests</h3>
-    <ul id="friend-requests">
-    <% current_user.requested_friends.each do |friend| %>
-      <li data-friend-id="<%= friend.id %>">
-        <%= friend.username %> <%= button_to "Accept", accept_friend_friend_path(friend), method: :post, remote: true, id: "accept", class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none" %><%= button_to "Decline", decline_friend_friend_path(friend), method: :post, remote: true, class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none" %>
-      </li>
-    <% end %>
-    </ul>
-  </div>
 
   <div class = "friends-all">
     <h3>Friends</h3>
