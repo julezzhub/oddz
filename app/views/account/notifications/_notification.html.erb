@@ -11,23 +11,28 @@
   <% if notification.seen%>
     <div class="notification-card-seen">
       <div class="notification-category-seen">
-        <%= notification.category %>
+        <div>
+          <%= notification.category %>
+        </div>
+        <div>
+          OLD
+        </div>
       </div>
       <div class="notification-width-seen">
         <% if notification.category == "Bet Won"%>
-          <p style="font-size: 20px">You won against <%=User.find(notification.notifiable_id).username%> </p>
+          <p>You won against <strong><%=User.find(notification.notifiable_id).username%></strong> </p>
         <% elsif notification.category == "Bet Lost" %>
-          <p style="font-size: 20px">You lost against <%=User.find(notification.notifiable_id).username%> </p>
+          <p>You lost against <strong><%=User.find(notification.notifiable_id).username%></strong> </p>
         <% elsif notification.category == "Accepted Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your bet</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> accepted your bet</p>
         <% elsif notification.category == "Rejected Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> rejected your bet</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> rejected your bet</p>
         <% elsif notification.category == "New Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a bet invitation</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> sent you a bet invitation</p>
         <% elsif notification.category == "Accepted Friend Request" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your friend request</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> accepted your friend request</p>
         <% elsif notification.category == "New Friend Request" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a friend request</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> sent you a friend request</p>
           <% end %>
       </div>
       <div class="notification-arrow-seen">
@@ -37,23 +42,28 @@
   <% else %>
     <div class="notification-card-new">
       <div class="notification-category-new">
-        <%= notification.category %>
+        <div>
+          <%= notification.category %>
+        </div>
+        <div>
+          NEW
+        </div>
       </div>
       <div class="notification-width-new">
         <% if notification.category == "Bet Won"%>
-          <p style="font-size: 20px">You won against <%=User.find(notification.notifiable_id).username%> </p>
+          <p>You won against <strong><%=User.find(notification.notifiable_id).username%></strong> </p>
         <% elsif notification.category == "Bet Lost" %>
-          <p style="font-size: 20px">You lost against <%=User.find(notification.notifiable_id).username%> </p>
+          <p>You lost against <strong><%=User.find(notification.notifiable_id).username%></strong> </p>
         <% elsif notification.category == "Accepted Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your bet</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> accepted your bet</p>
         <% elsif notification.category == "Rejected Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> rejected your bet</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> rejected your bet</p>
         <% elsif notification.category == "New Bet Invitation" %>
-          <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a bet invitation</p>
+          <p><strong><%=User.find(notification.notifiable_id).username%></strong> sent you a bet invitation</p>
         <% elsif notification.category == "Accepted Friend Request" %>
-        <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> accepted your friend request</p>
+        <p><strong><%=User.find(notification.notifiable_id).username%></strong> accepted your friend request</p>
           <% elsif notification.category == "New Friend Request" %>
-        <p style="font-size: 20px"><%=User.find(notification.notifiable_id).username%> sent you a friend request</p>
+        <p><strong><%=User.find(notification.notifiable_id).username%></strong> sent you a friend request</p>
           <% end %>
       </div>
       <div class="notification-arrow-new">

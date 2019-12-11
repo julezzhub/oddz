@@ -9,15 +9,29 @@
 		</div>
 	</div>
 	<div class = "setting-links d-flex flex-column bd-highlight mb-3">
-    <%= link_to account_notifications_path, class: "wrap-link" do  %>
-      <div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Notifications</p><%= image_tag "small_arrow_right.svg" %>
+
+    <%= link_to "#", class: "wrap-link" do  %>
+      <div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>About</p><%= image_tag "small_arrow_right.svg" %>
       </div>
     <% end %>
 
-		<%= link_to friends_path, class: "wrap-link" do  %>
-			<div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Friends</p><%= image_tag "small_arrow_right.svg" %>
-			</div>
-		<% end %>
+    <%= link_to friends_path, class: "wrap-link" do  %>
+      <div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Friends</p><%= image_tag "small_arrow_right.svg" %>
+      </div>
+    <% end %>
+
+    <%= link_to account_notifications_path, class: "wrap-link" do  %>
+    <div class="new-notification">
+      <div class=" link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Notifications</p><%= image_tag "small_arrow_right.svg" %>
+      </div>
+      <% new_notifications = Notification.where(user_id: current_user, seen: false) %>
+      <% unless new_notifications.empty?%>
+        <div id="notification-image">
+        <%= image_tag "notification.svg" %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
 
 		<%= link_to account_wallet_path, class: "wrap-link" do  %>
 			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Payment Settings</p><%= image_tag "small_arrow_right.svg" %>
@@ -26,11 +40,6 @@
 
 		<%= link_to "#", class: "wrap-link" do  %>
 			<div class=" p-2 d-flex justify-content-between align-items-center bd-highlight"><p>Start tutorial again</p><%= image_tag "small_arrow_right.svg" %>
-			</div>
-		<% end %>
-
-		<%= link_to "#", class: "wrap-link" do  %>
-			<div class="link p-2 d-flex justify-content-between align-items-center bd-highlight"><p>About</p><%= image_tag "small_arrow_right.svg" %>
 			</div>
 		<% end %>
 

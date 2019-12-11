@@ -1,4 +1,4 @@
-.account_invitations_pending {
+.account_invitations_received {
   position: relative;
   h1 {
     color: #FFFFFF;
@@ -63,3 +63,66 @@
     border-bottom: none;
   }
 }
+
+.account_invitations_sent {
+  position: relative;
+  h1 {
+    color: #FFFFFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+ul#sent-panel, ul#received-panel {
+    padding: 0 !important;
+  }
+
+  label#received-tab, label#sent-tab {
+    width: calc(50vw - 6px);
+    font-size: 18px;
+    font-family: Poppins;
+    letter-spacing: 2px;
+  }
+
+  .radio-tabs .state {
+      position: absolute;
+      left: -10000px;
+  }
+
+  .radio-tabs .tab {
+      display: inline-block;
+      padding: .5em;
+      vertical-align: top;
+      background-color: $dark;
+      cursor: hand;
+      cursor: pointer;
+  }
+
+  #received:checked ~ .tabs #received-tab,
+  #sent:checked ~ .tabs #sent-tab {
+      background-color: $dark;
+      border-bottom: .1em solid white;
+      cursor: default;
+  }
+
+  .radio-tabs .panels {
+      background-color: $dark;
+      padding: .5em;
+  }
+
+  .radio-tabs .panel {
+      display: none;
+  }
+
+  #received:checked ~ .panels #received-panel,
+  #sent:checked ~ .panels #sent-panel{
+      display: block;
+  }
+

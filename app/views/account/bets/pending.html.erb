@@ -1,27 +1,60 @@
+<div class="radio-tabs">
 
-<div class = "container account_invitations_pending">
-	<% if @bets.empty? %>
-		<h1><span><%= "No Bet Invitations" %></span></h1>
-	<% else %>
-		<h1><span><%= "Bet Invitations" %></span></h1>
-		<div class="bet-status">
-			<% @bets.each do |bet| %>
-				<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
-					<div class="request-upperwrap text-center">
-						<%= cl_image_tag bet.user.avatar, alt: bet.user.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
-						<%= bet.user.username %>
+	<input class="state" type="radio" title="received" name="bets-state" id="received" checked />
+  <input class="state" type="radio" title="sent" name="bets-state" id="sent" />
+
+	<div class="tabs mb-2 mt-2">
+    <label for="received" id="received-tab" class="tab">Received</label>
+    <label for="sent" id="sent-tab" class="tab">Sent</label>
+  </div>
+
+	<div class="panels">
+    <ul id="received-panel" class="panel">
+
+			<div class = "container account_invitations_received">
+				<% if @bets.empty? %>
+					<h1><span><%= "No Bet Invitations" %></span></h1>
+				<% else %>
+					<h1><span><%= "Bet Invitations" %></span></h1>
+					<div class="bet-status">
+						<% @bets.each do |bet| %>
+							<div class="bet-request" style="background-color: <%= ["#58587C", "#323244", "#696978", "#7A7AA1", "#8484CC", "#474776", "#2D2D57", "#3A3452"].sample %>">
+								<div class="request-upperwrap text-center">
+									<%= cl_image_tag bet.user.avatar, alt: bet.user.username, width: 40, height: 40, crop: :fill, class:"avatar fixed-avatar", style:"object-fit: cover"%>
+									<%= bet.user.username %>
+								</div>
+									<div class="bet-content">
+										<p>I bet you <strong><%= image_tag "oddz_coin4.svg", size: "18"%><%=humanized_money(bet.stake)%></strong> that <strong><%= bet.video_title %></strong>  will reach <strong><%= bet.metric_count %> <%= bet.metric %></strong> in <strong><%= distance_of_time_in_words(bet.end_time - Time.now) %></strong></p>
+									</div>
+								<div class="status-change d-flex">
+									<%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
+									<%= button_to "Reject", reject_bet_path(bet), method: :post,  class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none"%>
+								</div>
+							</div>
+						<% end %>
 					</div>
-						<div class="bet-content">
-							<p>I bet you <strong><%= image_tag "oddz_coin4.svg", size: "18"%><%=humanized_money(bet.stake)%></strong> that <strong><%= bet.video_title %></strong>  will reach <strong><%= bet.metric_count %> <%= bet.metric %></strong> in <strong><%= distance_of_time_in_words(bet.end_time - Time.now) %></strong></p>
-						</div>
-					<div class="status-change d-flex">
-							<%= button_to "Accept", accept_bet_path(bet), method: :post, class:"status-option status-option-accept text-center", style:"width: 100%; border-right: none"%>
-							<%= button_to "Reject", reject_bet_path(bet), method: :post,  class:"status-option status-option-reject text-center", style:"width: 100%; border-right: none"%>
+				<% end %>
+			</div>
+		</ul>
+
+		<ul id="sent-panel" class="panel active">
+			<div class="container account_invitations_sent">
+			<!-- @current_user.sent_bet_invitations.each do  -->
+				<% if @sent_bets.empty? %>
+					<h1><span><%= "No Sent Invitations" %></span></h1>
+				<% else %>
+					<h1><span><%= "Sent Invitations" %></span></h1>
+					<div class="bet-status">
+						<% @sent_bets.each do |bet| %>
+							<%= bet.friend.username %>
+						<% end %>
 					</div>
-				</div>
-			<% end %>
-		</div>
-	<% end %>
+				<% end %>
+			</div>
+		</ul>
+	</div>
 </div>
+
+
 
 
