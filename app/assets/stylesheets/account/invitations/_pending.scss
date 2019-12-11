@@ -27,14 +27,15 @@
   margin: 0 auto;
   border-radius: 5px;
   margin-top: 50px;
+  border: 1px solid white;
   }
 
 
 .details-title {
-  position: absolute;
-  bottom: 60%;
+  // position: absolute;
+  // bottom: 60%;
   padding: 13px;
-  width: 90%;
+  // width: 90%;
     h5 {
       text-align: left;
       text-shadow: 1px 1px black;
@@ -45,15 +46,15 @@
 
   #details-thumbnail {
     height: 25vh;
+    display: flex;
     width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .current-metric {
     margin-right: auto;
     margin-left: auto;
-    position: absolute;
-    left: 8%;
-    top: 308px;
     color: white;
   }
 

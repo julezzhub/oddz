@@ -33,13 +33,13 @@
             </div>
             <div class="details-title">
               <h5 style="color: white"> <%= bet.video_title %> </h5>
+              <div class="current-metric">
+                <div><h6><%= image_tag("play_white.svg", size: '20') %> <%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
+              </div>
             </div>
           </div>
 
           <div class="details-infos">
-            <div class="current-metric">
-              <div><h6><%= image_tag("play_white.svg", size: '20') %> <%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
-            </div>
 
             <div class="details-lowerwrapper d-flex px-0">
 

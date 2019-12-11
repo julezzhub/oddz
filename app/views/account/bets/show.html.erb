@@ -1,22 +1,22 @@
   <div class="details-container" id="details-show-container">
-  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.2), rgba(50,50,50,0.7)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
+  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.3), rgba(50,50,50,0.05)), url(<%= @bet.thumbnail %>)" id="details-show-thumbnail">
   <div class="d-flex align-items-center"  id="avatar-for-details" >
     <img src="<%= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" />
-    <p class="my-0 ml-2">LEOPOLD</p>
+    <p class="my-0 ml-2"><%= @bet.user.username.upcase %></p>
   </div>
     <div data-remaining-time="<%= @bet.time_to_accept %>" id="running-time" style="top: -11%">
       <div class="bet-remaining-time" style="color: white"></div>
     </div>
-    <div class="details-title">
-      <h5 style="color: white"> <%= @bet.video_title %> </h5>
-    </div>
   </div>
 
   <div class="details-infos">
-    <div class="current-metric" style="top: 48%">
-      <div><h6><%= image_tag("play_white.svg", size: '20') %><%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
-    </div>
 
+    <div class="details-title">
+      <h5 style="color: white"> <%= @bet.video_title.upcase %> </h5>
+      <div class="current-metric" style="top: 48%">
+        <div><h6><%= image_tag("play_white.svg", size: '20') %><%= number_with_delimiter(@real_count, :delimiter => ',') %></h6></div>
+      </div>
+    </div>
     <div class="details-lowerwrapper d-flex px-0">
 
         <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
