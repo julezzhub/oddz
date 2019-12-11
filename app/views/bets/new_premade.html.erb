@@ -15,76 +15,121 @@
 <%# end %>
 
 <%= simple_form_for(@bet) do |f| %>
-<div id=page2>
-  <h3 class="form-h3">Please choose an amount and a friend</h3>
+<div id=page2 style="margin-top: 10vh">
+  <div id="stake">
+      <h3 class="form-h3">Stake</h3>
+      <%= f.input :stake, label: 'oddz coins', input_html: { class: 'js-range-slider1'} %>
+    </div>
 
-  <%= f.input :stake, label: 'Stake (€)', input_html: { class: 'js-range-slider1'} %>
-
-  <div id="friend-selection">
-    <%= f.input :friend, label: 'Choose your friend', collection: current_user.friend_names %>
-<!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
+    <h6 id="stake-error" class="walkthrough-text"></h6>
+    <div id="friend-bet-form">
+      <h3 class="form-h3">Opponent</h3>
+      <div id="friend-selection">
+        <div id="opponent-avatar">
+          <%= image_tag "friend.svg" %>
+        </div>
+        <%= f.input :friend, label: false, collection: current_user.friend_names, prompt: "Select a friend", input_html: { class: "bet_friend"} %>
+    <!--<%#= select_tag :friend, options_from_collection_for_select(current_user.friends, 'id', 'username'), label: "Choose your friend" %> -->
+      </div>
+    </div>
   </div>
-  <%= link_to root_path do %>
-    <%= image_tag "arrow_left.svg" %>
-  <% end %>
-  <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none" %>
-
 </div>
 
 <div class="d-none" id="summary">
-  <h3 class="form-h3">Done. See your bet summary below and hit bet!</h3>
+  <h3 class="form-h3">Summary</h3>
 
-  <div style="display: grid; grid-template-columns: 1fr 3fr">
+  <div class="summary-grid">
     <%= image_tag "video.svg"%>
-    <h3 id="target-summary"></h3>
+    <h3 class="form-h3" id="target-summary"><%= @premade_bet.video_title %></h3>
     <%= image_tag("thumbs_up.svg") %>
-    <h3 id="metric_count_time-summary"></h3>
+    <h3 class="form-h3" id="metric_count_time-summary"><%= @premade_bet.metric_count %> <%= @premade_bet.metric %> in <%= @premade_bet.premade_days %> days and <%= @premade_bet.premade_hours %> hours</h3>
     <%= image_tag("wallet.svg") %>
-    <h3 id="stake-summary"></h3>
+    <h3 class="form-h3"><span id="stake-summary"></span><span><%= image_tag "oddz_coin4.svg", id:"coin-summary"%></span></h3>
     <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
-    <h3 id="friend-summary"></h3>
+    <h3 class="form-h3" id="friend-summary"></h3>
   </div>
-  <%= image_tag "arrow_left.svg", id:"summary-backward" %>
+</div>
+
+<div class="betbar-filter"></div>
+<div class="betbar-filter2"></div>
+<div id="progress-bar" class="progress-bar">
+  <%= link_to root_path do %>
+    <%= image_tag "home-button.svg", id:"recipe2backward", class:"arrow-left" %>
+  <% end %>
+  <%= image_tag "arrow_left.svg", id:"summary-backward", class:"d-none arrow-left" %>
+  <div id="progress-btn" class="round-button" style="margin: 0 auto">
+    <div class="round-button-circle">
+      <%= f.button :submit, value:"BET", id:"bet-btn", class:"d-none", data: {
+               disable_with: 'BET' } %>
+      <div id="circle">
+        <svg width="88px" height="70.4px" id="circle_svg" class="transition3">
+          <circle cx="41" cy="41" r="40"></circle>
+        </svg>
+          <p id="progress-text" class="scaled3">80%</p>
+      </div>
+    </div>
+  </div>
+  <%= image_tag "arrow_right.svg", id:"recipe1forward", class:"d-none arrow-right" %>
+  <%= image_tag "arrow_right.svg", id:"recipe2forward", class:"d-none arrow-right" %>
+</div>
 
 
-  <%= f.input :metric, input_html: {value: @premade_bet.metric}, as: :hidden %>
+  <%= hidden_field_tag :metric, @premade_bet.metric %>
   <%= f.input :metric_count, input_html: {value: @premade_bet.metric_count}, as: :hidden %>
+  <%= hidden_field_tag :hidden_metric_count, @premade_bet.metric_count %>
   <%= hidden_field_tag :duration, duration, id:"duration" %>
   <%= hidden_field_tag :days, @premade_bet.premade_days, id:"days" %>
   <%= hidden_field_tag :hours, @premade_bet.premade_hours, id:"hours" %>
   <%= hidden_field_tag :target, @premade_bet.target, id:"target" %>
   <%= hidden_field_tag :title, @premade_bet.video_title, id:"title" %>
+  <%= hidden_field_tag :thumbnail, @premade_bet.thumbnail, id:"thumbnail" %>
 
-  <%= f.button :submit, value:"BET", style:"color: white;" %>
   <% end %>
+
 </div>
 
 <script>
-
-  const recipe2forward = document.getElementById('recipe2forward')
-  const recipe2backward = document.getElementById('recipe2backward')
-
-    // when a friend is selected, show the arrow leading to summary
-
-  document.getElementById('friend-selection').addEventListener('change', function() {
-    recipe2forward.classList.remove('d-none')
+  document.getElementById('stake').addEventListener('touchend', function() {
+      if (parseInt(document.getElementById('nav-money').innerText, 10) < document.getElementById('bet_stake').value) {
+      document.getElementById('friend-bet-form').classList.add('d-none');
+      document.getElementById('stake-error').innerText = "Insufficient funds";
+      recipe2forward.classList.add('d-none')
+    } else {
+      document.getElementById('friend-bet-form').classList.remove('d-none');
+      document.getElementById('stake-error').innerText = ""
+      if (document.getElementById('bet_friend').value !== "") {
+      recipe2forward.classList.remove('d-none')}
+    }
   })
+
+  document.getElementById('bet_friend').addEventListener('change', function() {
+    // const opponent = document.getElementById('bet_friend').value
+    // const percentagesign = "%"
+    // document.getElementById('opponent-avatar').innerHTML = "<%#= cl_image_tag User.find_by(username: '" + opponent + "').avatar %>"
+    document.getElementById('progress-text').classList.add('scaled4');
+    document.getElementById('progress-text').innerHTML = "100%"
+    document.getElementById('circle_svg').classList.add('transition4');
+    document.getElementById('progress-btn').classList.add('shake');
+    if (document.getElementById('bet_friend').value !== "") {
+      recipe2forward.classList.remove('d-none');
+    } else {
+      recipe2forward.classList.add('d-none');
+    }
+  })
+  // 8. when a friend is selected, change the progress bubble
+  // also, show arrow to summary only when stake and friend are given
 
   recipe2forward.addEventListener('click', function() {
     document.getElementById('page2').classList.add("d-none")
+    document.getElementById('recipe2backward').classList.add("d-none")
+    document.getElementById('recipe2forward').classList.add("d-none")
     document.getElementById('summary').classList.remove("d-none")
+    document.getElementById('summary-backward').classList.remove("d-none")
+    document.getElementById('circle').classList.add('d-none')
+    document.getElementById('bet-btn').classList.remove('d-none')
 
-    document.getElementById('target-summary').innerHTML = "<%= @premade_bet.video_title %>"
-
-    document.getElementById('metric_count_time-summary').innerHTML =
-      parseInt(document.getElementById('bet_metric_count').value, 10).toLocaleString() + " "
-      + document.getElementById('bet_metric').value + " in "
-      + document.getElementById('days').value + " days and "
-      + document.getElementById('hours').value + " hours."
-/*      + document.getElementById('minutes').value + " minutes."
-*/
     document.getElementById('stake-summary').innerHTML =
-      document.getElementById('bet_stake').value + "€"
+      document.getElementById('bet_stake').value
 
     document.getElementById('friend-summary').innerHTML =
       document.getElementById('bet_friend').value
@@ -96,8 +141,13 @@
   document.getElementById('summary-backward').addEventListener('click', function() {
     document.getElementById('summary').classList.add("d-none")
     document.getElementById('page2').classList.remove("d-none")
+    document.getElementById('progress-bar').classList.remove('d-none')
+    document.getElementById('circle').classList.remove('d-none')
+    document.getElementById('bet-btn').classList.add('d-none')
+    document.getElementById('summary-backward').classList.add('d-none')
+    document.getElementById('recipe2backward').classList.remove('d-none')
+    document.getElementById('recipe2forward').classList.remove('d-none')
   })
-  //when you click on the backward arrow, you get to page 2 again
 </script>
 
 <%= content_for :after_js do %>

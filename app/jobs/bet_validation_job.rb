@@ -36,11 +36,11 @@ class BetValidationJob < ApplicationJob
     end
 
     # update balance
-    @bet.winner.update(balance_cents: @bet.winner.balance_cents + @bet.stake_cents)
+    @bet.winner.update(balance_cents: @bet.winner.balance_cents + (2 * @bet.stake_cents))
 
     loser_id = user_id == @bet.winner_id ? friend_id : user_id
     loser = User.find(loser_id)
-    loser.update(balance_cents: loser.balance_cents - @bet.stake_cents)
+    loser.update(balance_cents: loser.balance_cents)
 
     # skip_authorization
   end
