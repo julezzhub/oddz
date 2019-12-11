@@ -17,7 +17,17 @@ setupPendingBets()
 
 document.getElementById('bet_metric_count').addEventListener('change', (event) => {
   document.getElementById('hidden_metric_count').value = metric_count.getNumericString()
-  if (document.getElementById('hidden_metric_count').value <= parseInt(document.querySelector('.selected div p:nth-child(2)').innerText, 10)) {
+  if (document.getElementById('hidden_metric_count').value <= parseInt(document.querySelector('.selected div p:nth-child(2)').innerText.replace(/\,/g,''), 10)) {
+    document.getElementById('recipe1forward').classList.add('d-none');
+    document.getElementById('metric-error').innerText = "Must be higher than current count";
+  } else {
+    document.getElementById('recipe1forward').classList.remove('d-none');
+    document.getElementById('metric-error').innerText = "";
+  }
+})
+
+document.getElementById('current-stats-box').addEventListener('click', (event) => {
+  if (document.getElementById('hidden_metric_count').value <= parseInt(document.querySelector('.selected div p:nth-child(2)').innerText.replace(/\,/g,''), 10)) {
     document.getElementById('recipe1forward').classList.add('d-none');
     document.getElementById('metric-error').innerText = "Must be higher than current count";
   } else {

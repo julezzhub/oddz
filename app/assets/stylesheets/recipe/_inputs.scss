@@ -1,4 +1,4 @@
-#metric-count, #time, .bet_stake, #friend-selection {
+#metric-count, #friend-selection {
   margin-bottom: 30px;
 }
 
@@ -13,6 +13,10 @@
 }
 
 #time {
+  margin-bottom: 15px;
+  padding-bottom: 30px;
+  border-bottom: solid thin grey;
+
   select {
   appearance: none;
   border-radius: 50%;
