@@ -49,6 +49,8 @@ class BetsController < ApplicationController
     authorize @bet
     notification = Notification.new(user: @bet.friend, notifiable: current_user, category: "New Bet Invitation")
     notification.save
+    current_user.balance -= @bet.stake
+    current_user.save
   end
 
   def accept
@@ -59,6 +61,8 @@ class BetsController < ApplicationController
     BetValidationJob.set(wait_until: @bet.end_time).perform_later(@bet.target, @bet.metric, @bet.metric_count, @bet.id, @bet.user_id, @bet.friend_id)
     notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Accepted Bet Invitation")
     notification.save
+    @bet.friend.balance -= @bet.stake
+    @bet.friend.save
     redirect_to pending_account_bets_path
     flash[:notice] = "Bet accepted"
   end
@@ -69,6 +73,8 @@ class BetsController < ApplicationController
     authorize @bet
     notification = Notification.new(user: @bet.user, notifiable: current_user, category: "Rejected Bet Invitation")
     notification.save
+    @bet.user.balance += @bet.stake
+    @bet.user.save
     redirect_to pending_account_bets_path
     flash[:notice] = "Bet rejected"
   end
