@@ -51,7 +51,7 @@
         <h3 id="subheader">Tap the statistic you want to bet on!</h3>
         <div id="current-stats-box" class="current-stats-box">
             <div class="current-stats">
-              <%= image_tag "video.svg" %>
+              <%= image_tag "friend.svg", style:"height: 50px; margin-top: 15px" %>
               <div>
                 <p id="current-label"><span>Subscribers</span></p>
                 <p><%= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
@@ -62,7 +62,7 @@
                 <p id="current-label"><span>Total Views</span></p>
                 <p><%= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
               </div>
-              <%= image_tag "comments.svg" %>
+              <%= image_tag "video.svg" %>
             </div>
           </div>
       </div>
@@ -136,7 +136,7 @@
     <div class="details-title" style="position: absolute, bottom: 38%;">
       <h5 style="color: white" id="target-summary"> </h5>
       <div class="current-metric" style="top: 48%">
-        <div><%= image_tag("play_white.svg", size: '20') %><h6 id='current-stats-summary'></h6></div>
+        <div><%= image_tag("play_white.svg", size: '20') %><h6 id='current-stats-summary' style="display: inline; margin-left: 5px"></h6></div>
       </div>
     </div>
     <div class="details-lowerwrapper d-flex px-0">
@@ -383,8 +383,11 @@
   //   }
   // }
 
-    document.getElementById('summary-metric-count').innerText =
-      parseInt(document.getElementById('hidden_metric_count').value, 10)
+    document.getElementById('current-stats-summary').innerText =
+      document.querySelector('.selected div p:nth-child(2)').innerText
+
+    document.getElementById('summary-metric-count').innerHTML =
+      document.getElementById('bet_metric_count').value
 
     // document.getElementById('metric_count_time-summary').innerHTML =
 
