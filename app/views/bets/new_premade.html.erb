@@ -36,18 +36,43 @@
 </div>
 
 <div class="d-none" id="summary">
-  <h3 class="form-h3">Summary</h3>
 
-  <div class="summary-grid">
-    <%= image_tag "video.svg"%>
-    <h3 class="form-h3" id="target-summary"><%= @premade_bet.video_title %></h3>
-    <%= image_tag("thumbs_up.svg") %>
-    <h3 class="form-h3" id="metric_count_time-summary"><%= @premade_bet.metric_count %> <%= @premade_bet.metric %> in <%= @premade_bet.premade_days %> days and <%= @premade_bet.premade_hours %> hours</h3>
-    <%= image_tag("wallet.svg") %>
-    <h3 class="form-h3"><span id="stake-summary"></span><span><%= image_tag "oddz_coin4.svg", id:"coin-summary"%></span></h3>
-    <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
-    <h3 class="form-h3" id="friend-summary"></h3>
+  <div class="title-for-details-show"><h1><%= "Bet Summary" %></h1></div>
+<div class="details-container" id="details-show-container">
+  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.4), rgba(50,50,50,0.05)), url(<%= @premade_bet.thumbnail %>)" id="details-show-thumbnail">
+  <div class="d-flex align-items-center justify-content-between"  id="avatar-for-details" >
+    <div class="d-flex align-items-center">
+      <!-- <img src="<%#= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" /> -->
+      <p class="my-0 ml-2" id="friend-summary"></p>
+    </div>
   </div>
+  </div>
+  <div class="details-infos">
+
+    <div class="details-title" style="position: absolute, bottom: 38%;">
+      <h5 style="color: white; margin-bottom: 30px;" id="target-summary"><%= @premade_bet.video_title %></h5>
+      <div class="current-metric" style="top: 48%">
+        <div><%= image_tag("play_white.svg", size: '20') %><h6 id='current-stats-summary' style="display: inline; margin-left: 5px">259</h6></div>
+      </div>
+    </div>
+    <div class="details-lowerwrapper d-flex px-0">
+
+      <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
+        <%=image_tag("oddz_coin_purple.svg", size: '30') %>
+        <p style="font-size: 14px" id="stake-summary"><%= @premade_bet.metric_count %></p>
+      </div>
+      <div class="details-attributes col-4 px-0 mx-0"><p id="hidden_metric_count_title" ><%= @premade_bet.metric.upcase %></p>
+        <%=image_tag("video.svg", size: '30') %>
+        <p style="font-size: 14px" id="summary-metric-count"><%= @premade_bet.metric_count %></p>
+      </div>
+      <div class="details-attributes col-4 px-0 mx-0"><p>DEADLINE</p>
+        <%=image_tag("time.svg", size: '30') %>
+        <p style="font-size: 14px" id="metric_count_time-summary"><%= @premade_bet.premade_hours %> hour</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <div class="betbar-filter"></div>
@@ -131,7 +156,7 @@
     document.getElementById('bet-btn').classList.remove('d-none')
 
     document.getElementById('stake-summary').innerHTML =
-      document.getElementById('bet_stake').value
+      document.getElementById('bet_stake').value + " coins"
 
     document.getElementById('friend-summary').innerHTML =
       document.getElementById('bet_friend').value
