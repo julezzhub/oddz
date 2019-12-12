@@ -22,6 +22,7 @@ puts "Creating bets"
 end
 
 puts "Creating premade bets"
+
 Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "ivCY3Ec4iaU",  metric: "Views",  metric_count: 25000000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "KANYE WEST - FOLLOW GOD",  premade_hours: 5, premade_days: 1, thumbnail: "https://i.ytimg.com/vi/ivCY3Ec4iaU/hq720.jpg")
 Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "kwnJTryLdp8 ",  metric: "Views",  metric_count: 300, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "LeWAGON - DRIVER DAVID",  premade_hours: 1, premade_days: 1, thumbnail: "https://i.ytimg.com/vi/kwnJTryLdp8/hqdefault.jpg")
 Bet.create(user: User.all.sample, friend: User.all.sample, premade: true,  target: "cSqi-8kAMmM",  metric: "Likes",  metric_count: 550000, start_time: "Fri, 20 Dec 2019 00:00:00 UTC +00:00", end_time: 'Sat, 21 Dec 2019 00:00:00 UTC +00:00',  status: nil,  winner_id: nil,  video_title: "THE WITCHER - TEASER",  premade_hours: 16, premade_days: 2, thumbnail: "https://i.ytimg.com/vi/cSqi-8kAMmM/hqdefault.jpg")

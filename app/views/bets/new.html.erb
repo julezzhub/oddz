@@ -15,28 +15,28 @@
             <div class="current-stats">
               <%= image_tag "video.svg" %>
               <div>
-                <p id="current-label"><span>Views</span></p>
-                <p><%= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
+                <p id="current-label" class="current-label-summary"><span>Views</span></p>
+                <p id="current-view-count"><%= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
               </div>
             </div>
             <div class="current-stats">
               <div>
-                <p id="current-label"><span>Comments</span></p>
-                <p><%= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
+                <p id="current-label" class="current-label-summary"><span>Comments</span></p>
+                <p id="current-comment-count"><%= number_with_delimiter(@statistics["commentCount"], delimiter: ',') %></p>
               </div>
               <%= image_tag "comments.svg" %>
             </div>
             <div class="current-stats">
               <%= image_tag "thumbs_up.svg" %>
               <div>
-                <p id="current-label"><span>Likes</span></p>
-                <p><%= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
+                <p id="current-label" class="current-label-summary"><span>Likes</span></p>
+                <p id="current-like-count"><%= number_with_delimiter(@statistics["likeCount"], delimiter: ',') %></p>
               </div>
             </div>
             <div class="current-stats">
               <div>
-                <p id="current-label"><span>Dislikes</span></p>
-                <p><%= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
+                <p id="current-label" class="current-label-summary"><span>Dislikes</span></p>
+                <p id="current-dislike-count"><%= number_with_delimiter(@statistics["dislikeCount"], delimiter: ',') %></p>
               </div>
               <%= image_tag "thumbs_up.svg", style:"transform: rotate(180deg)" %>
             </div>
@@ -51,7 +51,7 @@
         <h3 id="subheader">Tap the statistic you want to bet on!</h3>
         <div id="current-stats-box" class="current-stats-box">
             <div class="current-stats">
-              <%= image_tag "video.svg" %>
+              <%= image_tag "friend.svg", style:"height: 50px; margin-top: 15px" %>
               <div>
                 <p id="current-label"><span>Subscribers</span></p>
                 <p><%= number_with_delimiter(@statistics["subscriberCount"], delimiter: ',') %></p>
@@ -62,7 +62,7 @@
                 <p id="current-label"><span>Total Views</span></p>
                 <p><%= number_with_delimiter(@statistics["viewCount"], delimiter: ',') %></p>
               </div>
-              <%= image_tag "comments.svg" %>
+              <%= image_tag "video.svg" %>
             </div>
           </div>
       </div>
@@ -120,18 +120,43 @@
 </div>
 
 <div class="d-none" id="summary">
-  <h3 class="form-h3">Summary</h3>
 
-  <div class="summary-grid">
-    <%= image_tag "video.svg"%>
-    <h3 class="form-h3" id="target-summary"></h3>
-    <%= image_tag("thumbs_up.svg") %>
-    <h3 class="form-h3" id="metric_count_time-summary"></h3>
-    <%= image_tag("wallet.svg") %>
-    <h3 class="form-h3"><span id="stake-summary"></span><span><%= image_tag "oddz_coin4.svg", id:"coin-summary"%></span></h3>
-    <%= image_tag "friend.svg", style:"width: 80px; height: 110px;" %>
-    <h3 class="form-h3" id="friend-summary"></h3>
+  <div class="title-for-details-show"><h1><%= "Bet Summary" %></h1></div>
+<div class="details-container" id="details-show-container">
+  <div class="image-container" style="background-image: linear-gradient(rgba(10,10,10,0.4), rgba(50,50,50,0.05)), url(<%= params[:thumbnail] %>)" id="details-show-thumbnail">
+  <div class="d-flex align-items-center justify-content-between"  id="avatar-for-details" >
+    <div class="d-flex align-items-center">
+      <!-- <img src="<%#= @bet.user.avatar %>" class="avatar-large-bordered m-0" crop: :fill style="object-fit: cover" /> -->
+      <p class="my-0 ml-2" id="friend-summary"></p>
+    </div>
   </div>
+  </div>
+  <div class="details-infos">
+
+    <div class="details-title" style="position: absolute, bottom: 38%;">
+      <h5 style="color: white" id="target-summary"> </h5>
+      <div class="current-metric" style="top: 48%">
+        <div><%= image_tag("play_white.svg", size: '20') %><h6 id='current-stats-summary' style="display: inline; margin-left: 5px"></h6></div>
+      </div>
+    </div>
+    <div class="details-lowerwrapper d-flex px-0">
+
+      <div class="details-attributes col-4 px-0 mx-0"><p>STAKE</p>
+        <%=image_tag("oddz_coin_purple.svg", size: '30') %>
+        <p style="font-size: 14px" id="stake-summary"></p>
+      </div>
+      <div class="details-attributes col-4 px-0 mx-0"><p id="hidden_metric_count_title" ></p>
+        <%=image_tag("video.svg", size: '30') %>
+        <p style="font-size: 14px" id="summary-metric-count"></p>
+      </div>
+      <div class="details-attributes col-4 px-0 mx-0"><p>DEADLINE</p>
+        <%=image_tag("time.svg", size: '30') %>
+        <p style="font-size: 14px" id="metric_count_time-summary"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <div class="betbar-filter"></div>
@@ -333,23 +358,48 @@
 
     if (document.getElementById('days').value !== "00") {
       document.getElementById('metric_count_time-summary').innerHTML =
-      parseInt(document.getElementById('hidden_metric_count').value, 10).toLocaleString() + " "
-      + hidden_metric_tag.value + " in "
-        + document.getElementById('days').value + " days and "
-        + document.getElementById('hours').value + " hours."
+        document.getElementById('days').value + " days and "
+        document.getElementById('hours').value + " hours"
     } else {
       document.getElementById('metric_count_time-summary').innerHTML =
-      parseInt(document.getElementById('hidden_metric_count').value, 10).toLocaleString() + " "
-      + hidden_metric_tag.value + " in "
-        + document.getElementById('hours').value + " hours."
+        document.getElementById('hours').value + " hours"
     }
 /*      + document.getElementById('minutes').value + " minutes."
 */
+  //   const current_stat_in_sum = document.getElementById('current-label').innerText;
+  //   if (current_stat_in_sum === 'Views')  {
+  //     document.getElementById('current-stats-summary').innerText =
+  //     document.getElementById('current-view-count').value
+  //   } else if ((current_stat_in_sum) === 'Comments') {
+  //     document.getElementById('current-stats-summary').innerText =
+  //     document.getElementById('current-comment-count').value
+  //   } else if ((current_stat_in_sum) === 'Likes') {
+  //     document.getElementById('current-stats-summary').innerText =
+  //     document.getElementById('current-like-count').value
+  //   } else {
+  //     ((current_stat_in_sum) === 'Dislikes') {
+  //     document.getElementById('current-stats-summary').innerText =
+  //     document.getElementById('current-dislike-count').value
+  //   }
+  // }
+
+    document.getElementById('current-stats-summary').innerText =
+      document.querySelector('.selected div p:nth-child(2)').innerText
+
+    document.getElementById('summary-metric-count').innerHTML =
+      document.getElementById('bet_metric_count').value
+
+    // document.getElementById('metric_count_time-summary').innerHTML =
+
+
+    document.getElementById('hidden_metric_count_title').innerText = hidden_metric_tag.value.toUpperCase()
+
     document.getElementById('stake-summary').innerHTML =
-      document.getElementById('bet_stake').value
+      `${document.getElementById('bet_stake').value} coins`
 
     document.getElementById('friend-summary').innerHTML =
       document.getElementById('bet_friend').value
+
   })
   // when you click on the rightward arrow, you get to the summary page
   // which is simultaneously being populated with the user's input
