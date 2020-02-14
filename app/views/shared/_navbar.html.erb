@@ -11,8 +11,9 @@
       <%= link_to "oddz", root_path, class: "nav-link nav-color" %>
     </div>
     <div class="nav-item">
-      <div id = "nav-menu"><%= link_to account_settings_path do %><%= image_tag "menu.svg" %><% end %></div>
-
+      <div id = "nav-menu">
+        <%= link_to account_settings_path do %><%= image_tag "menu.svg" %><% end %>
+      </div>
     </div>
     <% new_notifications = Notification.where(user_id: current_user, seen: false) %>
     <% unless new_notifications.empty?%>

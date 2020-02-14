@@ -35,7 +35,13 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/circlebars@1.0.3/dist/circle.css">
   </head>
   <body class="dark-bckgrnd">
-
+    <div id="non-mobile">
+      <%= image_tag "mobile-first.svg", id:"mobile-first" %>
+      <h1>Pick up the phone!</h1>
+      <br>
+      <h3>oddz is betting on mobile-first. Open this page on a smaller screen to start challenging your friends!</h3>
+    </div>
+    <div id="mobile">
     <%= render 'shared/navbar' unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(landing_path) %>
     <%= render 'shared/flashes' %>
     <%= yield %>
@@ -45,5 +51,6 @@
     <%= render 'shared/betbar' if current_page?(root_path) || current_page?(friends_path) || current_page?(pending_account_bets_path) || current_page?(account_bets_path) || current_page?(account_settings_path) || current_page?(new_account_transaction_path) || current_page?(account_wallet_path) || current_page?(account_notifications_path)%>
 
     <%= yield(:after_js) %>
+    </div>
   </body>
 </html>
